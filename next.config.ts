@@ -10,6 +10,11 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   serverExternalPackages: ["@libsql/client", "libsql"],
+  // Demo mode builds its database from the migration SQL at start-up, so ship that folder with every route.
+  outputFileTracingIncludes: {
+    "/*": ["./drizzle/**/*"],
+    "/**/*": ["./drizzle/**/*"],
+  },
   images: {
     // Placeholder photography is served by Unsplash's image CDN (resized there via a custom
     // loader in <Photo>). Official BAA photography uploaded later can use next/image as normal.
