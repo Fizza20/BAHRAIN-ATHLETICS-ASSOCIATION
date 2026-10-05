@@ -1,0 +1,322 @@
+@import "tailwindcss";
+
+/* ============================================================
+   BAA design system
+   One light theme: white and cool-neutral surfaces, near-black text,
+   Bahrain red as the single accent. Dark surfaces are reserved for the
+   footer. Token names are kept so existing classes keep working.
+   ============================================================ */
+
+@theme {
+  --color-brand-50: #fdf0f1;
+  --color-brand-100: #fadadd;
+  --color-brand-200: #f3b0b8;
+  --color-brand-300: #ea7b88;
+  --color-brand-400: #de4356;
+  --color-brand-500: #d41f35;
+  --color-brand-600: #ce1126; /* Bahrain Red: the one accent */
+  --color-brand-700: #a80e1f;
+  --color-brand-800: #840c19;
+  --color-brand-900: #5e0912;
+  --color-brand-950: #36050a;
+
+  --color-ink-50: #f7f7f8;
+  --color-ink-100: #ececee;
+  --color-ink-200: #d6d6da;
+  --color-ink-300: #b4b4ba;
+  --color-ink-400: #757580; /* 4.6:1 on white: smallest text colour allowed */
+  --color-ink-500: #5a5a63;
+  --color-ink-600: #45454d;
+  --color-ink-700: #33333a;
+  --color-ink-800: #1d1d21;
+  --color-ink-900: #141417;
+  --color-ink-950: #0b0b0d;
+
+  /* Surfaces */
+  --color-bone: #ffffff; /* page background */
+  --color-pearl: #f6f6f8; /* alternate section / subtle fills */
+  --color-sand: #ececef;
+  --color-line: #e2e2e7; /* borders */
+
+  --color-gold: #c39a32;
+  --color-silver: #9ca3ab;
+  --color-bronze: #a4683c;
+  --color-success: #1f7a52;
+  --color-warning: #9a6212;
+  --color-info: #2d5b86;
+
+  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-arabic: var(--font-plex-arabic), var(--font-archivo), sans-serif;
+
+  --radius-xs: 6px; /* buttons, inputs, chips */
+  --radius-sm: 8px;
+  --radius-md: 12px; /* cards */
+
+  --shadow-card: 0 1px 2px rgb(20 20 23 / 0.04), 0 1px 3px rgb(20 20 23 / 0.06);
+  --shadow-card-hover: 0 4px 16px rgb(20 20 23 / 0.1);
+
+  --ease-start: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --animate-live: live 1.6s var(--ease-start) infinite;
+  @keyframes live {
+    0% { box-shadow: 0 0 0 0 rgb(255 255 255 / 0.6); }
+    80%, 100% { box-shadow: 0 0 0 7px rgb(255 255 255 / 0); }
+  }
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    scroll-padding-top: 88px;
+  }
+  body {
+    @apply bg-bone text-ink-900 antialiased;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+  ::selection {
+    @apply bg-brand-600 text-white;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-brand-600);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  [dir="rtl"] body,
+  :lang(ar) {
+    font-family: var(--font-arabic);
+  }
+  h1, h2, h3, h4 {
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+}
+
+/* ---------- typography scale ----------
+   display  hero headline only
+   h1       page title
+   h2       section title
+   h3       card / sub-section title
+   body     1rem, lead 1.125rem, small 0.875rem
+   eyebrow  short uppercase label (the only uppercase text)          */
+@utility text-display {
+  font-weight: 800;
+  font-size: clamp(2.25rem, 5vw, 3.75rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+}
+@utility text-h1 {
+  font-weight: 800;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+@utility text-h2 {
+  font-weight: 750;
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+@utility text-h3 {
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 1.3;
+}
+@utility text-eyebrow {
+  font-weight: 700;
+  font-size: 0.8125rem;
+  line-height: 1.2;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+@utility text-mark {
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- layout ---------- */
+@utility container-x {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 4vw, 2.5rem);
+}
+
+/* Vertical rhythm for page sections */
+@utility section-y {
+  padding-block: clamp(3rem, 7vw, 5rem);
+}
+
+/* ---------- components ---------- */
+
+/* Card: one surface style for athletes, results, news, events, achievements. */
+@utility card {
+  background: var(--color-bone);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+@utility card-interactive {
+  position: relative;
+  transition: box-shadow 0.25s, border-color 0.25s, translate 0.25s var(--ease-start);
+  /* Pointer spotlight: --mx/--my are set by <PointerGlow /> */
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+    background: radial-gradient(360px circle at var(--mx, 50%) var(--my, 50%), rgb(206 17 38 / 0.09), transparent 60%);
+  }
+  &:hover {
+    border-color: var(--color-ink-300);
+    box-shadow: var(--shadow-card-hover);
+    translate: 0 -3px;
+  }
+  &:hover::after {
+    opacity: 1;
+  }
+}
+
+/* Tab pill: filters, category tabs, view toggles. Active state follows ARIA. */
+@utility tab-pill {
+  display: inline-flex;
+  height: 2.75rem;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+  border-radius: 9999px;
+  border: 1px solid var(--color-line);
+  background: var(--color-bone);
+  padding-inline: 1.125rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-ink-700);
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  &:hover {
+    background: var(--color-pearl);
+    border-color: var(--color-ink-300);
+  }
+  &[aria-selected="true"],
+  &[aria-current="page"],
+  &[aria-pressed="true"] {
+    background: var(--color-brand-600);
+    border-color: var(--color-brand-600);
+    color: #fff;
+  }
+}
+
+@utility photo-grade {
+  filter: saturate(0.9) contrast(1.03);
+}
+
+/* Bahrain flag edge: five white points. Used sparingly as a section divider. */
+@utility serrate-bottom {
+  --s: clamp(14px, 1.8vw, 26px);
+  clip-path: polygon(
+    0 0, 100% 0, 100% calc(100% - var(--s)),
+    90% 100%, 80% calc(100% - var(--s)), 70% 100%, 60% calc(100% - var(--s)),
+    50% 100%, 40% calc(100% - var(--s)), 30% 100%, 20% calc(100% - var(--s)),
+    10% 100%, 0 calc(100% - var(--s))
+  );
+}
+@utility serrate-top {
+  --s: clamp(14px, 1.8vw, 26px);
+  clip-path: polygon(
+    0 var(--s), 10% 0, 20% var(--s), 30% 0, 40% var(--s), 50% 0, 60% var(--s),
+    70% 0, 80% var(--s), 90% 0, 100% var(--s), 100% 100%, 0 100%
+  );
+}
+
+/* Slow zoom on hero photography */
+@keyframes kenburns {
+  from { transform: scale(1); }
+  to { transform: scale(1.08); }
+}
+@utility animate-kenburns {
+  animation: kenburns 18s ease-out forwards;
+}
+
+@keyframes spotlight-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+/* Results ticker */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@utility animate-marquee {
+  animation: marquee 45s linear infinite;
+  [dir="rtl"] & { animation-direction: reverse; }
+  &:hover { animation-play-state: paused; }
+}
+
+/* Animated underline on links and headings */
+@utility link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 2px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.3s var(--ease-start);
+  &:hover { background-size: 100% 2px; }
+  [dir="rtl"] & { background-position: 100% 100%; }
+}
+
+@utility scrollbar-none {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ---------- Lenis smooth scroll ---------- */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: clip; }
+
+/* ---------- right-to-left (Arabic) ---------- */
+[dir="rtl"] .lucide-arrow-right,
+[dir="rtl"] .lucide-arrow-left,
+[dir="rtl"] .lucide-arrow-up-right,
+[dir="rtl"] .lucide-chevron-right,
+[dir="rtl"] .lucide-chevron-left {
+  scale: -1 1;
+}
+/* Tight Latin tracking makes Arabic letters collide */
+[dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3,
+[dir="rtl"] .text-display, [dir="rtl"] .text-h1, [dir="rtl"] .text-h2, [dir="rtl"] .text-h3 {
+  letter-spacing: 0;
+  line-height: 1.35;
+}
+[dir="rtl"] .text-eyebrow {
+  letter-spacing: 0;
+  text-transform: none;
+  font-size: 0.875rem;
+}
+[dir="rtl"] body {
+  line-height: 1.8;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
