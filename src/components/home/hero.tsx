@@ -34,7 +34,7 @@ export function Hero({ headline }: { headline: RailItem }) {
   });
 
   return (
-    <section aria-labelledby="hero-title" className="serrate-bottom relative isolate overflow-hidden bg-ink-950 text-white">
+    <section aria-labelledby="hero-title" className="relative isolate overflow-hidden bg-ink-950 text-white">
       <Parallax className="absolute inset-0 -z-20" distance={80}>
         <div className="animate-kenburns absolute inset-0">
           <Photo src={photos.blocks.src} alt="" priority sizes="100vw" className="object-[70%_center] opacity-80" />
@@ -66,14 +66,14 @@ export function Hero({ headline }: { headline: RailItem }) {
           <motion.p {...fade(0.6)} className="mt-6 max-w-xl text-lg text-white/85">
             {t("home.hero.intro")}
           </motion.p>
-          <motion.div {...fade(0.75)} className="mt-8 flex flex-wrap gap-3">
-            <Magnetic>
-              <ButtonLink href="/athletes" size="lg">
+          <motion.div {...fade(0.75)} className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <Magnetic className="w-full sm:w-auto">
+              <ButtonLink href="/athletes" size="lg" className="w-full sm:w-auto">
                 {t("home.hero.cta1")}
               </ButtonLink>
             </Magnetic>
-            <Magnetic>
-              <ButtonLink href="/results" size="lg" variant="outline-inverse">
+            <Magnetic className="w-full sm:w-auto">
+              <ButtonLink href="/results" size="lg" variant="outline-inverse" className="w-full sm:w-auto">
                 {t("home.hero.cta2")}
               </ButtonLink>
             </Magnetic>
@@ -114,7 +114,7 @@ export function ResultsTicker({ items }: { items: RailItem[] }) {
   const row = (suffix: string) =>
     items.map((r) => (
       <li key={`${r.id}-${suffix}`} className="flex shrink-0 items-center gap-3 px-6">
-        <span className="flex size-7 items-center justify-center rounded-full bg-white text-sm font-extrabold text-brand-700 tabular">{r.position ?? "–"}</span>
+        <span className="flex size-7 items-center justify-center rounded-full bg-white text-sm font-extrabold text-ink-950 tabular">{r.position ?? "–"}</span>
         <Link href={`/athletes/${r.athlete.slug}`} className="font-semibold underline-offset-4 hover:underline">
           {fullName(r.athlete)}
         </Link>
@@ -127,9 +127,9 @@ export function ResultsTicker({ items }: { items: RailItem[] }) {
       </li>
     ));
   return (
-    <section aria-label={t("home.ticker")} className="overflow-hidden bg-brand-700 py-3 text-white">
+    <section aria-label={t("home.ticker")} className="overflow-hidden border-b border-white/10 bg-ink-950 py-3 text-white">
       <div className="flex items-center">
-        <span className="text-eyebrow relative z-10 shrink-0 bg-brand-800 px-5 py-2">{t("home.hero.latest")}</span>
+        <span className="text-eyebrow relative z-10 shrink-0 bg-brand-600 px-4 py-2 sm:px-5">{t("home.hero.latest")}</span>
         <div className="min-w-0 flex-1 overflow-hidden">
           <ul className="animate-marquee flex w-max motion-reduce:animate-none">
             {row("a")}

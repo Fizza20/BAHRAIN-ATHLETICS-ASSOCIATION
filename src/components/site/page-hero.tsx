@@ -67,9 +67,9 @@ export function PageHero({
   const right = aside ?? (image ? <HeroImage src={image} /> : null);
   return (
     <section className="relative isolate overflow-hidden border-b border-line bg-pearl">
-      <div className="absolute -top-24 end-0 -z-10 size-[420px] rounded-full bg-brand-600/10 blur-3xl" aria-hidden />
-      <LaneArcs className="absolute inset-y-0 end-0 -z-10 h-full w-[60%] text-brand-600/20" />
-      <div className="container-x py-8 md:py-12">
+      <div className="absolute -top-24 end-0 -z-10 size-[420px] rounded-full bg-brand-600/[0.07] blur-3xl" aria-hidden />
+      <LaneArcs className="absolute inset-y-0 end-0 -z-10 h-full w-[60%] text-brand-600/[0.13]" />
+      <div className="container-x py-10 md:py-14 lg:py-16">
         <Breadcrumbs items={crumbs} />
         <div className={cn("mt-6 grid gap-8 md:mt-8", right && "lg:grid-cols-12 lg:items-center")}>
           <div className={right ? "lg:col-span-7" : "max-w-3xl"}>

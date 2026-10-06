@@ -310,7 +310,7 @@ export default async function HomePage() {
       </section>
 
       {/* Final call to action */}
-      <section aria-labelledby="cta-title" className="bg-brand-700 py-14 text-white md:py-20">
+      <section aria-labelledby="cta-title" className="bg-gradient-to-br from-brand-800 via-brand-900 to-brand-950 text-white section-y">
         <div className="container-x text-center">
           <p className="text-eyebrow text-white/85">{t("home.cta.eyebrow")}</p>
           <h2 id="cta-title" className="text-h1 mx-auto mt-3 max-w-3xl">

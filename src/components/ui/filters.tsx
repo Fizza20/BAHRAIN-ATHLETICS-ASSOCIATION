@@ -73,7 +73,7 @@ export function FilterBar({
 
   return (
     <PendingCtx.Provider value={pending}>
-      <div className="sticky top-[72px] z-30 -mx-4 border-b border-line bg-white/95 px-4 py-4 backdrop-blur md:mx-0 md:px-0">
+      <div className="sticky top-16 sm:top-[72px] z-30 -mx-4 border-b border-line bg-white/95 px-4 py-4 backdrop-blur md:mx-0 md:px-0">
         <div className="flex gap-3">
           <label className="relative flex-1">
             <span className="sr-only">{searchPlaceholder}</span>

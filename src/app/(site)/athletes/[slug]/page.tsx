@@ -129,7 +129,7 @@ export default async function AthletePage({ params }: PageProps<"/athletes/[slug
       </section>
 
       {/* In-page navigation */}
-      <nav aria-label={t("athlete.sectionsNav")} className="sticky top-[72px] z-20 border-b border-line bg-bone/95 backdrop-blur-md">
+      <nav aria-label={t("athlete.sectionsNav")} className="sticky top-16 sm:top-[72px] z-20 border-b border-line bg-bone/95 backdrop-blur-md">
         <div className="container-x scrollbar-none flex gap-1 overflow-x-auto">
           {sections.map((s) => (
             <a key={s.id} href={`#${s.id}`} className="flex h-12 shrink-0 items-center px-4 text-[0.9375rem] font-semibold text-ink-600 hover:text-brand-700">

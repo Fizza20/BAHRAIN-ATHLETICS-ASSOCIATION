@@ -66,7 +66,7 @@ export function SiteHeader() {
           scrolled ? "border-line shadow-[0_6px_24px_-12px_rgb(20_20_23/0.25)]" : "border-transparent",
         )}
       >
-        <div className="container-x flex h-[72px] items-center justify-between gap-4">
+        <div className="container-x flex h-16 items-center justify-between gap-3 sm:h-[72px] sm:gap-4">
           <BrandLockup />
 
           {/* Desktop: the full primary navigation is always visible. */}
@@ -95,7 +95,7 @@ export function SiteHeader() {
           </nav>
 
           <div className="flex items-center gap-1">
-            <LanguageSwitch className="me-1" />
+            <LanguageSwitch className="me-0.5 sm:me-1" />
             <button
               onClick={() => setSearchOpen(true)}
               className="flex h-11 items-center gap-2 rounded-xs px-3 font-semibold text-ink-700 transition-colors hover:bg-pearl hover:text-ink-950"
@@ -127,7 +127,7 @@ export function SiteHeader() {
 function MobileMenu({ isActive, onNavigate }: { isActive: (h: string) => boolean; onNavigate: () => void }) {
   const { t } = useI18n();
   return (
-    <div id="mobile-menu" data-lenis-prevent className="fixed inset-x-0 bottom-0 top-[72px] z-40 overflow-y-auto bg-white lg:hidden">
+    <div id="mobile-menu" data-lenis-prevent className="fixed inset-x-0 bottom-0 top-16 z-40 sm:top-[72px] overflow-y-auto bg-white lg:hidden">
       <nav aria-label={t("nav.mobile")} className="container-x pb-12 pt-4">
         <ul className="divide-y divide-line">
           {NAV.map((item) => (

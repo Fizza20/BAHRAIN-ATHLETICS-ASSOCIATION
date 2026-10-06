@@ -15,7 +15,7 @@ export type SeasonFigure = { value: string | number; label: DictKey; detail: Dic
 export function SeasonNumbers({ figures }: { figures: SeasonFigure[] }) {
   const { t } = useI18n();
   return (
-    <section aria-labelledby="season-title" className="relative overflow-hidden bg-gradient-to-br from-brand-700 via-brand-700 to-brand-900 py-14 text-white md:py-20">
+    <section aria-labelledby="season-title" className="relative overflow-hidden bg-gradient-to-br from-brand-900 via-brand-800 to-brand-950 text-white section-y">
       <div className="container-x relative">
         <div className="max-w-2xl">
           <p className="text-eyebrow mb-3 text-white/85">{t("home.season.eyebrow")}</p>
@@ -27,7 +27,7 @@ export function SeasonNumbers({ figures }: { figures: SeasonFigure[] }) {
         <Stagger as="dl" className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {figures.map((f) => (
             <StaggerItem key={f.label}>
-              <div className="group relative flex h-full flex-col rounded-md border border-white/20 bg-white/10 p-6 backdrop-blur transition-colors hover:bg-white/15">
+              <div className="group relative flex h-full flex-col rounded-md border border-white/15 bg-white/[0.07] p-6 backdrop-blur transition-colors hover:bg-white/[0.12] md:p-7">
                 <dt className="order-2 mt-3 font-semibold">
                   {f.href ? (
                     <Link href={f.href} className="after:absolute after:inset-0 after:content-['']">

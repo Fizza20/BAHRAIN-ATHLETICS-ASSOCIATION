@@ -19,12 +19,12 @@ export function LanguageSwitch({ className }: { className?: string }) {
       lang={next}
       aria-label={t("lang.switchLabel")}
       className={cn(
-        "flex h-11 items-center gap-2 rounded-xs border border-ink-200 px-3 text-[0.9375rem] font-semibold text-ink-800 transition-colors hover:border-ink-900 hover:bg-pearl disabled:opacity-60",
+        "flex h-11 items-center gap-2 rounded-xs border border-ink-200 px-2.5 text-[0.9375rem] font-semibold text-ink-800 transition-colors hover:border-ink-900 hover:bg-pearl disabled:opacity-60 sm:px-3",
         className,
       )}
     >
       <Languages className="size-5" aria-hidden />
-      <span>{t("lang.switchTo")}</span>
+      <span className="hidden min-[420px]:inline">{t("lang.switchTo")}</span>
     </button>
   );
 }

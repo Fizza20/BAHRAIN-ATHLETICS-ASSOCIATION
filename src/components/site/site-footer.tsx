@@ -43,11 +43,9 @@ const COLS: { title: DictKey; links: { label: DictKey; href: string }[] }[] = [
 export async function SiteFooter() {
   const { t } = await getT();
   return (
-    <footer className="bg-ink-950 text-white">
-      {/* Bahrain flag edge: red band with the five white points */}
-      <div className="serrate-bottom h-8 bg-brand-600" aria-hidden />
+    <footer className="border-t-4 border-brand-600 bg-ink-950 text-white">
       <div className="container-x">
-        <div className="grid gap-12 py-14 lg:grid-cols-12">
+        <div className="grid gap-12 py-16 lg:grid-cols-12 lg:py-20">
           <div className="lg:col-span-4">
             <BrandLockup inverse />
             <p className="mt-5 max-w-sm text-white/80">{t("footer.tagline")}</p>
