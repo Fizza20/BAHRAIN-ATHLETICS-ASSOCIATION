@@ -1,6 +1,6 @@
 "use client";
 
-import { animate, motion, useInView, useReducedMotion, useScroll, useSpring, useTransform, type HTMLMotionProps } from "motion/react";
+import { animate, motion, useInView, useMotionTemplate, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform, type HTMLMotionProps, type MotionValue } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -210,5 +210,65 @@ export function ClipReveal({ children, className }: { children: React.ReactNode;
     >
       {children}
     </motion.div>
+  );
+}
+
+/** 3D tilt that follows the pointer, with a soft light reflection. Mouse only; static on touch. */
+export function TiltCard({ children, className, max = 7 }: { children: React.ReactNode; className?: string; max?: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const rx = useSpring(0, { stiffness: 180, damping: 18, mass: 0.5 });
+  const ry = useSpring(0, { stiffness: 180, damping: 18, mass: 0.5 });
+  const gx = useMotionValue(50);
+  const gy = useMotionValue(50);
+  const glare = useMotionTemplate`radial-gradient(420px circle at ${gx}% ${gy}%, rgb(255 255 255 / 0.16), transparent 60%)`;
+  return (
+    <motion.div
+      ref={ref}
+      className={className}
+      style={{ rotateX: rx, rotateY: ry, transformPerspective: 1000, transformStyle: "preserve-3d" }}
+      onPointerMove={(e) => {
+        if (e.pointerType !== "mouse" || !ref.current) return;
+        const r = ref.current.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width;
+        const py = (e.clientY - r.top) / r.height;
+        ry.set((px - 0.5) * 2 * max);
+        rx.set(-(py - 0.5) * 2 * max);
+        gx.set(px * 100);
+        gy.set(py * 100);
+      }}
+      onPointerLeave={() => {
+        rx.set(0);
+        ry.set(0);
+      }}
+    >
+      {children}
+      <motion.span aria-hidden className="pointer-events-none absolute inset-0 rounded-[inherit]" style={{ background: glare }} />
+    </motion.div>
+  );
+}
+
+function ScrubWord({ word, progress, start, end }: { word: string; progress: MotionValue<number>; start: number; end: number }) {
+  const opacity = useTransform(progress, [start, end], [0.16, 1]);
+  return (
+    <motion.span style={{ opacity }} className="inline-block">
+      {word}
+      {"\u00A0"}
+    </motion.span>
+  );
+}
+
+/** Statement text whose words light up one by one as it scrolls through the viewport. */
+export function ScrubText({ text, className }: { text: string; className?: string }) {
+  const ref = useRef<HTMLParagraphElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.9", "end 0.55"] });
+  const words = text.split(" ");
+  return (
+    <p ref={ref} className={className} aria-label={text}>
+      {words.map((w, i) => (
+        <span key={i} aria-hidden>
+          <ScrubWord word={w} progress={scrollYProgress} start={i / words.length} end={Math.min(1, (i + 1.6) / words.length)} />
+        </span>
+      ))}
+    </p>
   );
 }

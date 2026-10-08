@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Archivo, IBM_Plex_Sans_Arabic } from "next/font/google";
+import { Archivo, IBM_Plex_Sans_Arabic, Instrument_Serif } from "next/font/google";
 import { SITE_URL } from "@/lib/utils";
 import { getLocale } from "@/lib/i18n/server";
 import { dirOf } from "@/lib/i18n/config";
@@ -10,6 +10,14 @@ const archivo = Archivo({
   variable: "--font-archivo",
   subsets: ["latin"],
   axes: ["wdth"],
+  display: "swap",
+});
+
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument",
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -49,7 +57,7 @@ export const viewport: Viewport = {
 export default async function RootLayout({ children }: LayoutProps<"/">) {
   const locale = await getLocale();
   return (
-    <html lang={locale} dir={dirOf(locale)} className={`${archivo.variable} ${plexArabic.variable}`}>
+    <html lang={locale} dir={dirOf(locale)} className={`${archivo.variable} ${plexArabic.variable} ${instrumentSerif.variable}`}>
       <body className="min-h-dvh">
         <I18nProvider locale={locale}>{children}</I18nProvider>
       </body>

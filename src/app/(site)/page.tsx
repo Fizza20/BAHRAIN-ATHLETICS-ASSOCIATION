@@ -4,7 +4,7 @@ import { getHomeData } from "@/lib/queries";
 import { organisation, cleanAthleticsLinks } from "@/db/seed-data/real";
 import { photos } from "@/lib/images";
 import { formatDate, fullName } from "@/lib/utils";
-import { Hero, ResultsTicker } from "@/components/home/hero";
+import { BigMarquee, Hero, ResultsTicker } from "@/components/home/hero";
 import { SeasonNumbers, type SeasonFigure } from "@/components/home/season-numbers";
 import { AthleteSpotlight, type SpotlightAthlete } from "@/components/home/athlete-spotlight";
 import { ResultsTable } from "@/components/domain/results-table";
@@ -15,7 +15,7 @@ import { ButtonLink } from "@/components/ui/button";
 import { Photo } from "@/components/ui/photo";
 import { MedalDot, RecordTag } from "@/components/ui/badge";
 import { SocialLinks } from "@/components/site/social";
-import { ClipReveal } from "@/components/ui/motion";
+import { ClipReveal, ScrubText } from "@/components/ui/motion";
 import { HorizontalShowcase } from "@/components/ui/horizontal-showcase";
 import { getT } from "@/lib/i18n/server";
 
@@ -79,11 +79,33 @@ export default async function HomePage() {
       <Hero headline={toRail(recordRow)} />
       <ResultsTicker items={rail} />
 
+      {/* Statement: words light up as you scroll */}
+      <section aria-label={t("home.statement.cta")} className="bg-white py-20 md:py-32">
+        <div className="container-x">
+          <p className="text-eyebrow mb-6 flex items-center gap-3 text-brand-700">
+            <span className="h-px w-10 bg-brand-600" aria-hidden />
+            {t("home.about.eyebrow")}
+          </p>
+          <ScrubText
+            text={t("home.statement")}
+            className="max-w-5xl text-[clamp(1.875rem,4.6vw,4rem)] font-semibold leading-[1.12] tracking-[-0.03em] text-ink-950 rtl:leading-[1.5] rtl:tracking-normal"
+          />
+          <div className="mt-10">
+            <ButtonLink href="/about" variant="secondary" className="rounded-full">
+              {t("home.statement.cta")}
+            </ButtonLink>
+          </div>
+        </div>
+      </section>
+
+      <BigMarquee words={[t("nav.athletes"), t("nav.results"), t("nav.events"), t("nav.news")]} />
+
       <SeasonNumbers figures={figures} />
 
       {/* Athletes */}
-      <section aria-labelledby="athletes-title" className="section-y relative overflow-hidden bg-ink-950 text-white">
-        <div className="absolute -top-40 start-1/3 -z-0 size-[520px] rounded-full bg-brand-600/20 blur-3xl" aria-hidden />
+      <section aria-labelledby="athletes-title" className="section-y grain relative isolate overflow-hidden bg-ink-950 text-white">
+        <div className="animate-drift-a absolute -top-40 start-1/4 -z-10 size-[560px] rounded-full bg-brand-600/30 blur-[120px]" aria-hidden />
+        <div className="animate-drift-b absolute -bottom-52 end-0 -z-10 size-[520px] rounded-full bg-brand-500/20 blur-[130px]" aria-hidden />
         <div className="container-x relative">
           <SectionHeader
             inverse

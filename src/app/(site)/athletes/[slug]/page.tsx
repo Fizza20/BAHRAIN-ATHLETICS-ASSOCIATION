@@ -14,6 +14,7 @@ import { DemoBadge, MedalDot, RecordTag, StatusBadge } from "@/components/ui/bad
 import { ResultsTable } from "@/components/domain/results-table";
 import { StoryCard } from "@/components/domain/news-story";
 import { AthleteCard } from "@/components/domain/athlete-card";
+import { jsonLd as jsonLdScript } from "@/lib/security/json-ld";
 
 export async function generateMetadata({ params }: PageProps<"/athletes/[slug]">): Promise<Metadata> {
   const { slug } = await params;
@@ -70,10 +71,10 @@ export default async function AthletePage({ params }: PageProps<"/athletes/[slug
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }} />
 
       {/* Profile header */}
-      <section className="border-b border-line bg-pearl">
+      <section className="under-header border-b border-line bg-pearl">
         <div className="container-x py-8 md:py-12">
           <Breadcrumbs items={[{ label: t("athletes.title"), href: "/athletes" }, { label: name }]} />
           <div className="mt-6 grid gap-8 md:mt-8 lg:grid-cols-12 lg:items-center">
@@ -129,7 +130,7 @@ export default async function AthletePage({ params }: PageProps<"/athletes/[slug
       </section>
 
       {/* In-page navigation */}
-      <nav aria-label={t("athlete.sectionsNav")} className="sticky top-16 sm:top-[72px] z-20 border-b border-line bg-bone/95 backdrop-blur-md">
+      <nav aria-label={t("athlete.sectionsNav")} className="sticky top-[80px] z-20 border-b border-line bg-bone/95 backdrop-blur-md">
         <div className="container-x scrollbar-none flex gap-1 overflow-x-auto">
           {sections.map((s) => (
             <a key={s.id} href={`#${s.id}`} className="flex h-12 shrink-0 items-center px-4 text-[0.9375rem] font-semibold text-ink-600 hover:text-brand-700">

@@ -53,7 +53,7 @@ export default async function CompetitionsPage({ searchParams }: PageProps<"/com
         crumbs={[{ label: t("comp.title") }]}
         image={photos.stadiumSeats.src}
       />
-      <div className="sticky top-16 sm:top-[72px] z-20 border-b border-line bg-white/95 backdrop-blur">
+      <div className="sticky top-[80px] z-20 border-b border-line bg-white/95 backdrop-blur">
         <div className="container-x flex flex-col gap-3 py-3 lg:flex-row lg:items-center lg:justify-between">
           <nav aria-label={t("comp.filterStatus")} className="scrollbar-none flex gap-2 overflow-x-auto">
             {TABS.map((tab) => (

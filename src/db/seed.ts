@@ -12,7 +12,15 @@ const db = drizzle(client, { schema: s });
 
 console.log("→ seeding", url);
 seedDatabase(db)
-  .then(() => process.exit(0))
+  .then(({ generatedAdminPassword }) => {
+    if (generatedAdminPassword) {
+      console.log("\nAdmin accounts (superadmin@baa.demo, admin@baa.demo, ...) were created with this password.");
+      console.log("It is shown once and is not stored anywhere in plain text:\n");
+      console.log("  " + generatedAdminPassword + "\n");
+      console.log("Change it after first sign-in, or re-seed with SEED_ADMIN_PASSWORD set.");
+    }
+    process.exit(0);
+  })
   .catch((e) => {
     console.error(e);
     process.exit(1);

@@ -23,7 +23,7 @@ export function EventsExplorer({ events, initialTab = "upcoming" }: { events: Ev
 
   return (
     <div>
-      <div className="sticky top-16 sm:top-[72px] z-20 -mx-4 flex flex-wrap items-center justify-between gap-3 border-b border-line bg-white/95 px-4 py-4 backdrop-blur md:mx-0 md:px-0">
+      <div className="sticky top-[80px] z-20 -mx-4 flex flex-wrap items-center justify-between gap-3 border-b border-line bg-white/95 px-4 py-4 backdrop-blur md:mx-0 md:px-0">
         <div role="tablist" aria-label={t("ev.status")} className="scrollbar-none flex gap-2 overflow-x-auto">
           {TABS.map((k) => (
             <button

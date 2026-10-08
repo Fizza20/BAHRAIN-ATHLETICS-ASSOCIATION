@@ -2,6 +2,7 @@ import type { LibSQLDatabase } from "drizzle-orm/libsql";
 import { migrate } from "drizzle-orm/libsql/migrator";
 import bcrypt from "bcryptjs";
 import path from "node:path";
+import { randomBytes } from "node:crypto";
 import * as s from "./schema";
 import { photos, type PhotoKey } from "../lib/images";
 import { parseMark } from "../lib/marks";
@@ -165,7 +166,12 @@ export async function seedDatabase(db: LibSQLDatabase<typeof s>, opts: { bcryptR
   );
 
   log("→ users");
-  const pw = await bcrypt.hash(process.env.SEED_ADMIN_PASSWORD ?? "baa-demo-2026", opts.bcryptRounds ?? 12);
+  // No default password: a known one in a public repo is a standing back door.
+  // Set SEED_ADMIN_PASSWORD (12+ chars) or a strong random one is generated and returned once.
+  const given = process.env.SEED_ADMIN_PASSWORD;
+  if (given && (given.length < 12 || given.length > 72)) throw new Error("SEED_ADMIN_PASSWORD must be 12 to 72 characters");
+  const adminPassword = given ?? randomBytes(18).toString("base64url");
+  const pw = await bcrypt.hash(adminPassword, opts.bcryptRounds ?? 12);
   const userRows = await db
     .insert(s.users)
     .values([
@@ -238,4 +244,5 @@ export async function seedDatabase(db: LibSQLDatabase<typeof s>, opts: { bcryptR
   ]);
 
   log("✓ seeded", { athletes: aths.length, competitions: comps.length, news: newsRows.length });
+  return { generatedAdminPassword: given ? null : adminPassword };
 }

@@ -13,14 +13,14 @@ export function BrandLockup({ className, inverse = false, compact }: { className
         <Image src="/brand/baa-crest.png" alt="" width={96} height={96} className="size-full object-contain" priority />
       </span>
       {!compact && (
-        <span className="hidden flex-col leading-tight min-[360px]:flex">
+        <span className="hidden flex-col whitespace-nowrap leading-tight min-[360px]:flex">
           <span className={cn("text-[0.9375rem] font-bold tracking-tight sm:text-base", inverse ? "text-white" : "text-ink-950")}>{t("brand.name")}</span>
           {locale === "ar" ? (
-            <span className={cn("hidden text-sm font-semibold sm:block", inverse ? "text-white/75" : "text-ink-500")} lang="en" dir="ltr">
+            <span className={cn("hidden text-sm font-semibold xl:block", inverse ? "text-white/75" : "text-ink-500")} lang="en" dir="ltr">
               Bahrain Athletics Association
             </span>
           ) : (
-            <span className={cn("hidden font-arabic text-sm font-semibold sm:block", inverse ? "text-white/75" : "text-ink-500")} lang="ar" dir="rtl">
+            <span className={cn("hidden font-arabic text-sm font-semibold xl:block", inverse ? "text-white/75" : "text-ink-500")} lang="ar" dir="rtl">
               الاتحاد البحريني لألعاب القوى
             </span>
           )}

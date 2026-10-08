@@ -4,27 +4,15 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { getCurrentUser } from "@/lib/auth";
-import { ROLE_LABEL, ROLE_SUMMARY } from "@/lib/permissions";
-import { ROLES } from "@/db/schema";
 import { LaneLines } from "@/components/ui/motifs";
 import { LoginForm } from "@/components/admin/login-form";
 
 export const metadata: Metadata = { title: "Sign in" };
 
-const EMAIL: Record<(typeof ROLES)[number], string> = {
-  super_admin: "superadmin@baa.demo",
-  administrator: "admin@baa.demo",
-  content_manager: "content@baa.demo",
-  results_manager: "results@baa.demo",
-  event_manager: "events@baa.demo",
-  editor: "editor@baa.demo",
-};
-
 export default async function LoginPage({ searchParams }: PageProps<"/admin/login">) {
   if (await getCurrentUser()) redirect("/admin");
   const sp = await searchParams;
   const next = typeof sp.next === "string" ? sp.next : undefined;
-  const demo = ROLES.map((r) => ({ email: EMAIL[r], role: ROLE_LABEL[r], summary: ROLE_SUMMARY[r] }));
 
   return (
     <div className="grid min-h-dvh bg-bone lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
@@ -86,7 +74,7 @@ export default async function LoginPage({ searchParams }: PageProps<"/admin/logi
           <p className="text-eyebrow text-ink-500">Staff sign in</p>
           <h2 className="mt-3 text-[2.25rem] font-extrabold uppercase leading-none tracking-[-0.01em] text-ink-950 [font-variation-settings:'wdth'_72]">Welcome back</h2>
           <p className="mt-2 mb-8 text-sm text-ink-500">Sign in with your federation account to continue.</p>
-          <LoginForm next={next} demo={demo} password="baa-demo-2026" />
+          <LoginForm next={next} />
         </div>
       </main>
     </div>

@@ -7,6 +7,7 @@ import { LaneArcs } from "@/components/ui/lane-arcs";
 import { WordReveal } from "@/components/ui/motion";
 import { cn, SITE_URL } from "@/lib/utils";
 import { useI18n } from "@/lib/i18n/client";
+import { jsonLd as jsonLdScript } from "@/lib/security/json-ld";
 
 export type Crumb = { label: string; href?: string };
 
@@ -36,7 +37,7 @@ export function Breadcrumbs({ items, inverse = false }: { items: Crumb[]; invers
           </li>
         ))}
       </ol>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }} />
     </nav>
   );
 }
@@ -66,10 +67,10 @@ export function PageHero({
 }) {
   const right = aside ?? (image ? <HeroImage src={image} /> : null);
   return (
-    <section className="relative isolate overflow-hidden border-b border-line bg-pearl">
+    <section className="under-header relative isolate overflow-hidden border-b border-line bg-pearl">
       <div className="absolute -top-24 end-0 -z-10 size-[420px] rounded-full bg-brand-600/[0.07] blur-3xl" aria-hidden />
       <LaneArcs className="absolute inset-y-0 end-0 -z-10 h-full w-[60%] text-brand-600/[0.13]" />
-      <div className="container-x py-10 md:py-14 lg:py-16">
+      <div className="container-x pb-10 pt-8 md:pb-14 md:pt-10 lg:pb-16">
         <Breadcrumbs items={crumbs} />
         <div className={cn("mt-6 grid gap-8 md:mt-8", right && "lg:grid-cols-12 lg:items-center")}>
           <div className={right ? "lg:col-span-7" : "max-w-3xl"}>

@@ -7,6 +7,7 @@ import { LaneArcs } from "@/components/ui/lane-arcs";
 import { Reveal } from "@/components/ui/motion";
 import { getT } from "@/lib/i18n/server";
 import { ContactForm } from "./contact-form";
+import { jsonLd as jsonLdScript } from "@/lib/security/json-ld";
 
 export async function generateMetadata(): Promise<Metadata> {
   const { t } = await getT();
@@ -33,7 +34,7 @@ export default async function ContactPage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }} />
       <PageHero eyebrow={t("contact.eyebrow")} title={t("contact.title")} intro={t("contact.intro")} crumbs={[{ label: t("contact.crumb.federation"), href: "/about" }, { label: t("contact.title") }]} />
 
       <section className="relative isolate bg-gradient-to-b from-pearl to-white section-y">

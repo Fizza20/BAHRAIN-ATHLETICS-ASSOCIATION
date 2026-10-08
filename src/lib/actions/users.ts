@@ -9,7 +9,13 @@ import { ROLES } from "@/db/schema";
 import { assertCan, logActivity } from "@/lib/auth";
 import { errorMessage, f, formId, isUniqueViolation, parseForm, parseId, revalidate, toastUrl, type ActionResult, type FormState } from "./helpers";
 
-const password = z.string({ error: "Password is required" }).min(10, "Use at least 10 characters").max(128, "Keep it under 128 characters");
+// bcrypt only reads the first 72 bytes, so longer passwords would be silently truncated: cap it.
+const password = z
+  .string({ error: "Password is required" })
+  .min(12, "Use at least 12 characters")
+  .max(72, "Keep it under 72 characters")
+  .refine((v) => /[a-z]/i.test(v) && /\d/.test(v), "Include at least one letter and one number")
+  .refine((v) => v !== "baa-demo-2026", "That is the public demo password. Choose another.");
 
 const createSchema = z.object({
   name: f.str(120, "Name is required"),

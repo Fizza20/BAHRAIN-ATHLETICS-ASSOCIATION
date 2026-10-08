@@ -105,7 +105,7 @@ export async function getOverview() {
 }
 
 export async function adminSearch(q: string, role: Role) {
-  const term = `%${q.replace(/[%_]/g, "")}%`;
+  const term = `%${q.replace(/[%_\\]/g, "").trim().slice(0, 100)}%`;
   const [athletes, news, competitions, events] = await Promise.all([
     can(role, "athletes")
       ? db

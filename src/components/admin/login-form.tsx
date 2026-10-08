@@ -1,18 +1,14 @@
 "use client";
 
-import { useActionState, useRef } from "react";
+import { useActionState } from "react";
 import { ArrowRight, CircleAlert } from "lucide-react";
 import { loginAction } from "@/lib/actions/auth";
 import type { FormState } from "@/lib/actions/helpers";
 import { cn } from "@/lib/utils";
 import { inputCls } from "./styles";
 
-export type DemoAccount = { email: string; role: string; summary: string };
-
-export function LoginForm({ next, demo, password }: { next?: string; demo: DemoAccount[]; password: string }) {
+export function LoginForm({ next }: { next?: string }) {
   const [state, action, pending] = useActionState(loginAction, {} as FormState);
-  const email = useRef<HTMLInputElement>(null);
-  const pw = useRef<HTMLInputElement>(null);
   const errors = state.errors ?? {};
 
   return (
@@ -30,11 +26,10 @@ export function LoginForm({ next, demo, password }: { next?: string; demo: DemoA
             Email
           </label>
           <input
-            ref={email}
             id="email"
             name="email"
             type="email"
-            autoComplete="username"
+            autoComplete="username" spellCheck={false} autoCapitalize="none" maxLength={200}
             required
             aria-invalid={errors.email ? true : undefined}
             aria-describedby={errors.email ? "email-err" : undefined}
@@ -52,11 +47,10 @@ export function LoginForm({ next, demo, password }: { next?: string; demo: DemoA
             Password
           </label>
           <input
-            ref={pw}
             id="password"
             name="password"
             type="password"
-            autoComplete="current-password"
+            autoComplete="current-password" maxLength={200}
             required
             aria-invalid={errors.password ? true : undefined}
             aria-describedby={errors.password ? "password-err" : undefined}
@@ -78,37 +72,6 @@ export function LoginForm({ next, demo, password }: { next?: string; demo: DemoA
         </button>
       </form>
 
-      <section aria-labelledby="demo-title" className="mt-10 rounded-sm border border-dashed border-ink-300 bg-white/60 p-4">
-        <div className="flex items-baseline justify-between gap-3">
-          <h2 id="demo-title" className="text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-ink-500">
-            Demo accounts
-          </h2>
-          <p className="text-xs text-ink-500">
-            Password <code className="rounded-xs bg-ink-950 px-1.5 py-0.5 font-mono text-[0.6875rem] text-white">{password}</code>
-          </p>
-        </div>
-        <p className="mt-1 text-xs text-ink-400">Pitch prototype only. Pick a role to fill the form.</p>
-        <ul className="mt-3 divide-y divide-line">
-          {demo.map((d) => (
-            <li key={d.email}>
-              <button
-                type="button"
-                onClick={() => {
-                  if (email.current) email.current.value = d.email;
-                  if (pw.current) pw.current.value = password;
-                  pw.current?.focus();
-                }}
-                className="group flex w-full items-center gap-3 py-2 text-left"
-              >
-                <span className="w-32 shrink-0 text-[0.8125rem] font-semibold text-ink-950 group-hover:text-brand-600">{d.role}</span>
-                <span className="min-w-0 flex-1 truncate font-mono text-xs text-ink-500">{d.email}</span>
-                <ArrowRight className="size-3.5 shrink-0 text-ink-300 group-hover:text-brand-600" aria-hidden />
-                <span className="sr-only">Use the {d.role} account</span>
-              </button>
-            </li>
-          ))}
-        </ul>
-      </section>
     </>
   );
 }

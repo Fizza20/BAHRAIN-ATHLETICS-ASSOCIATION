@@ -2,17 +2,19 @@ import "server-only";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { cache } from "react";
-import { and, eq, gt } from "drizzle-orm";
+import { and, eq, gt, lt } from "drizzle-orm";
 import bcrypt from "bcryptjs";
 import { db, schema as s } from "@/db";
 import { can, type Action, type Resource } from "./permissions";
+import { SESSION_COOKIE } from "./session-cookie";
+import { UserError } from "./errors";
 
 /**
  * DB-backed sessions. The cookie holds a random 256-bit token; the database stores
  * only its SHA-256, so a leaked DB can't be replayed as a cookie. Cookies are
  * httpOnly, SameSite=Lax and Secure in production.
  */
-export const SESSION_COOKIE = "baa_session";
+export { SESSION_COOKIE };
 const SESSION_TTL_MS = 1000 * 60 * 60 * 12; // 12 hours
 
 async function sha256(input: string) {
@@ -23,6 +25,7 @@ async function sha256(input: string) {
 export async function createSession(userId: number) {
   const token = Buffer.from(crypto.getRandomValues(new Uint8Array(32))).toString("base64url");
   const expiresAt = new Date(Date.now() + SESSION_TTL_MS);
+  await db.delete(s.sessions).where(lt(s.sessions.expiresAt, new Date())); // purge expired sessions
   await db.insert(s.sessions).values({ id: await sha256(token), userId, expiresAt });
   const jar = await cookies();
   jar.set(SESSION_COOKIE, token, {
@@ -70,8 +73,8 @@ export async function requireUser(resource?: Resource, action: Action = "read") 
 /** For server actions: throws instead of redirecting so the caller can show an error. */
 export async function assertCan(resource: Resource, action: Action) {
   const user = await getCurrentUser();
-  if (!user) throw new Error("You are signed out. Please sign in again.");
-  if (!can(user.role, resource, action)) throw new Error("Your role doesn't allow this action.");
+  if (!user) throw new UserError("You are signed out. Please sign in again.");
+  if (!can(user.role, resource, action)) throw new UserError("Your role doesn't allow this action.");
   return user;
 }
 

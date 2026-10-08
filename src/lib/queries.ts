@@ -26,10 +26,13 @@ export type AthleteFilters = {
   sort?: string;
 };
 
+/** Search text with LIKE wildcards and backslashes removed, so users cannot craft expensive patterns. */
+const plain = (v: string) => v.trim().replace(/[%_\\]/g, " ").slice(0, 100);
+
 export async function getAthletes(f: AthleteFilters = {}) {
   const where: SQL[] = [];
   if (f.q) {
-    const q = `%${f.q.trim()}%`;
+    const q = `%${plain(f.q)}%`;
     where.push(or(like(s.athletes.firstName, q), like(s.athletes.lastName, q), like(sql`${s.athletes.firstName} || ' ' || ${s.athletes.lastName}`, q))!);
   }
   if (f.discipline) where.push(eq(s.disciplines.slug, f.discipline));
@@ -164,7 +167,7 @@ export type ResultFilters = {
 export async function getResults(f: ResultFilters = {}) {
   const where: SQL[] = [];
   if (f.q) {
-    const q = `%${f.q.trim()}%`;
+    const q = `%${plain(f.q)}%`;
     where.push(or(like(sql`${s.athletes.firstName} || ' ' || ${s.athletes.lastName}`, q), like(s.competitions.name, q), like(s.disciplines.name, q))!);
   }
   if (f.discipline) where.push(eq(s.disciplines.slug, f.discipline));
@@ -283,7 +286,7 @@ export async function getEventBySlug(slug: string) {
 export async function getNews({ category, page = 1, pageSize = 13, q }: { category?: string; page?: number; pageSize?: number; q?: string } = {}) {
   const where: SQL[] = [eq(s.news.status, "published")];
   if (category) where.push(eq(s.news.category, category as "athletes"));
-  if (q) where.push(or(like(s.news.title, `%${q}%`), like(s.news.excerpt, `%${q}%`))!);
+  if (q) where.push(or(like(s.news.title, `%${plain(q)}%`), like(s.news.excerpt, `%${plain(q)}%`))!);
   const cond = and(...where);
   const [rows, [{ total }]] = await Promise.all([
     db.select().from(s.news).where(cond).orderBy(desc(s.news.featured), desc(s.news.publishedAt)).limit(pageSize).offset((page - 1) * pageSize),
@@ -371,7 +374,7 @@ export async function getSitemapEntities() {
 /* ------------------------------------------------------------------ */
 
 export async function globalSearch(q: string) {
-  const term = `%${q.trim()}%`;
+  const term = `%${plain(q)}%`;
   if (q.trim().length < 2) return { athletes: [], news: [], competitions: [], events: [] };
   const [athletes, news, competitions, events] = await Promise.all([
     db

@@ -7,6 +7,7 @@ import type { SQLiteColumn, SQLiteTable } from "drizzle-orm/sqlite-core";
 import { db } from "@/db";
 import { assertCan, logActivity, type SessionUser } from "@/lib/auth";
 import type { Resource } from "@/lib/permissions";
+import { UserError } from "@/lib/errors";
 
 /** State returned by form actions used with useActionState. */
 export type FormState = {
@@ -33,7 +34,7 @@ export const f = {
     z
       .preprocess(blankToNull, z.string().trim().max(2000).nullable().optional())
       .transform((v) => v ?? null)
-      .refine((v) => !v || /^https?:\/\/\S+$/.test(v) || /^\/[^\s/]/.test(v), "Use a full https:// address or a site path like /about"),
+      .refine((v) => !v || /^https?:\/\/[^\s<>"']+$/.test(v) || /^\/[^\s/\\]\S*$/.test(v), "Use a full https:// address or a site path like /about"),
   slug: () =>
     z
       .string({ error: "Slug is required" })
@@ -96,15 +97,15 @@ const idSchema = z.coerce.number().int().positive();
 /** Validates an id from the client. Throws on anything that isn't a positive integer. */
 export function parseId(v: unknown): number {
   const r = idSchema.safeParse(v);
-  if (!r.success) throw new Error("Invalid id");
+  if (!r.success) throw new UserError("Invalid id");
   return r.data;
 }
 
 export function parseIds(v: unknown): number[] {
-  if (!Array.isArray(v)) throw new Error("Invalid selection");
+  if (!Array.isArray(v)) throw new UserError("Invalid selection");
   const ids = v.map(parseId);
-  if (ids.length === 0) throw new Error("Nothing selected");
-  if (ids.length > 500) throw new Error("Too many rows selected");
+  if (ids.length === 0) throw new UserError("Nothing selected");
+  if (ids.length > 500) throw new UserError("Too many rows selected");
   return [...new Set(ids)];
 }
 
@@ -115,9 +116,14 @@ export function formId(fd: FormData, key = "id"): number | null {
   return parseId(v);
 }
 
+/**
+ * Only deliberate UserErrors reach the browser. Anything else (database, driver, bug) is logged on
+ * the server and replaced by a generic message so SQL, table names and stack details never leak.
+ */
 export function errorMessage(e: unknown) {
-  if (e instanceof Error) return e.message;
-  return "Something went wrong.";
+  if (e instanceof UserError) return e.message;
+  console.error("[action error]", e);
+  return "Something went wrong. Please try again.";
 }
 
 /** Detects a UNIQUE constraint violation on a given column (libSQL wraps it in DrizzleQueryError.cause). */

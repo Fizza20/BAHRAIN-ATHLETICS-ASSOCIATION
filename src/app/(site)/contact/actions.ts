@@ -1,10 +1,10 @@
 "use server";
 
 import { z } from "zod";
-import { headers } from "next/headers";
 import { db, schema as s } from "@/db";
 import type { TFn } from "@/lib/i18n/dict";
 import { getT } from "@/lib/i18n/server";
+import { clientIp, rateLimit } from "@/lib/security/rate-limit";
 
 const makeSchema = (t: TFn) =>
   z.object({
@@ -18,9 +18,6 @@ const makeSchema = (t: TFn) =>
 
 export type ContactState = { ok: boolean; errors?: Partial<Record<string, string>>; message?: string; values?: Record<string, string> };
 
-// Simple per-instance rate limit; production would use Cloudflare/edge rate limiting.
-const hits = new Map<string, number[]>();
-
 export async function sendMessage(_prev: ContactState, formData: FormData): Promise<ContactState> {
   const { t } = await getT();
   const Schema = makeSchema(t);
@@ -33,11 +30,10 @@ export async function sendMessage(_prev: ContactState, formData: FormData): Prom
     return { ok: false, errors, values: raw };
   }
 
-  const ip = (await headers()).get("x-forwarded-for")?.split(",")[0]?.trim() ?? "local";
-  const now = Date.now();
-  const recent = (hits.get(ip) ?? []).filter((t) => now - t < 60_000);
-  if (recent.length >= 5) return { ok: false, message: t("contactAction.tooMany"), values: raw };
-  hits.set(ip, [...recent, now]);
+  const ip = await clientIp();
+  const burst = rateLimit(`contact-burst:${ip}`, { limit: 3, windowMs: 60_000 });
+  const hourly = rateLimit(`contact-hour:${ip}`, { limit: 15, windowMs: 60 * 60_000 });
+  if (!burst.ok || !hourly.ok) return { ok: false, message: t("contactAction.tooMany"), values: raw };
 
   const { company: _hp, ...data } = parsed.data;
   void _hp;

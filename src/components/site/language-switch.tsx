@@ -24,7 +24,7 @@ export function LanguageSwitch({ className }: { className?: string }) {
       )}
     >
       <Languages className="size-5" aria-hidden />
-      <span className="hidden min-[420px]:inline">{t("lang.switchTo")}</span>
+      <span className="hidden min-[420px]:inline lg:hidden xl:inline">{t("lang.switchTo")}</span>
     </button>
   );
 }

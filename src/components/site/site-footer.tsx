@@ -86,9 +86,9 @@ export async function SiteFooter() {
           </nav>
         </div>
 
-        <div className="flex flex-col gap-4 border-t border-white/15 py-6 md:flex-row md:items-center md:justify-between">
-          <SocialLinks tone="inverse" />
-          <p className="max-w-2xl text-sm leading-relaxed text-white/70 md:text-end">
+        <div className="flex flex-col gap-5 border-t border-white/15 py-8 md:flex-row md:items-start md:justify-between md:gap-10">
+          <SocialLinks tone="inverse" className="-ms-3 shrink-0" />
+          <p className="max-w-xl text-[0.8125rem] leading-relaxed text-white/65 md:text-end">
             © {new Date().getFullYear()} {t("footer.rights")}{" "}
             <Link href="/admin" className="underline underline-offset-4 hover:text-white" lang="en" dir="ltr">
               {t("footer.admin")}

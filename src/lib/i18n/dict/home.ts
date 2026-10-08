@@ -12,6 +12,9 @@ export default defineDict({
     "home.hero.latest": "Latest results",
     "home.hero.all": "All results",
     "home.ticker": "Latest results ticker",
+    "home.scroll": "Scroll",
+    "home.statement": "From first races at school to Diamond League titles, we build the athletes who carry Bahrain’s flag around the world.",
+    "home.statement.cta": "Who we are",
 
     "home.season.eyebrow": "Season 2026",
     "home.season.title": "A season measured in hundredths",
@@ -100,6 +103,9 @@ export default defineDict({
     "home.hero.latest": "أحدث النتائج",
     "home.hero.all": "كل النتائج",
     "home.ticker": "شريط أحدث النتائج",
+    "home.scroll": "مرّر للأسفل",
+    "home.statement": "من أولى السباقات المدرسية إلى ألقاب الدوري الماسي، نصنع لاعبين يحملون علم البحرين إلى العالم.",
+    "home.statement.cta": "من نحن",
 
     "home.season.eyebrow": "موسم 2026",
     "home.season.title": "موسم يُقاس بأجزاء من الثانية",

@@ -1,14 +1,24 @@
 import type { NextConfig } from "next";
 
 const securityHeaders = [
+  // Force HTTPS for two years, including subdomains (browsers ignore this over plain http).
+  { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains; preload" },
   { key: "X-Content-Type-Options", value: "nosniff" },
+  { key: "X-Frame-Options", value: "DENY" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-  { key: "X-Frame-Options", value: "SAMEORIGIN" },
-  { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
+  { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=(), browsing-topics=()" },
+  { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
+  // Same-origin only: other sites cannot embed our resources. No CORS headers are sent anywhere.
+  { key: "Cross-Origin-Resource-Policy", value: "same-origin" },
+  { key: "X-Permitted-Cross-Domain-Policies", value: "none" },
+  { key: "X-DNS-Prefetch-Control", value: "off" },
+  // The Content-Security-Policy (with a per-request nonce) is set in src/proxy.ts.
 ];
 
 const nextConfig: NextConfig = {
-  poweredByHeader: false,
+  poweredByHeader: false, // do not advertise the framework
+  productionBrowserSourceMaps: false, // never ship source maps to visitors
+  experimental: { serverActions: { bodySizeLimit: "1mb" } },
   serverExternalPackages: ["@libsql/client", "libsql"],
   // Demo mode builds its database from the migration SQL at start-up, so ship that folder with every route.
   outputFileTracingIncludes: {

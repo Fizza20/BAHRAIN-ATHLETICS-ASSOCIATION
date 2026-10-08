@@ -12,7 +12,7 @@ npm run db:reset     # creates data/baa.db, runs migrations, seeds real + demo c
 npm run dev          # http://localhost:3000
 ```
 
-Admin: <http://localhost:3000/admin>. Every demo account uses the password `baa-demo-2026` (set `SEED_ADMIN_PASSWORD` before seeding to change it).
+Admin: <http://localhost:3000/admin>. There is **no default password**. `npm run db:seed` generates a random one and prints it once in the terminal (or uses `SEED_ADMIN_PASSWORD` if you set it, 12 to 72 characters). The seeded accounts share it, so change it after the first sign-in.
 
 | Email | Role |
 |---|---|
@@ -22,6 +22,8 @@ Admin: <http://localhost:3000/admin>. Every demo account uses the password `baa-
 | results@baa.demo | Results Manager |
 | events@baa.demo | Event Manager |
 | editor@baa.demo | Editor |
+
+Never commit `.env*` files or `data/*.db`. Copy `.env.example` to `.env.local`. See [SECURITY.md](SECURITY.md) for the security model, the audit results and the pre-launch checklist.
 
 ## Stack
 
@@ -75,7 +77,7 @@ Athlete ↔ Results ↔ Competition ↔ Discipline, plus Achievements, News (man
 - **Hosting**: Vercel, or a Node container on AWS or Azure in the Bahrain/ME region (`npm run build && npm start`).
 - **Database**: Turso (libSQL, no code change: set `DATABASE_URL` and `DATABASE_AUTH_TOKEN`), or managed Postgres (swap `sqlite-core` → `pg-core` in `schema.ts` and the driver in `db/index.ts`).
 - **Media**: S3-compatible object storage + CDN; add the host to `images.remotePatterns`.
-- **Edge**: Cloudflare in front for CDN, WAF, bot protection and rate limiting (the contact form has a basic in-process limiter and honeypot).
+- **Edge**: Cloudflare in front for CDN, WAF, bot protection and rate limiting (login and the contact form already have an in-process limiter, plus a honeypot on the form).
 - **Monitoring**: Sentry (`@sentry/nextjs`) for errors and performance; Vercel or Cloudflare analytics.
 - **Env**: `NEXT_PUBLIC_SITE_URL` (canonical URLs, sitemap, OG), `DATABASE_URL`, `DATABASE_AUTH_TOKEN`, `SEED_ADMIN_PASSWORD`.
 

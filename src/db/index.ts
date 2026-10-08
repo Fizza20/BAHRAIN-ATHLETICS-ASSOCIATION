@@ -4,6 +4,7 @@ import { drizzle } from "drizzle-orm/libsql";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import * as schema from "./schema";
+import { env } from "@/lib/env";
 
 /**
  * Demo mode (no external database needed).
@@ -17,16 +18,16 @@ import * as schema from "./schema";
  * - Local: set BAA_DEMO_DB=1 to try it
  * - Set DATABASE_URL (e.g. a Turso database) to use a real database instead
  */
-const demoMode = !process.env.DATABASE_URL && (process.env.BAA_DEMO_DB === "1" || Boolean(process.env.VERCEL));
+const demoMode = !env.DATABASE_URL && (env.BAA_DEMO_DB === "1" || Boolean(env.VERCEL));
 
 // One file per process so parallel build workers never seed the same file at once.
 const demoFile = path.join(tmpdir(), `baa-demo-${process.pid}.db`).replaceAll("\\", "/");
-const url = process.env.DATABASE_URL ?? (demoMode ? `file:${demoFile}` : "file:./data/baa.db");
+const url = env.DATABASE_URL ?? (demoMode ? `file:${demoFile}` : "file:./data/baa.db");
 
 const globalForDb = globalThis as unknown as { __baaDb?: ReturnType<typeof createDb>; __baaSeed?: Promise<void> };
 
 function createDb() {
-  const client = createClient({ url, authToken: process.env.DATABASE_AUTH_TOKEN });
+  const client = createClient({ url, authToken: env.DATABASE_AUTH_TOKEN });
   return drizzle(client, { schema });
 }
 
@@ -34,7 +35,7 @@ export const db = globalForDb.__baaDb ?? createDb();
 if (process.env.NODE_ENV !== "production") globalForDb.__baaDb = db;
 
 if (demoMode) {
-  globalForDb.__baaSeed ??= import("./seed-core").then(({ seedDatabase }) => seedDatabase(db, { bcryptRounds: 4, quiet: true }));
+  globalForDb.__baaSeed ??= import("./seed-core").then(({ seedDatabase }) => seedDatabase(db, { bcryptRounds: 10, quiet: true }).then(() => undefined));
   await globalForDb.__baaSeed;
 }
 

@@ -11,6 +11,7 @@ import { ShareBar } from "@/components/domain/share";
 import { formatDate, fullName, SITE_URL } from "@/lib/utils";
 import { getT } from "@/lib/i18n/server";
 import { keyOf } from "@/lib/i18n/dict";
+import { jsonLd as jsonLdScript } from "@/lib/security/json-ld";
 
 export async function generateMetadata({ params }: PageProps<"/news/[slug]">): Promise<Metadata> {
   const { t } = await getT();
@@ -49,8 +50,8 @@ export default async function NewsArticlePage({ params }: PageProps<"/news/[slug
 
   return (
     <article>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <header className="border-b border-line bg-pearl">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }} />
+      <header className="under-header border-b border-line bg-pearl">
         <div className="container-x py-8 md:py-12">
           <Breadcrumbs items={[{ label: t("nav.news"), href: "/news" }, { label: catLabel, href: `/news?category=${n.category}` }, { label: t("news.crumbStory") }]} />
           <div className="mt-6 grid gap-8 md:mt-8 lg:grid-cols-12 lg:items-center">

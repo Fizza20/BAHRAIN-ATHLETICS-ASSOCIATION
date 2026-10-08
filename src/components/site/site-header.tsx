@@ -60,13 +60,17 @@ export function SiteHeader() {
         {t("header.skip")}
       </a>
       <ScrollProgress />
-      <header
-        className={cn(
-          "sticky top-0 z-50 border-b bg-white/95 backdrop-blur transition-shadow duration-300",
-          scrolled ? "border-line shadow-[0_6px_24px_-12px_rgb(20_20_23/0.25)]" : "border-transparent",
-        )}
-      >
-        <div className="container-x flex h-16 items-center justify-between gap-3 sm:h-[72px] sm:gap-4">
+      {/* Floating glass pill: reserves its zone in the flow, hero sections slide underneath it. */}
+      <header className="pointer-events-none sticky top-0 z-50 h-[var(--header-h)]">
+        <div className="container-x pt-3">
+          <div
+            className={cn(
+              "pointer-events-auto flex h-14 items-center justify-between gap-2 rounded-full ps-4 pe-2 transition-all duration-500 sm:gap-4 sm:ps-5",
+              scrolled
+                ? "glass-light shadow-[0_18px_50px_-18px_rgb(16_18_27/0.45)]"
+                : "bg-white/80 shadow-[0_10px_40px_-20px_rgb(16_18_27/0.35)] ring-1 ring-black/5 backdrop-blur-xl",
+            )}
+          >
           <BrandLockup />
 
           {/* Desktop: the full primary navigation is always visible. */}
@@ -80,10 +84,8 @@ export function SiteHeader() {
                       href={item.href}
                       aria-current={active ? "page" : undefined}
                       className={cn(
-                        "relative flex h-11 items-center rounded-xs px-3 text-[0.9375rem] font-semibold transition-colors",
-                        active ? "text-brand-700" : "text-ink-700 hover:bg-pearl hover:text-ink-950",
-                        "after:absolute after:inset-x-3 after:-bottom-[15px] after:h-0.5 after:origin-center after:rounded-full after:bg-brand-600 after:transition-transform after:duration-300",
-                        active ? "after:scale-x-100" : "after:scale-x-0 hover:after:scale-x-100",
+                        "relative flex h-10 items-center rounded-full px-3 text-[0.9375rem] xl:px-4 font-semibold transition-all duration-300",
+                        active ? "bg-ink-950 text-white" : "text-ink-700 hover:bg-ink-950/[0.06] hover:text-ink-950",
                       )}
                     >
                       {t(item.label)}
@@ -95,10 +97,10 @@ export function SiteHeader() {
           </nav>
 
           <div className="flex items-center gap-1">
-            <LanguageSwitch className="me-0.5 sm:me-1" />
+            <LanguageSwitch className="me-0.5 h-10 rounded-full sm:me-1" />
             <button
               onClick={() => setSearchOpen(true)}
-              className="flex h-11 items-center gap-2 rounded-xs px-3 font-semibold text-ink-700 transition-colors hover:bg-pearl hover:text-ink-950"
+              className="flex h-10 items-center gap-2 rounded-full px-3 font-semibold text-ink-700 transition-colors hover:bg-ink-950/[0.06] hover:text-ink-950"
               aria-label={t("header.searchSite")}
             >
               <Search className="size-5" aria-hidden />
@@ -106,13 +108,14 @@ export function SiteHeader() {
             </button>
             <button
               onClick={() => setMobileOpen((v) => !v)}
-              className="flex size-11 items-center justify-center rounded-xs text-ink-900 hover:bg-pearl lg:hidden"
+              className="flex size-10 items-center justify-center rounded-full bg-ink-950 text-white transition-transform active:scale-95 lg:hidden"
               aria-expanded={mobileOpen}
               aria-controls="mobile-menu"
               aria-label={mobileOpen ? t("header.closeMenu") : t("header.openMenu")}
             >
               {mobileOpen ? <X className="size-6" aria-hidden /> : <Menu className="size-6" aria-hidden />}
             </button>
+          </div>
           </div>
         </div>
       </header>
@@ -127,8 +130,8 @@ export function SiteHeader() {
 function MobileMenu({ isActive, onNavigate }: { isActive: (h: string) => boolean; onNavigate: () => void }) {
   const { t } = useI18n();
   return (
-    <div id="mobile-menu" data-lenis-prevent className="fixed inset-x-0 bottom-0 top-16 z-40 sm:top-[72px] overflow-y-auto bg-white lg:hidden">
-      <nav aria-label={t("nav.mobile")} className="container-x pb-12 pt-4">
+    <div id="mobile-menu" data-lenis-prevent className="fixed inset-x-3 bottom-3 top-[76px] z-40 overflow-y-auto rounded-[28px] bg-white shadow-[0_30px_80px_-20px_rgb(16_18_27/0.5)] ring-1 ring-black/5 sm:inset-x-4 lg:hidden">
+      <nav aria-label={t("nav.mobile")} className="px-5 pb-8 pt-3">
         <ul className="divide-y divide-line">
           {NAV.map((item) => (
             <li key={item.href}>

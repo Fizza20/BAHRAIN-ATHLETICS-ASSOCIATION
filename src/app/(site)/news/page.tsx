@@ -39,7 +39,7 @@ export default async function NewsPage({ searchParams }: PageProps<"/news">) {
     <>
       <PageHero eyebrow={t("news.eyebrow")} title={t("news.title")} intro={t("news.intro")} crumbs={[{ label: t("news.title") }]} />
       <div className="container-x pb-16 md:pb-24">
-        <nav aria-label={t("news.categories")} className="sticky top-16 sm:top-[72px] z-20 -mx-4 border-b border-line bg-white/95 px-4 py-4 backdrop-blur md:mx-0 md:px-0">
+        <nav aria-label={t("news.categories")} className="sticky top-[80px] z-20 -mx-4 border-b border-line bg-white/95 px-4 py-4 backdrop-blur md:mx-0 md:px-0">
           <ul className="scrollbar-none flex gap-2 overflow-x-auto">
             {["", ...Object.keys(NEWS_CATEGORY_LABEL)].map((k) => (
               <li key={k}>
