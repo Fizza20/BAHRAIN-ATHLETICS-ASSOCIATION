@@ -28,6 +28,7 @@ export default defineDict({
     "header.openMenu": "Open menu",
     "header.closeMenu": "Close menu",
     "header.closeSearch": "Close search",
+    "header.adminLogin": "Admin login",
     "search.desc": "Search athletes, results, competitions and news.",
     "search.placeholder": "Search athletes, results, competitions, news…",
     "search.popular": "Popular",
@@ -55,7 +56,6 @@ export default defineDict({
     "footer.demoMarked": "Items marked Demo are placeholder content.",
     "footer.demoSample": "This preview includes sample events, news and athlete profiles that will be replaced with verified BAA content before launch.",
     "footer.photos": "Photography is placeholder imagery from Unsplash and does not depict BAA athletes.",
-    "footer.admin": "Admin",
 
     // Badges and statuses
     "status.upcoming": "Upcoming",
@@ -199,6 +199,7 @@ export default defineDict({
     "header.openMenu": "فتح القائمة",
     "header.closeMenu": "إغلاق القائمة",
     "header.closeSearch": "إغلاق البحث",
+    "header.adminLogin": "دخول الإدارة",
     "search.desc": "ابحث عن اللاعبين والنتائج والبطولات والأخبار.",
     "search.placeholder": "ابحث عن لاعبين أو نتائج أو بطولات أو أخبار…",
     "search.popular": "الأكثر بحثًا",
@@ -225,7 +226,6 @@ export default defineDict({
     "footer.demoMarked": "المحتوى الموسوم بـ «تجريبي» بيانات افتراضية.",
     "footer.demoSample": "تتضمن هذه النسخة التجريبية فعاليات وأخبارًا وملفات لاعبين افتراضية سيتم استبدالها بمحتوى موثّق من الاتحاد قبل الإطلاق.",
     "footer.photos": "الصور افتراضية من Unsplash ولا تمثل لاعبي الاتحاد.",
-    "footer.admin": "الإدارة",
 
     "status.upcoming": "قادمة",
     "status.ongoing": "جارية الآن",

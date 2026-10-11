@@ -4,8 +4,9 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { Menu, Search, X, ArrowRight } from "lucide-react";
+import { Menu, Search, X, ArrowRight, LogIn } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ButtonLink } from "@/components/ui/button";
 import { useI18n } from "@/lib/i18n/client";
 import { ScrollProgress } from "@/components/ui/motion";
 import { BrandLockup } from "./brand";
@@ -106,6 +107,18 @@ export function SiteHeader() {
               <Search className="size-5" aria-hidden />
               <span className="hidden text-base xl:inline">{t("header.search")}</span>
             </button>
+            <ButtonLink
+              href="/admin"
+              variant="secondary"
+              size="sm"
+              arrow={false}
+              title={t("header.adminLogin")}
+              className="ms-1 hidden rounded-full lg:inline-flex max-[85rem]:w-10 max-[85rem]:px-0"
+            >
+              <LogIn className="size-4" aria-hidden />
+              {/* Icon only until there is room for the label beside the full navigation. */}
+              <span className="max-[85rem]:sr-only">{t("header.adminLogin")}</span>
+            </ButtonLink>
             <button
               onClick={() => setMobileOpen((v) => !v)}
               className="flex size-10 items-center justify-center rounded-full bg-ink-950 text-white transition-transform active:scale-95 lg:hidden"
@@ -165,6 +178,10 @@ function MobileMenu({ isActive, onNavigate }: { isActive: (h: string) => boolean
             </li>
           ))}
         </ul>
+        <ButtonLink href="/admin" onClick={onNavigate} variant="secondary" size="md" arrow={false} className="mt-8 w-full rounded-full">
+          <LogIn className="size-4" aria-hidden />
+          {t("header.adminLogin")}
+        </ButtonLink>
       </nav>
     </div>
   );

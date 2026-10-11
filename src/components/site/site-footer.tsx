@@ -92,10 +92,7 @@ export async function SiteFooter() {
           <p className="max-w-xl text-sm leading-relaxed text-white/70 md:text-end">
             © {new Date().getFullYear()} {t("footer.rights")}{" "}
             {demo.hasDemo && <>{t(demo.badges ? "footer.demoMarked" : "footer.demoSample")} </>}
-            {t("footer.photos")}{" "}
-            <Link href="/admin" className="underline underline-offset-4 hover:text-white" lang="en" dir="ltr">
-              {t("footer.admin")}
-            </Link>
+            {t("footer.photos")}
           </p>
         </div>
       </div>
