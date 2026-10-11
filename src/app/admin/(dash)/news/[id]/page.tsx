@@ -106,7 +106,7 @@ export default async function NewsEditPage({ params }: PageProps<"/admin/news/[i
       />
       {locked && (
         <div role="note" className="mb-6 flex items-start gap-3 rounded-sm border border-line bg-white px-4 py-3 text-sm text-ink-700">
-          <Lock className="mt-0.5 size-4 shrink-0 text-ink-500" aria-hidden />
+          <Lock className="mt-0.5 size-4 shrink-0 text-ink-600" aria-hidden />
           <p>
             <strong className="font-semibold text-ink-950">This story is live.</strong> Editors can’t change published stories. Ask a content manager to unpublish it first.
           </p>

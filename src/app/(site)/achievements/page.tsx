@@ -56,7 +56,7 @@ export default async function AchievementsPage() {
                       <div>
                         <h3 className="text-h3 text-ink-950">{a.title}</h3>
                         {a.description && <p className="mt-3 text-ink-600">{a.description}</p>}
-                        <p className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-1 text-[0.9375rem] font-semibold">
+                        <p className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-1 text-base font-semibold">
                           {a.athlete && (
                             <Link href={`/athletes/${a.athlete.slug}`} className="inline-flex items-center gap-1 text-brand-700 hover:underline">
                               {locale === "ar" && a.athlete.nameAr ? a.athlete.nameAr : fullName(a.athlete)}

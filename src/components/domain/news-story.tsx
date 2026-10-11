@@ -50,7 +50,7 @@ export function LeadStory({ s, priority }: { s: Story; priority?: boolean }) {
           </Link>
         </h3>
         {s.excerpt && <p className="mt-3 line-clamp-3 text-ink-600">{s.excerpt}</p>}
-        <span className="mt-5 inline-flex items-center gap-1 text-[0.9375rem] font-semibold text-brand-700" aria-hidden>
+        <span className="mt-5 inline-flex items-center gap-1 text-base font-semibold text-brand-700" aria-hidden>
           {t("common.readStory")} <ArrowRight className="size-4" />
         </span>
       </div>

@@ -28,19 +28,19 @@ export default async function LoginPage({ searchParams }: PageProps<"/admin/logi
               <Image src="/brand/baa-crest.png" alt="" width={96} height={96} className="size-full object-contain" priority />
             </span>
             <span className="flex flex-col leading-none">
-              <span className="text-[0.95rem] font-extrabold uppercase [font-variation-settings:'wdth'_78]">Bahrain Athletics</span>
-              <span className="mt-1 font-arabic text-[0.72rem] font-semibold text-white/55" lang="ar" dir="rtl">
+              <span className="text-sm font-extrabold uppercase [font-variation-settings:'wdth'_78]">Bahrain Athletics</span>
+              <span className="mt-1 font-arabic text-xs font-semibold text-white/70" lang="ar" dir="rtl">
                 الاتحاد البحريني لألعاب القوى
               </span>
             </span>
           </div>
-          <Link href="/" className="hidden items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-white/60 hover:text-white sm:flex">
+          <Link href="/" className="hidden items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-white/70 hover:text-white sm:flex">
             <ArrowLeft className="size-3.5" aria-hidden /> Public site
           </Link>
         </div>
 
         <div className="mt-12 max-w-xl lg:mt-0">
-          <p className="mb-5 flex items-center gap-3 text-eyebrow text-white/50">
+          <p className="mb-5 flex items-center gap-3 text-eyebrow text-white/70">
             <span className="h-px w-10 bg-brand-600" aria-hidden /> Management system
           </p>
           <h1 className="text-[clamp(2.75rem,6vw,5.5rem)] font-extrabold uppercase leading-[0.86] tracking-[-0.02em] [font-variation-settings:'wdth'_66]">
@@ -48,7 +48,7 @@ export default async function LoginPage({ searchParams }: PageProps<"/admin/logi
             <br />
             room<span className="text-brand-600">.</span>
           </h1>
-          <p className="mt-6 max-w-md text-base text-white/60">
+          <p className="mt-6 max-w-md text-base text-white/70">
             Athletes, results, competitions, news and governance for Bahraini athletics, managed in one place and published the moment you save.
           </p>
         </div>
@@ -62,7 +62,7 @@ export default async function LoginPage({ searchParams }: PageProps<"/admin/logi
             <div key={v}>
               <dt className="sr-only">{v}</dt>
               <dd className="text-3xl font-extrabold uppercase leading-none tabular [font-variation-settings:'wdth'_70]">{k}</dd>
-              <dd className="mt-2 text-xs text-white/45">{v}</dd>
+              <dd className="mt-2 text-xs text-white/70">{v}</dd>
             </div>
           ))}
         </dl>
@@ -71,9 +71,9 @@ export default async function LoginPage({ searchParams }: PageProps<"/admin/logi
       {/* Form side */}
       <main className="flex items-center justify-center px-6 py-12 sm:px-10">
         <div className="w-full max-w-md">
-          <p className="text-eyebrow text-ink-500">Staff sign in</p>
+          <p className="text-eyebrow text-ink-600">Staff sign in</p>
           <h2 className="mt-3 text-[2.25rem] font-extrabold uppercase leading-none tracking-[-0.01em] text-ink-950 [font-variation-settings:'wdth'_72]">Welcome back</h2>
-          <p className="mt-2 mb-8 text-sm text-ink-500">Sign in with your federation account to continue.</p>
+          <p className="mt-2 mb-8 text-sm text-ink-600">Sign in with your federation account to continue.</p>
           <LoginForm next={next} />
         </div>
       </main>

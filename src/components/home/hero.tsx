@@ -49,15 +49,15 @@ export function Hero({ headline }: { headline: RailItem }) {
       <LaneArcs className="absolute inset-y-0 end-0 -z-10 h-full w-[75%] text-white/[0.09]" lanes={9} />
 
       <div className="container-x relative z-[2] flex flex-1 flex-col justify-end pb-10 pt-24 md:pb-14 lg:pb-16">
-        <motion.p {...fade(0.05)} className="text-eyebrow mb-6 flex items-center gap-3 text-white/85">
+        <motion.p {...fade(0.05)} className="text-kicker mb-6 flex items-center gap-3 text-white/85">
           <span className="h-px w-10 bg-brand-500" aria-hidden />
           {t("home.hero.eyebrow")}
         </motion.p>
 
-        <h1 id="hero-title" className="text-[clamp(2.6rem,8.2vw,7.25rem)] font-bold leading-[0.98] tracking-[-0.04em] text-white rtl:leading-[1.15] rtl:tracking-normal">
+        <h1 id="hero-title" className="text-hero font-bold leading-[0.98] tracking-[-0.04em] text-white rtl:leading-[1.15] rtl:tracking-normal">
           <WordReveal text={t("home.hero.title1")} delay={0.1} />
           <br />
-          <WordReveal text={t("home.hero.title2")} delay={0.4} className="font-accent pe-2 text-[1.08em] text-brand-500" />
+          <WordReveal text={t("home.hero.title2")} delay={0.4} className="font-accent pe-2 text-brand-600" />
         </h1>
 
         <div className="mt-10 grid items-end gap-8 lg:grid-cols-12">
@@ -72,7 +72,7 @@ export function Hero({ headline }: { headline: RailItem }) {
                 </ButtonLink>
               </Magnetic>
               <Magnetic className="w-full sm:w-auto">
-                <ButtonLink href="/results" size="lg" variant="outline-inverse" className="glass h-14 w-full rounded-full px-8 sm:w-auto">
+                <ButtonLink href="/results" size="lg" variant="outline-inverse" className="h-14 w-full rounded-full border-white/40 bg-transparent px-8 hover:border-white sm:w-auto">
                   {t("home.hero.cta2")}
                 </ButtonLink>
               </Magnetic>
@@ -80,20 +80,20 @@ export function Hero({ headline }: { headline: RailItem }) {
           </div>
 
           {/* The season's defining mark */}
-          <motion.div {...fade(1)} className="lg:col-span-5 lg:col-start-8">
+          <motion.div {...fade(1)} className="lg:col-span-4 lg:col-start-9">
             <TiltCard className="relative">
-              <Link href={`/athletes/${headline.athlete.slug}`} className="glass group relative block overflow-hidden rounded-[28px] p-6 shadow-2xl transition-colors hover:bg-white/15 md:p-7">
+              <Link href={`/athletes/${headline.athlete.slug}`} className="group relative block overflow-hidden rounded-[20px] border border-white/15 bg-ink-950/45 p-5 backdrop-blur-md transition-colors hover:bg-ink-950/65 md:p-6">
                 <div className="flex items-center justify-between gap-3">
-                  <span className="text-eyebrow text-white/85">{t("home.hero.mark")}</span>
+                  <span className="text-kicker text-white/85">{t("home.hero.mark")}</span>
                   {headline.record && <RecordTag record={headline.record} />}
                 </div>
-                <p className="mt-3 text-[clamp(3.25rem,6vw,5.25rem)] leading-none text-mark text-white" dir="ltr">
+                <p className="mt-3 text-mark-lg text-mark text-white/85" dir="ltr">
                   {headline.mark ? <MarkCounter mark={headline.mark} /> : "—"}
                 </p>
-                <p className="mt-4 font-semibold">
-                  {fullName(headline.athlete)} <span className="font-normal text-white/80">· {headline.discipline}</span>
+                <p className="mt-4 text-sm font-semibold">
+                  {fullName(headline.athlete)} <span className="font-normal text-white/85">· {headline.discipline}</span>
                 </p>
-                <p className="mt-1 text-[0.9375rem] text-white/80">
+                <p className="mt-1 text-base text-white/85">
                   {headline.competition} · {formatDate(headline.date, undefined, locale)}
                 </p>
                 <span className="mt-5 block h-0.5 w-12 bg-brand-500 transition-all duration-700 group-hover:w-full" aria-hidden />
@@ -119,8 +119,8 @@ export function BigMarquee({ words }: { words: string[] }) {
   const row = (k: string) =>
     words.map((w, i) => (
       <li key={`${k}${i}`} className="flex shrink-0 items-center gap-8 pe-8 md:gap-12 md:pe-12">
-        <span className="text-outline text-[clamp(2.75rem,8vw,6.5rem)] font-bold uppercase leading-none tracking-[-0.03em] rtl:tracking-normal">{w}</span>
-        <span className="font-accent text-[clamp(2rem,6vw,5rem)] leading-none text-brand-600">✦</span>
+        <span className="text-outline text-marquee font-bold uppercase leading-none tracking-[-0.03em] rtl:tracking-normal">{w}</span>
+        <span className="font-accent text-marquee text-brand-600">✦</span>
       </li>
     ));
   return (
@@ -147,7 +147,7 @@ export function ResultsTicker({ items }: { items: RailItem[] }) {
         <span className="text-white/85">
           {r.discipline} · <span dir="ltr">{r.mark ?? t("common.tbc")}</span>
         </span>
-        <span aria-hidden className="ms-3 text-white/50">
+        <span aria-hidden className="ms-3 text-white/70">
           ◆
         </span>
       </li>

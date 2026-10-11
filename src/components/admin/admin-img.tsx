@@ -15,7 +15,7 @@ export function AdminImg({ src, alt, w = 400, className }: { src: string; alt: s
             <circle key={i} cx="100" cy="75" r={30 + i * 12} strokeWidth="0.6" />
           ))}
         </svg>
-        <span className="relative text-[0.5625rem] font-semibold uppercase tracking-[0.16em] text-white/40">No preview</span>
+        <span className="relative text-xs font-semibold uppercase tracking-[0.16em] text-white/70">No preview</span>
       </span>
     );
   }

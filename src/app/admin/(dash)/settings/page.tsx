@@ -37,29 +37,29 @@ export default async function SettingsPage() {
 
       <div className="grid gap-4 lg:grid-cols-[minmax(0,15rem)_minmax(0,1fr)] lg:gap-10">
         <div>
-          <h2 className="text-[0.8125rem] font-bold uppercase tracking-[0.08em] text-ink-950 [font-variation-settings:'wdth'_85]">Site</h2>
-          <p className="mt-1.5 text-[0.8125rem] text-ink-500">Key/value settings read by the public site.</p>
+          <h2 className="text-sm font-bold uppercase tracking-[0.08em] text-ink-950 [font-variation-settings:'wdth'_85]">Site</h2>
+          <p className="mt-1.5 text-sm text-ink-600">Key/value settings read by the public site.</p>
         </div>
         <div className="rounded-sm border border-line bg-white p-5 md:p-6">
-          <SettingsForm tagline={map["site.tagline"] ?? ""} demoBanner={map["site.demoBanner"] === "true"} />
+          <SettingsForm tagline={map["site.tagline"] ?? ""} demoBanner={map["site.demoBanner"] === "true"} demoBadges={map["site.demoBadges"] !== "false"} />
         </div>
       </div>
 
       <div className="space-y-4">
         <div className="max-w-2xl">
-          <h2 className="text-[0.8125rem] font-bold uppercase tracking-[0.08em] text-ink-950 [font-variation-settings:'wdth'_85]">Roles & permissions</h2>
-          <p className="mt-1.5 text-[0.8125rem] text-ink-500">Read-only. Rendered from the same matrix every server action checks, so this table can’t drift from reality.</p>
+          <h2 className="text-sm font-bold uppercase tracking-[0.08em] text-ink-950 [font-variation-settings:'wdth'_85]">Roles & permissions</h2>
+          <p className="mt-1.5 text-sm text-ink-600">Read-only. Rendered from the same matrix every server action checks, so this table can’t drift from reality.</p>
         </div>
         <div className="relative min-w-0 overflow-x-auto rounded-sm border border-line bg-white">
           <table className="w-full min-w-[880px] border-collapse text-left text-sm">
             <caption className="sr-only">Permissions per role and resource. R read, W write, D delete, P publish.</caption>
             <thead>
               <tr className="border-b border-line bg-pearl/70">
-                <th scope="col" className={cn(labelCls, "sticky left-0 z-10 bg-pearl px-4 py-3 text-ink-500")}>Resource</th>
+                <th scope="col" className={cn(labelCls, "sticky left-0 z-10 bg-pearl px-4 py-3 text-ink-600")}>Resource</th>
                 {ROLES.map((r) => (
                   <th key={r} scope="col" className="px-3 py-3 align-bottom" title={ROLE_SUMMARY[r]}>
-                    <span className="block text-[0.75rem] font-bold uppercase leading-tight text-ink-950 [font-variation-settings:'wdth'_80]">{ROLE_LABEL[r]}</span>
-                    <span className="mt-1 flex gap-1 font-mono text-[0.5625rem] text-ink-400" aria-hidden>
+                    <span className="block text-xs font-bold uppercase leading-tight text-ink-950 [font-variation-settings:'wdth'_80]">{ROLE_LABEL[r]}</span>
+                    <span className="mt-1 flex gap-1 font-mono text-xs text-ink-600" aria-hidden>
                       {ACTIONS.map((a) => <span key={a} className="w-4 text-center">{a[0].toUpperCase()}</span>)}
                     </span>
                   </th>
@@ -69,7 +69,7 @@ export default async function SettingsPage() {
             <tbody>
               {RESOURCES.map((res, i) => (
                 <tr key={res} className="border-b border-line last:border-0">
-                  <th scope="row" className="sticky left-0 z-10 bg-white px-4 py-2.5 font-semibold capitalize text-ink-900">{res}</th>
+                  <th scope="row" className="sticky left-0 z-10 bg-white px-4 py-2.5 font-semibold capitalize text-ink-950">{res}</th>
                   {ROLES.map((role) => {
                     const m = matrixFor(role)[i];
                     return (
@@ -89,7 +89,7 @@ export default async function SettingsPage() {
               ))}
             </tbody>
           </table>
-          <p className="flex flex-wrap gap-4 border-t border-line px-4 py-3 text-xs text-ink-500">
+          <p className="flex flex-wrap gap-4 border-t border-line px-4 py-3 text-xs text-ink-600">
             <span className="flex items-center gap-1.5"><span className="size-3 rounded-[2px] bg-ink-950" /> Read / write</span>
             <span className="flex items-center gap-1.5"><span className="size-3 rounded-[2px] bg-gold" /> Publish</span>
             <span className="flex items-center gap-1.5"><span className="size-3 rounded-[2px] bg-brand-600" /> Delete</span>
@@ -99,8 +99,8 @@ export default async function SettingsPage() {
 
       <div className="grid gap-4 lg:grid-cols-[minmax(0,15rem)_minmax(0,1fr)] lg:gap-10">
         <div>
-          <h2 className="text-[0.8125rem] font-bold uppercase tracking-[0.08em] text-brand-700 [font-variation-settings:'wdth'_85]">Danger zone</h2>
-          <p className="mt-1.5 text-[0.8125rem] text-ink-500">Irreversible operations. Logged in the audit trail.</p>
+          <h2 className="text-sm font-bold uppercase tracking-[0.08em] text-brand-700 [font-variation-settings:'wdth'_85]">Danger zone</h2>
+          <p className="mt-1.5 text-sm text-ink-600">Irreversible operations. Logged in the audit trail.</p>
         </div>
         <section aria-labelledby="purge-title" className="rounded-sm border border-brand-200 bg-white">
           <div className="flex flex-col gap-4 p-5 md:flex-row md:items-center md:justify-between md:p-6">
@@ -113,7 +113,7 @@ export default async function SettingsPage() {
           <ul className="grid grid-cols-2 gap-px border-t border-brand-100 bg-brand-100 sm:grid-cols-5">
             {demoCounts.map((d) => (
               <li key={d.label} className="bg-white px-4 py-3">
-                <span className={cn(labelCls, "block text-ink-500")}>{d.label}</span>
+                <span className={cn(labelCls, "block text-ink-600")}>{d.label}</span>
                 <span className="mt-1 block text-xl font-extrabold tabular text-ink-950 [font-variation-settings:'wdth'_70]">{d.n}</span>
               </li>
             ))}

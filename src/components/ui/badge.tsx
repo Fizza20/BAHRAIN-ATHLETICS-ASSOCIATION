@@ -41,7 +41,7 @@ export function DemoBadge({ className, inverse }: { className?: string; inverse?
     <span
       title={t("badge.demoTitle")}
       className={cn(
-        "inline-flex h-6 items-center rounded-full border border-dashed px-2 text-xs font-bold uppercase leading-none tracking-wide",
+        "demo-badge inline-flex h-6 items-center rounded-full border border-dashed px-2 text-xs font-bold uppercase leading-none tracking-wide",
         inverse ? "border-white/60 text-white" : "border-ink-400 text-ink-600",
         className,
       )}

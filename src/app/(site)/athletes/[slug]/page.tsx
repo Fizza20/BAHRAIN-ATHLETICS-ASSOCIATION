@@ -79,7 +79,7 @@ export default async function AthletePage({ params }: PageProps<"/athletes/[slug
           <Breadcrumbs items={[{ label: t("athletes.title"), href: "/athletes" }, { label: name }]} />
           <div className="mt-6 grid gap-8 md:mt-8 lg:grid-cols-12 lg:items-center">
             <div className="lg:col-span-7">
-              <p className="text-eyebrow flex flex-wrap items-center gap-x-3 gap-y-2 text-ink-500">
+              <p className="text-eyebrow flex flex-wrap items-center gap-x-3 gap-y-2 text-ink-600">
                 <span className="text-brand-700">{a.primaryDiscipline?.name}</span>
                 <span aria-hidden>/</span>
                 {t(keyOf("category", a.category))} {t(keyOf("gender", a.gender))}
@@ -110,7 +110,7 @@ export default async function AthletePage({ params }: PageProps<"/athletes/[slug
               <div className="relative mx-auto aspect-[4/5] max-w-sm overflow-hidden rounded-md bg-ink-100 lg:max-w-none">
                 <Photo src={photo.src} alt={a.imageUrl ? name : ""} priority sizes="(min-width: 1024px) 40vw, 100vw" className={a.imageUrl ? "" : "opacity-60 grayscale"} fallbackLabel={a.lastName} />
               </div>
-              {!a.imageUrl && <p className="mt-2 text-sm text-ink-500">{t("athlete.portraitPending")}</p>}
+              {!a.imageUrl && <p className="mt-2 text-sm text-ink-600">{t("athlete.portraitPending")}</p>}
               <dl className="card mt-4 grid grid-cols-2 gap-4 p-5 text-sm">
                 {[
                   [t("athlete.info.event"), a.primaryDiscipline?.name ?? "—"],
@@ -119,8 +119,8 @@ export default async function AthletePage({ params }: PageProps<"/athletes/[slug
                   [t("athlete.info.status"), a.status === "active" ? t("athlete.status.active") : t("athlete.status.retired")],
                 ].map(([k, v]) => (
                   <div key={k}>
-                    <dt className="text-eyebrow text-ink-500">{k}</dt>
-                    <dd className="mt-1.5 truncate font-semibold text-ink-900">{v}</dd>
+                    <dt className="text-eyebrow text-ink-600">{k}</dt>
+                    <dd className="mt-1.5 truncate font-semibold text-ink-950">{v}</dd>
                   </div>
                 ))}
               </dl>
@@ -133,7 +133,7 @@ export default async function AthletePage({ params }: PageProps<"/athletes/[slug
       <nav aria-label={t("athlete.sectionsNav")} className="sticky top-[80px] z-20 border-b border-line bg-bone/95 backdrop-blur-md">
         <div className="container-x scrollbar-none flex gap-1 overflow-x-auto">
           {sections.map((s) => (
-            <a key={s.id} href={`#${s.id}`} className="flex h-12 shrink-0 items-center px-4 text-[0.9375rem] font-semibold text-ink-600 hover:text-brand-700">
+            <a key={s.id} href={`#${s.id}`} className="flex h-12 shrink-0 items-center px-4 text-base font-semibold text-ink-600 hover:text-brand-700">
               {s.label}
             </a>
           ))}
@@ -164,7 +164,7 @@ export default async function AthletePage({ params }: PageProps<"/athletes/[slug
                 <div className="grid gap-4 sm:grid-cols-2">
                   {a.bests.map((b, i) => (
                     <div key={b.discipline.id} className={`card p-6 ${i === a.bests.length - 1 && a.bests.length % 2 === 1 ? "sm:col-span-2" : ""}`}>
-                      <p className="text-eyebrow text-ink-500">{b.discipline.name}</p>
+                      <p className="text-eyebrow text-ink-600">{b.discipline.name}</p>
                       <div className="mt-4 grid grid-cols-2 gap-6">
                         <div className="border-s-2 border-brand-600 ps-4">
                           <p className="text-sm font-semibold text-ink-600">{t("athlete.bests.pb")}</p>
@@ -172,19 +172,19 @@ export default async function AthletePage({ params }: PageProps<"/athletes/[slug
                             {b.pb?.mark ?? "—"}
                             {b.pb?.record && <RecordTag record={b.pb.record} />}
                           </p>
-                          {b.pb && <p className="mt-1 text-sm text-ink-500">{formatDate(b.pb.date, { month: "short", year: "numeric" }, locale)}</p>}
+                          {b.pb && <p className="mt-1 text-sm text-ink-600">{formatDate(b.pb.date, { month: "short", year: "numeric" }, locale)}</p>}
                         </div>
                         <div className="border-s-2 border-line ps-4">
                           <p className="text-sm font-semibold text-ink-600">{t("athlete.bests.sb", { year: new Date().getFullYear() })}</p>
                           <p className="mt-1 text-3xl text-mark text-ink-700">{b.sb?.mark ?? "—"}</p>
-                          {b.sb?.competition && <p className="mt-1 truncate text-sm text-ink-500">{b.sb.competition}</p>}
+                          {b.sb?.competition && <p className="mt-1 truncate text-sm text-ink-600">{b.sb.competition}</p>}
                         </div>
                       </div>
-                      {!b.pb && <p className="mt-4 text-sm text-ink-500">{t("athlete.bests.none")}</p>}
+                      {!b.pb && <p className="mt-4 text-sm text-ink-600">{t("athlete.bests.none")}</p>}
                     </div>
                   ))}
                 </div>
-                <p className="mt-3 text-sm text-ink-500">{t("athlete.bests.note")}</p>
+                <p className="mt-3 text-sm text-ink-600">{t("athlete.bests.note")}</p>
               </section>
             )}
 
@@ -212,15 +212,15 @@ export default async function AthletePage({ params }: PageProps<"/athletes/[slug
                   {a.competitions.map((c) => (
                     <li key={c.id} className="card card-interactive relative flex items-center justify-between gap-4 p-5">
                       <div>
-                        <Link href={`/competitions/${c.slug}`} className="block font-semibold text-ink-900 after:absolute after:inset-0 after:content-[''] hover:text-brand-700">
+                        <Link href={`/competitions/${c.slug}`} className="block font-semibold text-ink-950 after:absolute after:inset-0 after:content-[''] hover:text-brand-700">
                           {c.name}
                         </Link>
-                        <span className="text-[0.9375rem] text-ink-600">
+                        <span className="text-base text-ink-600">
                           {c.city}, {c.country} · {formatDateRange(c.startDate, c.endDate, locale)}
                         </span>
                       </div>
                       <span className="flex items-center gap-3">
-                        <span className="text-eyebrow hidden text-ink-500 sm:inline">{t(keyOf("level", c.level))}</span>
+                        <span className="text-eyebrow hidden text-ink-600 sm:inline">{t(keyOf("level", c.level))}</span>
                         <StatusBadge status={effectiveStatus(c.status, c.startDate, c.endDate)} />
                       </span>
                     </li>
@@ -239,7 +239,7 @@ export default async function AthletePage({ params }: PageProps<"/athletes/[slug
                   {a.achievements.map((x) => (
                     <li key={x.id} className="relative">
                       <span className="absolute -start-[41px] top-1 size-4 rounded-full border-4 border-bone bg-brand-600" aria-hidden />
-                      <p className="text-eyebrow text-ink-500">{x.year}</p>
+                      <p className="text-eyebrow text-ink-600">{x.year}</p>
                       <h3 className="text-h3 mt-2 flex flex-wrap items-center gap-3">
                         {x.title}
                         {x.medal && <MedalDot medal={x.medal} />}
@@ -270,7 +270,7 @@ export default async function AthletePage({ params }: PageProps<"/athletes/[slug
           <aside className="lg:col-span-4">
             <div className="space-y-6 lg:sticky lg:top-28">
               <div className="card p-6">
-                <h2 className="text-eyebrow text-ink-500">{t("athlete.medalRecord")}</h2>
+                <h2 className="text-eyebrow text-ink-600">{t("athlete.medalRecord")}</h2>
                 <ul className="mt-5 grid grid-cols-3 gap-4">
                   {(["gold", "silver", "bronze"] as const).map((m) => (
                     <li key={m}>
@@ -279,29 +279,29 @@ export default async function AthletePage({ params }: PageProps<"/athletes/[slug
                     </li>
                   ))}
                 </ul>
-                <p className="mt-6 text-sm text-ink-500">{t("athlete.medalNote")}</p>
+                <p className="mt-6 text-sm text-ink-600">{t("athlete.medalNote")}</p>
               </div>
 
               <div className="card p-6">
-                <h2 className="text-eyebrow text-ink-500">{t("athlete.representing")}</h2>
+                <h2 className="text-eyebrow text-ink-600">{t("athlete.representing")}</h2>
                 <p className="mt-3 flex items-center gap-3 text-lg font-bold">
                   <FlagMark className="h-5 w-8" /> {t("athlete.country")}
                 </p>
-                <p className="mt-2 text-[0.9375rem] text-ink-600">{t("athlete.representingNote")}</p>
+                <p className="mt-2 text-base text-ink-600">{t("athlete.representingNote")}</p>
               </div>
 
               {related.length > 0 && (
                 <div className="card p-6">
-                  <h2 className="text-eyebrow mb-2 text-ink-500">{t("athlete.related")}</h2>
+                  <h2 className="text-eyebrow mb-2 text-ink-600">{t("athlete.related")}</h2>
                   <ul className="divide-y divide-line">
                     {related.map((r) => (
                       <li key={r.athlete.id}>
                         <Link href={`/athletes/${r.athlete.slug}`} className="group flex min-h-11 items-center justify-between py-3">
                           <span>
                             <span className="block font-semibold group-hover:text-brand-700">{locale === "ar" && r.athlete.nameAr ? r.athlete.nameAr : fullName(r.athlete)}</span>
-                            <span className="text-[0.9375rem] text-ink-600">{r.discipline?.name}</span>
+                            <span className="text-base text-ink-600">{r.discipline?.name}</span>
                           </span>
-                          <ArrowUpRight className="size-4 text-ink-500 group-hover:text-brand-600" aria-hidden />
+                          <ArrowUpRight className="size-4 text-ink-600 group-hover:text-brand-600" aria-hidden />
                         </Link>
                       </li>
                     ))}

@@ -69,10 +69,10 @@ export default async function DocumentsPage({ searchParams }: PageProps<"/admin/
                       {d.isDemo && <DemoBadge />}
                       <SourceLink href={d.sourceUrl} />
                     </div>
-                    {d.description && <p className="truncate text-xs text-ink-500">{d.description}</p>}
+                    {d.description && <p className="truncate text-xs text-ink-600">{d.description}</p>}
                   </Td>
                   <Td className="text-ink-700">{CAT[d.category]}</Td>
-                  <Td><span className="rounded-xs bg-ink-950/[0.06] px-1.5 py-0.5 font-mono text-[0.6875rem] text-ink-700">{d.fileType ?? "—"}</span></Td>
+                  <Td><span className="rounded-xs bg-ink-950/[0.06] px-1.5 py-0.5 font-mono text-xs text-ink-700">{d.fileType ?? "—"}</span></Td>
                   <Td className="whitespace-nowrap tabular text-ink-700">{d.publishedAt ? formatDate(d.publishedAt) : "—"}</Td>
                   <Td>
                     <RowActions>

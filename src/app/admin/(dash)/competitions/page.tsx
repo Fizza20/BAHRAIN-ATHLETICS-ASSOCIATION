@@ -103,13 +103,13 @@ export default async function CompetitionsPage({ searchParams }: PageProps<"/adm
                       {c.isDemo && <DemoBadge />}
                       <SourceLink href={c.sourceUrl} />
                     </div>
-                    {c.shortName && <p className="text-xs text-ink-500">{c.shortName}</p>}
+                    {c.shortName && <p className="text-xs text-ink-600">{c.shortName}</p>}
                   </Td>
                   <Td className="text-ink-700">{LEVEL_LABEL[c.level]}</Td>
                   <Td className="whitespace-nowrap tabular text-ink-700">{formatDateRange(c.startDate, c.endDate)}</Td>
                   <Td className="text-ink-700">{[c.city, c.country].filter(Boolean).join(", ") || "—"}</Td>
                   <Td><StatusBadge status={effectiveStatus(c.status, c.startDate, c.endDate)} /></Td>
-                  <Td className="text-right font-semibold tabular text-ink-900">{results}</Td>
+                  <Td className="text-right font-semibold tabular text-ink-950">{results}</Td>
                   <Td>
                     <RowActions>
                       <ViewOnSite href={`/competitions/${c.slug}`} />

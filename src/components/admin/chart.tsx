@@ -21,11 +21,11 @@ export function ResultsChart({ data }: { data: { month: string; count: number; m
         <div className="flex gap-8">
           <div>
             <p className="text-[2rem] font-extrabold leading-none text-ink-950 tabular [font-variation-settings:'wdth'_70]">{total}</p>
-            <p className="mt-1 text-xs text-ink-500">results, last 12 months</p>
+            <p className="mt-1 text-xs text-ink-600">results, last 12 months</p>
           </div>
           <div>
             <p className="text-[2rem] font-extrabold leading-none text-ink-950 tabular [font-variation-settings:'wdth'_70]">{medals}</p>
-            <p className="mt-1 text-xs text-ink-500">medal-winning marks</p>
+            <p className="mt-1 text-xs text-ink-600">medal-winning marks</p>
           </div>
         </div>
         <ul className="flex gap-4 text-xs text-ink-600">
@@ -43,7 +43,7 @@ export function ResultsChart({ data }: { data: { month: string; count: number; m
         {ticks.map((t) => (
           <g key={t}>
             <line x1={pad.l} x2={W - pad.r} y1={y(t)} y2={y(t)} className={t === 0 ? "stroke-ink-300" : "stroke-line"} strokeWidth={1} strokeDasharray={t === 0 ? undefined : "2 3"} />
-            <text x={pad.l - 8} y={y(t)} dy="0.32em" textAnchor="end" className="fill-ink-400 text-[10px] tabular">
+            <text x={pad.l - 8} y={y(t)} dy="0.32em" textAnchor="end" className="fill-ink-400 text-xs tabular">
               {t}
             </text>
           </g>
@@ -56,12 +56,12 @@ export function ResultsChart({ data }: { data: { month: string; count: number; m
                 <>
                   <rect x={x} y={y(d.count)} width={bw} height={y(d.medals) - y(d.count)} className="fill-ink-900" rx={1} />
                   {d.medals > 0 && <rect x={x} y={y(d.medals)} width={bw} height={y(0) - y(d.medals)} className="fill-gold" />}
-                  <text x={x + bw / 2} y={y(d.count) - 6} textAnchor="middle" className="fill-ink-900 text-[11px] font-bold tabular">
+                  <text x={x + bw / 2} y={y(d.count) - 6} textAnchor="middle" className="fill-ink-900 text-xs font-bold tabular">
                     {d.count}
                   </text>
                 </>
               )}
-              <text x={x + bw / 2} y={H - 8} textAnchor="middle" className={i === data.length - 1 ? "fill-ink-950 text-[10px] font-bold" : "fill-ink-500 text-[10px]"}>
+              <text x={x + bw / 2} y={H - 8} textAnchor="middle" className={i === data.length - 1 ? "fill-ink-950 text-xs font-bold" : "fill-ink-500 text-xs"}>
                 {monthLabel(d.month)}
               </text>
             </g>

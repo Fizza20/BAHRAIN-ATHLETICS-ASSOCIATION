@@ -27,7 +27,7 @@ export default async function MessagePage({ params }: PageProps<"/admin/messages
 
   return (
     <div className="max-w-4xl">
-      <Link href="/admin/messages" className="mb-4 inline-flex items-center gap-1.5 text-xs font-semibold text-ink-500 hover:text-ink-950">
+      <Link href="/admin/messages" className="mb-4 inline-flex items-center gap-1.5 text-xs font-semibold text-ink-600 hover:text-ink-950">
         <ArrowLeft className="size-3.5" aria-hidden /> Back to inbox
       </Link>
       <PageHeader
@@ -42,15 +42,15 @@ export default async function MessagePage({ params }: PageProps<"/admin/messages
               ) : (
                 <ActionButton action={markRead}><MailOpen className="size-4" aria-hidden /> Mark read</ActionButton>
               ))}
-            <a href={`mailto:${m.email}?subject=${subject}`} className="inline-flex h-9 items-center gap-2 rounded-xs bg-ink-950 px-3.5 text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-white hover:bg-ink-800">
+            <a href={`mailto:${m.email}?subject=${subject}`} className="inline-flex h-9 items-center gap-2 rounded-xs bg-ink-950 px-3.5 text-xs font-semibold uppercase tracking-[0.08em] text-white hover:bg-ink-800">
               <Reply className="size-4" aria-hidden /> Reply by email
             </a>
             {can(user.role, "messages", "delete") && <DeleteButton action={deleteMessage} id={m.id} label={`Message from ${m.firstName} ${m.lastName}`} redirectTo="/admin/messages" />}
           </>
         }
       />
-      <Panel title={`Received ${dateTime(m.createdAt)}`} action={<span className={m.read ? "text-xs text-ink-500" : "text-xs font-semibold text-brand-600"}>{m.read ? "Read" : "Unread"}</span>} bodyClassName="p-6">
-        <div className="max-w-prose whitespace-pre-line text-[0.9375rem] leading-relaxed text-ink-800">{m.body}</div>
+      <Panel title={`Received ${dateTime(m.createdAt)}`} action={<span className={m.read ? "text-xs text-ink-600" : "text-xs font-semibold text-brand-600"}>{m.read ? "Read" : "Unread"}</span>} bodyClassName="p-6">
+        <div className="max-w-prose whitespace-pre-line text-base leading-relaxed text-ink-950">{m.body}</div>
       </Panel>
     </div>
   );

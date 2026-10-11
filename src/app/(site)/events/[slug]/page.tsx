@@ -86,7 +86,7 @@ export default async function EventPage({ params }: PageProps<"/events/[slug]">)
                 <div key={k as string} className="flex gap-4 p-5">
                   <I className="mt-0.5 size-5 shrink-0 text-brand-600" aria-hidden />
                   <div>
-                    <dt className="text-eyebrow text-ink-500">{k as string}</dt>
+                    <dt className="text-eyebrow text-ink-600">{k as string}</dt>
                     <dd className="mt-1.5 font-semibold">{v as string}</dd>
                   </div>
                 </div>
@@ -95,7 +95,7 @@ export default async function EventPage({ params }: PageProps<"/events/[slug]">)
           </dl>
           {e.competition && (
             <div className="card p-6">
-              <p className="text-eyebrow text-ink-500">{t("events.hub")}</p>
+              <p className="text-eyebrow text-ink-600">{t("events.hub")}</p>
               <p className="text-h3 mt-3">{e.competition.name}</p>
               <ButtonLink href={`/competitions/${e.competition.slug}`} variant="primary" size="sm" className="mt-5">
                 {t("events.openHub")}

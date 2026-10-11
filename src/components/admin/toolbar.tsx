@@ -38,13 +38,13 @@ export function Toolbar({
       {searchable && (
       <label className="relative block flex-1 lg:max-w-sm">
         <span className="sr-only">Search</span>
-        <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-ink-400" aria-hidden />
+        <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-ink-600" aria-hidden />
         <input
           type="search"
           name="q"
           defaultValue={q}
           placeholder={placeholder}
-          className="h-10 w-full rounded-xs border border-line bg-white pl-9 pr-3 text-sm text-ink-900 placeholder:text-ink-400 hover:border-ink-300 focus:border-ink-950 focus:outline-none"
+          className="h-10 w-full rounded-xs border border-line bg-white pl-9 pr-3 text-sm text-ink-950 placeholder:text-ink-600 hover:border-ink-300 focus:border-ink-950 focus:outline-none"
         />
       </label>
       )}
@@ -68,16 +68,16 @@ export function Toolbar({
                 </option>
               ))}
             </select>
-            <svg className="pointer-events-none absolute right-2.5 top-1/2 size-3 -translate-y-1/2 text-ink-400" viewBox="0 0 12 12" aria-hidden>
+            <svg className="pointer-events-none absolute right-2.5 top-1/2 size-3 -translate-y-1/2 text-ink-600" viewBox="0 0 12 12" aria-hidden>
               <path d="M3 4.5 6 7.5 9 4.5" fill="none" stroke="currentColor" strokeWidth="1.5" />
             </svg>
           </label>
         ))}
-        <button type="submit" className="h-10 rounded-xs bg-ink-950 px-4 text-[0.6875rem] font-semibold uppercase tracking-[0.1em] text-white hover:bg-ink-800">
+        <button type="submit" className="h-10 rounded-xs bg-ink-950 px-4 text-xs font-semibold uppercase tracking-[0.1em] text-white hover:bg-ink-800">
           Apply
         </button>
         {active && (
-          <Link href={base} className="inline-flex h-10 items-center gap-1 rounded-xs px-2.5 text-xs font-semibold text-ink-500 hover:bg-ink-950/5 hover:text-ink-950">
+          <Link href={base} className="inline-flex h-10 items-center gap-1 rounded-xs px-2.5 text-xs font-semibold text-ink-600 hover:bg-ink-950/5 hover:text-ink-950">
             <X className="size-3.5" aria-hidden /> Clear
           </Link>
         )}

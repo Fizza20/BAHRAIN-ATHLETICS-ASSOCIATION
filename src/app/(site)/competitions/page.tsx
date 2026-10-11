@@ -81,7 +81,7 @@ export default async function CompetitionsPage({ searchParams }: PageProps<"/com
             <div className="flex flex-col justify-center p-6 md:p-8 lg:col-span-7">
               <div className="flex flex-wrap items-center gap-2">
                 <StatusBadge status={first.live} />
-                <span className="text-eyebrow text-ink-500">{t(keyOf("level", first.competition.level))}</span>
+                <span className="text-eyebrow text-ink-600">{t(keyOf("level", first.competition.level))}</span>
                 {first.competition.isDemo && <DemoBadge />}
               </div>
               <h2 className="text-h2 mt-4 text-ink-950">
@@ -119,7 +119,7 @@ export default async function CompetitionsPage({ searchParams }: PageProps<"/com
                 </div>
               </div>
               <div className="flex flex-1 flex-col p-5">
-                <p className="text-eyebrow text-ink-500">
+                <p className="text-eyebrow text-ink-600">
                   {t(keyOf("level", r.competition.level))} · {r.competition.city ?? t("common.tbc")}, {r.competition.country}
                 </p>
                 <h2 className="text-h3 mt-3 text-ink-950">
@@ -127,8 +127,8 @@ export default async function CompetitionsPage({ searchParams }: PageProps<"/com
                     {r.competition.name}
                   </Link>
                 </h2>
-                <p className="mt-2 text-[0.9375rem] tabular text-ink-600">{formatDateRange(r.competition.startDate, r.competition.endDate, locale)}</p>
-                <div className="mt-auto flex items-center justify-between pt-5 text-[0.9375rem]">
+                <p className="mt-2 text-base tabular text-ink-600">{formatDateRange(r.competition.startDate, r.competition.endDate, locale)}</p>
+                <div className="mt-auto flex items-center justify-between pt-5 text-base">
                   <span className="text-ink-600">
                     {r.results > 0 ? (
                       <>
@@ -138,7 +138,7 @@ export default async function CompetitionsPage({ searchParams }: PageProps<"/com
                       t("comp.resultsToFollow")
                     )}
                   </span>
-                  <ArrowUpRight className="size-5 text-ink-500" aria-hidden />
+                  <ArrowUpRight className="size-5 text-ink-600" aria-hidden />
                 </div>
               </div>
             </li>

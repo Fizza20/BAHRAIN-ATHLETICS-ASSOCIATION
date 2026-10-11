@@ -91,7 +91,7 @@ export function ResultsTable({
                   </td>
                 )}
                 {!hide.includes("discipline") && (
-                  <td className="py-4 pe-4 text-ink-800">
+                  <td className="py-4 pe-4 text-ink-950">
                     <Link href={`/results?discipline=${discipline.slug}`} className={secondary}>
                       {discipline.name}
                     </Link>
@@ -120,12 +120,18 @@ export function ResultsTable({
                     <span className={cn("text-xl text-mark text-ink-950", !r.mark && "text-base font-medium text-ink-600")}>{r.mark ?? t("common.tbc")}</span>
                   </span>
                 </td>
-                <td className="py-4 pe-5 text-end text-[0.9375rem] tabular text-ink-600">
-                  <span className="inline-flex items-center gap-2">
+                <td className="whitespace-nowrap py-4 pe-5 text-end text-base tabular text-ink-600">
+                  <span className="inline-flex items-center gap-3">
                     {formatDate(r.date, undefined, locale)}
                     {r.sourceUrl && (
-                      <a href={r.sourceUrl} target="_blank" rel="noopener noreferrer" className="relative z-10 flex size-8 items-center justify-center rounded-xs text-ink-600 hover:bg-white hover:text-brand-700">
-                        <ExternalLink className="size-4" aria-hidden />
+                      <a
+                        href={r.sourceUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="relative z-10 inline-flex min-h-8 items-center gap-1 rounded-xs px-1 text-sm font-semibold text-ink-700 underline decoration-ink-300 underline-offset-4 hover:text-brand-700 hover:decoration-brand-700"
+                      >
+                        <span aria-hidden>{t("common.report")}</span>
+                        <ExternalLink className="size-3.5 rtl:-scale-x-100" aria-hidden />
                         <span className="sr-only">{t("common.sourceReport")}</span>
                       </a>
                     )}
@@ -151,7 +157,7 @@ export function ResultsTable({
               ) : (
                 <span className="block font-semibold text-ink-950">{discipline.name}</span>
               )}
-              <span className="mt-0.5 block text-[0.9375rem] text-ink-700">
+              <span className="mt-0.5 block text-base text-ink-700">
                 {!hide.includes("athlete") && `${discipline.name} · `}
                 {competition?.shortName ?? competition?.name ?? ""}
               </span>
@@ -175,7 +181,7 @@ function Position({ n, medal }: { n: number | null; medal: "gold" | "silver" | "
       className={cn(
         "relative inline-flex size-10 shrink-0 items-center justify-center rounded-full text-base font-bold tabular ring-2 ring-offset-2 ring-offset-white",
         ring,
-        n === 1 ? "bg-brand-600 text-white" : "bg-ink-100 text-ink-900",
+        n === 1 ? "bg-brand-600 text-white" : "bg-ink-100 text-ink-950",
       )}
     >
       {n ?? "–"}

@@ -60,23 +60,23 @@ export default async function UsersPage({ searchParams }: PageProps<"/admin/user
                 <tr key={u.id} className={cn(trCls, !u.active && "opacity-60")}>
                   <Td>
                     <div className="flex items-center gap-3">
-                      <span className="flex size-9 shrink-0 items-center justify-center rounded-xs bg-ink-950 text-[0.6875rem] font-bold text-white">
+                      <span className="flex size-9 shrink-0 items-center justify-center rounded-xs bg-ink-950 text-xs font-bold text-white">
                         {u.name.split(/\s+/).map((w) => w[0]).join("").slice(0, 2).toUpperCase()}
                       </span>
                       <div className="min-w-0">
                         <Link href={`${BASE}/${u.id}`} className="font-semibold text-ink-950 hover:text-brand-600">{u.name}</Link>
-                        {self && <span className="ml-2 rounded-xs bg-brand-600 px-1.5 py-0.5 text-[0.5625rem] font-bold uppercase tracking-[0.14em] text-white">You</span>}
-                        <p className="truncate text-xs text-ink-500">{u.email}</p>
+                        {self && <span className="ml-2 rounded-xs bg-brand-600 px-1.5 py-0.5 text-xs font-bold uppercase tracking-[0.14em] text-white">You</span>}
+                        <p className="truncate text-xs text-ink-600">{u.email}</p>
                       </div>
                     </div>
                   </Td>
-                  <Td><span className="inline-flex h-6 items-center rounded-xs border border-ink-200 px-2 text-[0.6875rem] font-semibold text-ink-800">{ROLE_LABEL[u.role]}</span></Td>
+                  <Td><span className="inline-flex h-6 items-center rounded-xs border border-ink-200 px-2 text-xs font-semibold text-ink-950">{ROLE_LABEL[u.role]}</span></Td>
                   <Td>
                     <span className="inline-flex items-center gap-1.5 text-xs font-medium text-ink-700">
                       <Dot tone={u.active ? "success" : "neutral"} /> {u.active ? "Active" : "Deactivated"}
                     </span>
                   </Td>
-                  <Td className="whitespace-nowrap text-xs text-ink-500">{u.lastLoginAt ? timeAgo(u.lastLoginAt) : "Never"}</Td>
+                  <Td className="whitespace-nowrap text-xs text-ink-600">{u.lastLoginAt ? timeAgo(u.lastLoginAt) : "Never"}</Td>
                   <Td>
                     <RowActions>
                       {!self && (

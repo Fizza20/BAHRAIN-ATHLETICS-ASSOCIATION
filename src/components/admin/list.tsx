@@ -83,9 +83,9 @@ export function Pagination({ base, p, page, pageSize, total }: { base: string; p
   }
   const btn = "inline-flex h-8 min-w-8 items-center justify-center rounded-xs px-2 text-xs font-semibold tabular";
   return (
-    <nav aria-label="Pagination" className="mt-4 flex flex-col items-center justify-between gap-3 text-xs text-ink-500 sm:flex-row">
+    <nav aria-label="Pagination" className="mt-4 flex flex-col items-center justify-between gap-3 text-xs text-ink-600 sm:flex-row">
       <p className="tabular">
-        Showing <span className="font-semibold text-ink-900">{from}–{to}</span> of <span className="font-semibold text-ink-900">{total}</span>
+        Showing <span className="font-semibold text-ink-950">{from}–{to}</span> of <span className="font-semibold text-ink-950">{total}</span>
       </p>
       {pages > 1 && (
         <ul className="flex items-center gap-1">

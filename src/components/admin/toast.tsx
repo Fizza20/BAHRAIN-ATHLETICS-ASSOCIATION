@@ -75,7 +75,7 @@ export function Toaster() {
             <button
               type="button"
               onClick={() => setItems((xs) => xs.filter((x) => x.id !== t.id))}
-              className="flex size-6 shrink-0 items-center justify-center rounded-xs text-white/50 hover:bg-white/10 hover:text-white"
+              className="flex size-6 shrink-0 items-center justify-center rounded-xs text-white/70 hover:bg-white/10 hover:text-white"
             >
               <X className="size-3.5" aria-hidden />
               <span className="sr-only">Dismiss notification</span>

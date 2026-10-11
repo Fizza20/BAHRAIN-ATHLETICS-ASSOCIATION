@@ -23,7 +23,7 @@ export function ShareBar({ url, title }: { url: string; title: string }) {
           href={l.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex h-11 items-center rounded-xs border border-ink-300 bg-white px-4 text-sm font-semibold text-ink-900 transition-colors hover:border-ink-900"
+          className="inline-flex h-11 items-center rounded-xs border border-ink-300 bg-white px-4 text-sm font-semibold text-ink-950 transition-colors hover:border-ink-900"
         >
           {l.label}
           <span className="sr-only"> {t("common.opensNewTab")}</span>

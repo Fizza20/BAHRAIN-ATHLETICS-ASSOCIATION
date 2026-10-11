@@ -31,7 +31,7 @@ export default async function CleanAthleticsPage() {
         aside={
           <div className="card flex items-start gap-4 p-6">
             <ShieldCheck className="size-8 shrink-0 text-success" aria-hidden />
-            <p className="text-[0.9375rem] text-ink-700">
+            <p className="text-base text-ink-700">
               {t("clean.quote")}
             </p>
           </div>
@@ -48,9 +48,9 @@ export default async function CleanAthleticsPage() {
                 <Link href={q.href} className="text-h3 block text-ink-950 after:absolute after:inset-0 after:content-['']">
                   {q.title}
                 </Link>
-                <span className="mt-1 block text-[0.9375rem] text-ink-600">{q.body}</span>
+                <span className="mt-1 block text-base text-ink-600">{q.body}</span>
               </span>
-              <ArrowUpRight className="size-5 text-ink-500" aria-hidden />
+              <ArrowUpRight className="size-5 text-ink-600" aria-hidden />
             </li>
           ))}
         </ul>
@@ -72,9 +72,9 @@ export default async function CleanAthleticsPage() {
                   <Link href={`/clean-athletics/${t.slug}`} className="text-h3 block text-ink-950 after:absolute after:inset-0 after:content-['']">
                     {t.title}
                   </Link>
-                  <span className="mt-1 block text-[0.9375rem] text-ink-600">{t.short}</span>
+                  <span className="mt-1 block text-base text-ink-600">{t.short}</span>
                 </span>
-                <ArrowUpRight className="size-5 text-ink-500" aria-hidden />
+                <ArrowUpRight className="size-5 text-ink-600" aria-hidden />
               </li>
             ))}
           </ol>

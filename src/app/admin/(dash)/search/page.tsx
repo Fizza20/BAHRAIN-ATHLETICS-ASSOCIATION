@@ -27,7 +27,7 @@ export default async function SearchPage({ searchParams }: PageProps<"/admin/sea
         <label htmlFor="q" className="sr-only">
           Search
         </label>
-        <Search className="pointer-events-none absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-ink-400" aria-hidden />
+        <Search className="pointer-events-none absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-ink-600" aria-hidden />
         <input id="q" name="q" type="search" defaultValue={q} autoFocus placeholder="Type at least two characters…" className={`${inputCls} h-12 pl-10`} />
       </form>
 
@@ -45,7 +45,7 @@ export default async function SearchPage({ searchParams }: PageProps<"/admin/sea
                     <Link href={href("athletes", a.id)} className="font-semibold text-ink-950 hover:text-brand-600">
                       {a.firstName} {a.lastName}
                     </Link>
-                    <span className="flex items-center gap-2 text-xs text-ink-500">
+                    <span className="flex items-center gap-2 text-xs text-ink-600">
                       {a.club}
                       {a.isDemo && <DemoBadge />}
                     </span>
@@ -79,7 +79,7 @@ export default async function SearchPage({ searchParams }: PageProps<"/admin/sea
                     <Link href={href("competitions", c.id)} className="min-w-0 truncate font-semibold text-ink-950 hover:text-brand-600">
                       {c.name}
                     </Link>
-                    <span className="flex shrink-0 items-center gap-2 text-xs text-ink-500 tabular">
+                    <span className="flex shrink-0 items-center gap-2 text-xs text-ink-600 tabular">
                       {c.city} · {formatDate(c.startDate)}
                       {c.isDemo && <DemoBadge />}
                     </span>
@@ -96,7 +96,7 @@ export default async function SearchPage({ searchParams }: PageProps<"/admin/sea
                     <Link href={href("events", e.id)} className="min-w-0 truncate font-semibold text-ink-950 hover:text-brand-600">
                       {e.title}
                     </Link>
-                    <span className="flex shrink-0 items-center gap-2 text-xs text-ink-500 tabular">
+                    <span className="flex shrink-0 items-center gap-2 text-xs text-ink-600 tabular">
                       {formatDate(e.startAt)}
                       {e.isDemo && <DemoBadge />}
                     </span>

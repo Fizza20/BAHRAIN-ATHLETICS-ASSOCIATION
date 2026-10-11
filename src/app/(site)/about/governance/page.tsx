@@ -41,7 +41,7 @@ export default async function GovernancePage() {
             </div>
             <div className="mx-auto h-8 w-px bg-ink-300" />
             <div className="card mx-auto w-80 p-5 text-center">
-              <p className="text-eyebrow text-ink-500">{t("gov.boardOfDirectors")}</p>
+              <p className="text-eyebrow text-ink-600">{t("gov.boardOfDirectors")}</p>
               <p className="mt-2 text-sm text-ink-700">{exec.map((e) => e.title).join(" · ")}</p>
             </div>
             <div className="mx-auto h-8 w-px bg-ink-300" />
@@ -59,7 +59,7 @@ export default async function GovernancePage() {
             </ul>
           </div>
         </div>
-        <p className="mt-4 text-sm text-ink-500">{t("gov.structureNote")}</p>
+        <p className="mt-4 text-sm text-ink-600">{t("gov.structureNote")}</p>
       </section>
 
       <section aria-labelledby="committees-title" className="section-y bg-pearl">
@@ -71,7 +71,7 @@ export default async function GovernancePage() {
             {committees.map((c) => (
               <li key={c.id} className="card flex flex-col gap-2 p-6">
                 <h3 className="text-h3 text-ink-950">{c.name}</h3>
-                <p className="text-[0.9375rem] font-semibold text-ink-700">{t("gov.head", { name: c.chair ?? "" })}</p>
+                <p className="text-base font-semibold text-ink-700">{t("gov.head", { name: c.chair ?? "" })}</p>
                 <p className="text-ink-600">
                   {c.remit} {c.isDemo && <DemoBadge className="ms-1 align-middle" />}
                 </p>
@@ -90,7 +90,7 @@ export default async function GovernancePage() {
             <li key={d.id} className="card card-interactive relative flex items-start justify-between gap-4 p-5">
               <div>
                 <p className="font-semibold text-ink-950">{d.title}</p>
-                <p className="mt-1 text-[0.9375rem] text-ink-600">{d.description}</p>
+                <p className="mt-1 text-base text-ink-600">{d.description}</p>
               </div>
               {d.url ? (
                 <Link href={d.url} className="inline-flex min-h-11 shrink-0 items-center font-semibold text-brand-700 hover:underline after:absolute after:inset-0 after:content-['']">

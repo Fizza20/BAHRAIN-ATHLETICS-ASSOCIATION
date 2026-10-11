@@ -44,6 +44,7 @@ export default defineDict({
     "home.events.calendar": "Full calendar",
     "home.events.upcoming": "Upcoming",
     "home.events.recent": "Recently completed",
+    "home.events.allCompetitions": "All competitions and results",
 
     "home.results.eyebrow": "Results",
     "home.results.title": "Latest results",
@@ -135,6 +136,7 @@ export default defineDict({
     "home.events.calendar": "الجدول الكامل",
     "home.events.upcoming": "القادمة",
     "home.events.recent": "المنتهية مؤخرًا",
+    "home.events.allCompetitions": "جميع البطولات والنتائج",
 
     "home.results.eyebrow": "النتائج",
     "home.results.title": "أحدث النتائج",

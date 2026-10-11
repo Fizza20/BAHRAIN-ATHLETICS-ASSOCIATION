@@ -68,15 +68,15 @@ function SidebarBody({ groups, badges, onNavigate }: { groups: AdminNavGroup[]; 
           <Image src="/brand/baa-crest.png" alt="" width={72} height={72} className="size-full object-contain" />
         </span>
         <span className="flex min-w-0 flex-col leading-none">
-          <span className="text-[0.875rem] font-extrabold uppercase tracking-[0.02em] text-white [font-variation-settings:'wdth'_78]">Bahrain Athletics</span>
-          <span className="mt-1 text-[0.625rem] font-semibold uppercase tracking-[0.18em] text-white/45 [font-variation-settings:'wdth'_110]">Control room</span>
+          <span className="text-sm font-extrabold uppercase tracking-[0.02em] text-white [font-variation-settings:'wdth'_78]">Bahrain Athletics</span>
+          <span className="mt-1 text-xs font-semibold uppercase tracking-[0.18em] text-white/70 [font-variation-settings:'wdth'_110]">Control room</span>
         </span>
       </div>
       <nav aria-label="Admin" className="flex-1 overflow-y-auto px-3 py-4 scrollbar-none">
         {groups.map((g) => (
           <div key={g.label} className="mb-5 last:mb-0">
             {g.label !== "Overview" && (
-              <p className="mb-1.5 px-3 text-[0.625rem] font-semibold uppercase tracking-[0.2em] text-white/35 [font-variation-settings:'wdth'_115]">{g.label}</p>
+              <p className="mb-1.5 px-3 text-xs font-semibold uppercase tracking-[0.2em] text-white/70 [font-variation-settings:'wdth'_115]">{g.label}</p>
             )}
             <ul className="space-y-px">
               {g.items.map((item) => {
@@ -90,15 +90,15 @@ function SidebarBody({ groups, badges, onNavigate }: { groups: AdminNavGroup[]; 
                       onClick={onNavigate}
                       aria-current={active ? "page" : undefined}
                       className={cn(
-                        "group relative flex h-9 items-center gap-3 rounded-xs px-3 text-[0.8125rem] font-medium transition-colors",
-                        active ? "bg-white/[0.08] text-white" : "text-white/60 hover:bg-white/[0.04] hover:text-white",
+                        "group relative flex h-9 items-center gap-3 rounded-xs px-3 text-sm font-medium transition-colors",
+                        active ? "bg-white/[0.08] text-white" : "text-white/70 hover:bg-white/[0.04] hover:text-white",
                       )}
                     >
                       <span className={cn("absolute inset-y-1.5 left-0 w-0.5 rounded-full", active ? "bg-brand-600" : "bg-transparent")} aria-hidden />
-                      <Icon className={cn("size-4 shrink-0", active ? "text-brand-400" : "text-white/40 group-hover:text-white/70")} aria-hidden strokeWidth={1.75} />
+                      <Icon className={cn("size-4 shrink-0", active ? "text-brand-600" : "text-white/70 group-hover:text-white/70")} aria-hidden strokeWidth={1.75} />
                       <span className="flex-1 truncate">{item.label}</span>
                       {badge ? (
-                        <span className="min-w-5 rounded-xs bg-brand-600 px-1.5 text-center text-[0.625rem] font-bold leading-5 text-white tabular">
+                        <span className="min-w-5 rounded-xs bg-brand-600 px-1.5 text-center text-xs font-bold leading-5 text-white tabular">
                           {badge}
                           <span className="sr-only"> new</span>
                         </span>
@@ -117,12 +117,12 @@ function SidebarBody({ groups, badges, onNavigate }: { groups: AdminNavGroup[]; 
             <circle key={i} cx="200" cy="200" r={60 + i * 18} strokeWidth="1" />
           ))}
         </svg>
-        <a href="/" target="_blank" rel="noopener noreferrer" className="relative flex items-center gap-2 text-xs font-semibold text-white/60 hover:text-white">
+        <a href="/" target="_blank" rel="noopener noreferrer" className="relative flex items-center gap-2 text-xs font-semibold text-white/70 hover:text-white">
           <ExternalLink className="size-3.5" aria-hidden />
           View public site
           <span className="sr-only">(opens in a new tab)</span>
         </a>
-        <p className="relative mt-1.5 text-[0.625rem] uppercase tracking-[0.16em] text-white/30">Prototype · v0.1</p>
+        <p className="relative mt-1.5 text-xs uppercase tracking-[0.16em] text-white/70">Prototype · v0.1</p>
       </div>
     </div>
   );
@@ -140,7 +140,7 @@ export function MobileNav({ groups, badges }: { groups: AdminNavGroup[]; badges:
   const [open, setOpen] = useState(false);
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
-      <Dialog.Trigger className="-ml-2 flex size-10 items-center justify-center rounded-xs text-ink-900 hover:bg-ink-950/5 lg:hidden">
+      <Dialog.Trigger className="-ml-2 flex size-10 items-center justify-center rounded-xs text-ink-950 hover:bg-ink-950/5 lg:hidden">
         <Menu className="size-5" aria-hidden />
         <span className="sr-only">Open navigation</span>
       </Dialog.Trigger>
@@ -150,7 +150,7 @@ export function MobileNav({ groups, badges }: { groups: AdminNavGroup[]; badges:
           <Dialog.Title className="sr-only">Navigation</Dialog.Title>
           <Dialog.Description className="sr-only">Admin sections</Dialog.Description>
           <SidebarBody groups={groups} badges={badges} onNavigate={() => setOpen(false)} />
-          <Dialog.Close className="absolute right-3 top-4 flex size-8 items-center justify-center rounded-xs text-white/60 hover:bg-white/10 hover:text-white">
+          <Dialog.Close className="absolute right-3 top-4 flex size-8 items-center justify-center rounded-xs text-white/70 hover:bg-white/10 hover:text-white">
             <X className="size-4" aria-hidden />
             <span className="sr-only">Close navigation</span>
           </Dialog.Close>
@@ -176,7 +176,7 @@ export function Breadcrumbs() {
   const linkable = (href: string) => !/\/governance\/(board|committees)$/.test(href);
   return (
     <nav aria-label="Breadcrumb" className="min-w-0">
-      <ol className="flex min-w-0 items-center gap-1.5 text-[0.8125rem]">
+      <ol className="flex min-w-0 items-center gap-1.5 text-sm">
         {crumbs.map((c, i) => (
           <li key={c.href} className={cn("flex min-w-0 items-center gap-1.5", i < crumbs.length - 2 && "hidden sm:flex")}>
             {i > 0 && <ChevronRight className="size-3.5 shrink-0 text-ink-300" aria-hidden />}
@@ -185,11 +185,11 @@ export function Breadcrumbs() {
                 {c.label}
               </span>
             ) : linkable(c.href) ? (
-              <Link href={c.href} className="truncate text-ink-500 hover:text-ink-950">
+              <Link href={c.href} className="truncate text-ink-600 hover:text-ink-950">
                 {c.label}
               </Link>
             ) : (
-              <span className="truncate text-ink-500">{c.label}</span>
+              <span className="truncate text-ink-600">{c.label}</span>
             )}
           </li>
         ))}
@@ -204,13 +204,13 @@ export function SearchBox() {
       <label htmlFor="admin-search" className="sr-only">
         Search athletes, news and competitions
       </label>
-      <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-ink-400" aria-hidden />
+      <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-ink-600" aria-hidden />
       <input
         id="admin-search"
         type="search"
         name="q"
         placeholder="Search athletes, news, competitions…"
-        className="h-9 w-72 rounded-xs border border-line bg-white pl-9 pr-3 text-sm placeholder:text-ink-400 hover:border-ink-300 focus:border-ink-950 focus:outline-none xl:w-80"
+        className="h-9 w-72 rounded-xs border border-line bg-white pl-9 pr-3 text-sm placeholder:text-ink-600 hover:border-ink-300 focus:border-ink-950 focus:outline-none xl:w-80"
       />
     </form>
   );
@@ -225,14 +225,14 @@ export function Notifications({ notices }: { notices: Notice[] }) {
     <Dropdown.Root>
       <Dropdown.Trigger className="relative flex size-9 items-center justify-center rounded-xs text-ink-700 hover:bg-ink-950/5 hover:text-ink-950 data-[state=open]:bg-ink-950/5">
         <Bell className="size-[1.125rem]" aria-hidden />
-        {total > 0 && <span className="absolute right-1 top-1 min-w-4 rounded-full bg-brand-600 px-1 text-center text-[0.5625rem] font-bold leading-4 text-white tabular">{total}</span>}
+        {total > 0 && <span className="absolute right-1 top-1 min-w-4 rounded-full bg-brand-600 px-1 text-center text-xs font-bold leading-4 text-white tabular">{total}</span>}
         <span className="sr-only">Notifications{total ? ` (${total})` : ""}</span>
       </Dropdown.Trigger>
       <Dropdown.Portal>
         <Dropdown.Content align="end" sideOffset={8} className={cn(menuCls, "w-80")}>
-          <Dropdown.Label className="px-3 pb-2 pt-2.5 text-[0.625rem] font-semibold uppercase tracking-[0.18em] text-ink-500">Needs attention</Dropdown.Label>
+          <Dropdown.Label className="px-3 pb-2 pt-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-ink-600">Needs attention</Dropdown.Label>
           {notices.length === 0 || total === 0 ? (
-            <p className="px-3 pb-4 pt-1 text-sm text-ink-500">You’re all caught up.</p>
+            <p className="px-3 pb-4 pt-1 text-sm text-ink-600">You’re all caught up.</p>
           ) : (
             notices
               .filter((n) => n.count > 0)
@@ -242,7 +242,7 @@ export function Notifications({ notices }: { notices: Notice[] }) {
                     <span className="flex size-8 shrink-0 items-center justify-center rounded-xs bg-ink-950 text-xs font-bold text-white tabular">{n.count}</span>
                     <span className="min-w-0">
                       <span className="block font-semibold text-ink-950">{n.label}</span>
-                      <span className="block truncate text-xs text-ink-500">{n.detail}</span>
+                      <span className="block truncate text-xs text-ink-600">{n.detail}</span>
                     </span>
                   </Link>
                 </Dropdown.Item>
@@ -258,24 +258,24 @@ export function UserMenu({ user, logout }: { user: ShellUser; logout: () => Prom
   return (
     <Dropdown.Root>
       <Dropdown.Trigger className="flex items-center gap-2.5 rounded-xs py-1 pl-1 pr-2 hover:bg-ink-950/5 data-[state=open]:bg-ink-950/5">
-        <span className="flex size-8 items-center justify-center rounded-xs bg-ink-950 text-[0.6875rem] font-bold text-white [font-variation-settings:'wdth'_90]">{user.initials}</span>
+        <span className="flex size-8 items-center justify-center rounded-xs bg-ink-950 text-xs font-bold text-white [font-variation-settings:'wdth'_90]">{user.initials}</span>
         <span className="hidden text-left leading-tight sm:block">
-          <span className="block text-[0.8125rem] font-semibold text-ink-950">{user.name}</span>
-          <span className="block text-[0.6875rem] text-ink-500">{user.roleLabel}</span>
+          <span className="block text-sm font-semibold text-ink-950">{user.name}</span>
+          <span className="block text-xs text-ink-600">{user.roleLabel}</span>
         </span>
-        <ChevronDown className="size-3.5 text-ink-400" aria-hidden />
+        <ChevronDown className="size-3.5 text-ink-600" aria-hidden />
         <span className="sr-only">Account menu</span>
       </Dropdown.Trigger>
       <Dropdown.Portal>
         <Dropdown.Content align="end" sideOffset={8} className={menuCls}>
           <div className="border-b border-line px-3 pb-3 pt-2.5">
             <p className="font-semibold text-ink-950">{user.name}</p>
-            <p className="text-xs text-ink-500">{user.email}</p>
-            <p className="mt-2 inline-flex h-5 items-center rounded-xs bg-ink-950 px-1.5 text-[0.5625rem] font-bold uppercase tracking-[0.14em] text-white">{user.roleLabel}</p>
+            <p className="text-xs text-ink-600">{user.email}</p>
+            <p className="mt-2 inline-flex h-5 items-center rounded-xs bg-ink-950 px-1.5 text-xs font-bold uppercase tracking-[0.14em] text-white">{user.roleLabel}</p>
           </div>
           <Dropdown.Item asChild>
             <a href="/" target="_blank" rel="noopener noreferrer" className="mt-1 flex cursor-pointer items-center gap-2.5 rounded-xs px-3 py-2 outline-none data-[highlighted]:bg-pearl">
-              <ExternalLink className="size-4 text-ink-500" aria-hidden /> View site
+              <ExternalLink className="size-4 text-ink-600" aria-hidden /> View site
             </a>
           </Dropdown.Item>
           <Dropdown.Separator className="my-1 h-px bg-line" />

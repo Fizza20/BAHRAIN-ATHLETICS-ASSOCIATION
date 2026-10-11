@@ -67,7 +67,7 @@ export default async function BoardPage() {
                     <Initials name={m.name} />
                     <div>
                       <p className="text-lg font-bold leading-tight text-ink-950">{m.name}</p>
-                      <p className="mt-1 text-[0.9375rem] text-ink-600">{roleOf(m.title)}</p>
+                      <p className="mt-1 text-base text-ink-600">{roleOf(m.title)}</p>
                     </div>
                   </li>
                 ))}
@@ -75,7 +75,7 @@ export default async function BoardPage() {
             </section>
           );
         })}
-        <p className="mt-10 text-sm text-ink-500">
+        <p className="mt-10 text-sm text-ink-600">
           {t("board.namesNote")}{" "}
           <a href={boardSource} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">
             baa.bh/board-members

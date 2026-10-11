@@ -62,7 +62,7 @@ export default async function CompetitionPage({ params }: PageProps<"/competitio
             <div className="lg:col-span-7">
               <div className="flex flex-wrap items-center gap-3">
                 <StatusBadge status={c.live} />
-                <span className="text-eyebrow text-ink-500">{t(keyOf("level", c.level))}</span>
+                <span className="text-eyebrow text-ink-600">{t(keyOf("level", c.level))}</span>
                 {c.isDemo && <DemoBadge />}
               </div>
               <h1 className="text-h1 mt-4 text-ink-950">{c.name}</h1>
@@ -154,7 +154,7 @@ export default async function CompetitionPage({ params }: PageProps<"/competitio
                 <h2 id="gallery-title" className="text-h2">
                   {t("comp.gallery")}
                 </h2>
-                <span className="text-sm text-ink-500">{t("comp.placeholderImagery")}</span>
+                <span className="text-sm text-ink-600">{t("comp.placeholderImagery")}</span>
               </div>
               <ul className="grid grid-cols-2 gap-4 md:grid-cols-4">
                 {gallery.map((g, i) => (
@@ -168,7 +168,7 @@ export default async function CompetitionPage({ params }: PageProps<"/competitio
 
           <aside className="space-y-6 lg:col-span-4">
             <div className="card p-6 lg:sticky lg:top-28">
-              <h2 className="text-eyebrow text-ink-500">{t("comp.medalTable")}</h2>
+              <h2 className="text-eyebrow text-ink-600">{t("comp.medalTable")}</h2>
               <ul className="mt-5 grid grid-cols-3 gap-4 border-b border-line pb-6">
                 {(["gold", "silver", "bronze"] as const).map((m) => (
                   <li key={m}>
@@ -180,8 +180,8 @@ export default async function CompetitionPage({ params }: PageProps<"/competitio
               {medalists.length > 0 ? (
                 <ul className="mt-2 divide-y divide-line">
                   {medalists.map((r) => (
-                    <li key={r.id} className="flex items-center justify-between gap-3 py-3 text-[0.9375rem]">
-                      <Link href={`/athletes/${r.athlete.slug}`} className="font-semibold text-ink-900 hover:text-brand-700">
+                    <li key={r.id} className="flex items-center justify-between gap-3 py-3 text-base">
+                      <Link href={`/athletes/${r.athlete.slug}`} className="font-semibold text-ink-950 hover:text-brand-700">
                         {fullName(r.athlete)}
                       </Link>
                       <span className="flex items-center gap-2 text-ink-600">
@@ -198,11 +198,11 @@ export default async function CompetitionPage({ params }: PageProps<"/competitio
 
             {c.athletes.length > 0 && (
               <div className="card p-6">
-                <h2 className="text-eyebrow mb-4 text-ink-500">{t("comp.team")}</h2>
+                <h2 className="text-eyebrow mb-4 text-ink-600">{t("comp.team")}</h2>
                 <ul className="flex flex-wrap gap-2">
                   {c.athletes.map((a) => (
                     <li key={a.id}>
-                      <Link href={`/athletes/${a.slug}`} className="inline-flex h-11 items-center rounded-xs border border-line bg-white px-3 text-[0.9375rem] font-medium hover:border-ink-900 hover:text-brand-700">
+                      <Link href={`/athletes/${a.slug}`} className="inline-flex h-11 items-center rounded-xs border border-line bg-white px-3 text-base font-medium hover:border-ink-900 hover:text-brand-700">
                         {fullName(a)}
                       </Link>
                     </li>
@@ -213,13 +213,13 @@ export default async function CompetitionPage({ params }: PageProps<"/competitio
 
             {c.events.length > 0 && (
               <div className="card p-6">
-                <h2 className="text-eyebrow mb-2 text-ink-500">{t("comp.calendar")}</h2>
+                <h2 className="text-eyebrow mb-2 text-ink-600">{t("comp.calendar")}</h2>
                 <ul className="divide-y divide-line">
                   {c.events.map((e) => (
                     <li key={e.id}>
                       <Link href={`/events/${e.slug}`} className="block min-h-11 py-3 hover:text-brand-700">
                         <span className="block font-semibold">{e.title}</span>
-                        <span className="text-[0.9375rem] text-ink-600">{formatDate(e.startAt, undefined, locale)}</span>
+                        <span className="text-base text-ink-600">{formatDate(e.startAt, undefined, locale)}</span>
                       </Link>
                     </li>
                   ))}
@@ -229,14 +229,14 @@ export default async function CompetitionPage({ params }: PageProps<"/competitio
 
             {c.documents.length > 0 && (
               <div>
-                <h2 className="text-eyebrow mb-4 text-ink-500">{t("comp.documents")}</h2>
+                <h2 className="text-eyebrow mb-4 text-ink-600">{t("comp.documents")}</h2>
                 <ul className="space-y-4">
                   {c.documents.map((d) => (
                     <li key={d.id} className="card flex items-start gap-3 p-5">
                       <FileText className="mt-0.5 size-5 shrink-0 text-brand-600" aria-hidden />
                       <span>
                         <span className="block font-semibold">{d.title}</span>
-                        <span className="text-sm text-ink-500">
+                        <span className="text-sm text-ink-600">
                           {d.fileType} · {d.isDemo ? t("comp.demoDoc") : formatDate(d.publishedAt, undefined, locale)}
                         </span>
                       </span>

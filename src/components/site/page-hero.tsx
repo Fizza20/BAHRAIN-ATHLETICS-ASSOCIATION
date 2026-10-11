@@ -21,7 +21,7 @@ export function Breadcrumbs({ items, inverse = false }: { items: Crumb[]; invers
   };
   return (
     <nav aria-label={t("crumb.label")}>
-      <ol className={cn("flex flex-wrap items-center gap-x-1 text-sm font-medium", inverse ? "text-white/80" : "text-ink-600")}>
+      <ol className={cn("flex flex-wrap items-center gap-x-1 text-sm font-medium", inverse ? "text-white/85" : "text-ink-600")}>
         {all.map((c, i) => (
           <li key={i} className="flex items-center gap-1">
             {i > 0 && <ChevronRight className="size-4 opacity-60" aria-hidden />}
@@ -30,7 +30,7 @@ export function Breadcrumbs({ items, inverse = false }: { items: Crumb[]; invers
                 {c.label}
               </Link>
             ) : (
-              <span aria-current="page" className={inverse ? "text-white" : "text-ink-900"}>
+              <span aria-current="page" className={inverse ? "text-white" : "text-ink-950"}>
                 {c.label}
               </span>
             )}

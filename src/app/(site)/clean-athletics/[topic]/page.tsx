@@ -39,8 +39,8 @@ export default async function TopicPage({ params }: PageProps<"/clean-athletics/
                   href={`/clean-athletics/${x.slug}`}
                   aria-current={x.slug === t.slug ? "page" : undefined}
                   className={cn(
-                    "block min-h-11 border-s-2 py-2.5 ps-4 text-[0.9375rem] transition-colors",
-                    x.slug === t.slug ? "border-brand-600 font-semibold text-ink-950" : "border-line text-ink-600 hover:border-ink-400 hover:text-ink-900",
+                    "block min-h-11 border-s-2 py-2.5 ps-4 text-base transition-colors",
+                    x.slug === t.slug ? "border-brand-600 font-semibold text-ink-950" : "border-line text-ink-600 hover:border-ink-400 hover:text-ink-950",
                   )}
                 >
                   {x.title}
@@ -76,7 +76,7 @@ export default async function TopicPage({ params }: PageProps<"/clean-athletics/
               ))}
             </div>
           )}
-          <p className="mt-10 text-sm leading-relaxed text-ink-500">
+          <p className="mt-10 text-sm leading-relaxed text-ink-600">
             {tr("clean.topic.note")}{" "}
             <a href={t.legacy} className="underline underline-offset-2 hover:text-brand-700" target="_blank" rel="noopener noreferrer">
               {t.legacy.replace("https://www.", "")}

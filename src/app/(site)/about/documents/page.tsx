@@ -63,19 +63,19 @@ export default async function DocumentsPage({ searchParams }: PageProps<"/about/
                       <span className="flex flex-wrap items-center gap-2 font-semibold">
                         {d.title} {d.isDemo && <DemoBadge />}
                       </span>
-                      <span className="mt-1 block text-[0.9375rem] text-ink-600">{d.description}</span>
+                      <span className="mt-1 block text-base text-ink-600">{d.description}</span>
                     </span>
                   </span>
                 </td>
-                <td className="ps-9 text-[0.9375rem] text-ink-600 md:py-5 md:ps-0">{CATS[d.category]}</td>
-                <td className="ps-9 text-[0.9375rem] tabular text-ink-600 md:py-5 md:ps-0">{formatDate(d.publishedAt, undefined, locale)}</td>
+                <td className="ps-9 text-base text-ink-600 md:py-5 md:ps-0">{CATS[d.category]}</td>
+                <td className="ps-9 text-base tabular text-ink-600 md:py-5 md:ps-0">{formatDate(d.publishedAt, undefined, locale)}</td>
                 <td className="ps-9 md:py-5 md:ps-0 md:text-end">
                   {d.url ? (
                     <Link href={d.url} className="inline-flex min-h-11 items-center gap-1 font-semibold text-brand-700 hover:underline">
                       {t("docs.open")} <ArrowUpRight className="size-4" aria-hidden />
                     </Link>
                   ) : (
-                    <span className="text-sm text-ink-500">{t("docs.pending")}</span>
+                    <span className="text-sm text-ink-600">{t("docs.pending")}</span>
                   )}
                 </td>
               </tr>

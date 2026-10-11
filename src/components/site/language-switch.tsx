@@ -19,7 +19,7 @@ export function LanguageSwitch({ className }: { className?: string }) {
       lang={next}
       aria-label={t("lang.switchLabel")}
       className={cn(
-        "flex h-11 items-center gap-2 rounded-xs border border-ink-200 px-2.5 text-[0.9375rem] font-semibold text-ink-800 transition-colors hover:border-ink-900 hover:bg-pearl disabled:opacity-60 sm:px-3",
+        "flex h-11 items-center gap-2 rounded-xs border border-ink-200 px-2.5 text-base font-semibold text-ink-950 transition-colors hover:border-ink-900 hover:bg-pearl disabled:opacity-60 sm:px-3",
         className,
       )}
     >

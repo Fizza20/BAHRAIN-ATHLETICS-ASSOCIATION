@@ -241,6 +241,7 @@ export async function seedDatabase(db: LibSQLDatabase<typeof s>, opts: { bcryptR
   await db.insert(s.settings).values([
     { key: "site.tagline", value: "The home of Bahraini athletics" },
     { key: "site.demoBanner", value: "true" },
+    { key: "site.demoBadges", value: "true" },
   ]);
 
   log("✓ seeded", { athletes: aths.length, competitions: comps.length, news: newsRows.length });

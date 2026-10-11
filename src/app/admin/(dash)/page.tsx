@@ -42,7 +42,7 @@ export default async function OverviewPage({ searchParams }: PageProps<"/admin">
   return (
     <div className="space-y-6">
       {denied && (
-        <div role="alert" className="flex items-start gap-3 rounded-sm border border-warning/30 bg-warning/[0.07] px-4 py-3 text-sm text-ink-800">
+        <div role="alert" className="flex items-start gap-3 rounded-sm border border-warning/30 bg-warning/[0.07] px-4 py-3 text-sm text-ink-950">
           <ShieldAlert className="mt-0.5 size-4 shrink-0 text-warning" aria-hidden />
           <p>
             <strong className="font-semibold">Your role doesn’t have access to {denied}.</strong> You were redirected to the overview. Ask a Super Admin if you need it.
@@ -60,14 +60,14 @@ export default async function OverviewPage({ searchParams }: PageProps<"/admin">
         <div className="absolute inset-y-0 left-0 w-1 bg-brand-600" aria-hidden />
         <div className="relative flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className={cn(labelCls, "text-white/50")}>
+            <p className={cn(labelCls, "text-white/70")}>
               {new Intl.DateTimeFormat("en-GB", { weekday: "long", day: "numeric", month: "long", year: "numeric", timeZone: "Asia/Bahrain" }).format(new Date())}
             </p>
             <h1 className={cn(headingCls, "mt-3 text-[2.25rem] md:text-[3rem]")}>
               {greeting()}, {firstName}
               <span className="text-brand-600">.</span>
             </h1>
-            <p className="mt-2 text-sm text-white/60">
+            <p className="mt-2 text-sm text-white/70">
               Signed in as <span className="font-semibold text-white">{ROLE_LABEL[r]}</span>. {ROLE_SUMMARY[r]}
             </p>
           </div>
@@ -97,7 +97,7 @@ export default async function OverviewPage({ searchParams }: PageProps<"/admin">
           const allowed = can(r, k.res);
           const body = (
             <>
-              <p className={cn(labelCls, "flex items-center justify-between gap-2 text-ink-500")}>
+              <p className={cn(labelCls, "flex items-center justify-between gap-2 text-ink-600")}>
                 {k.label}
                 {allowed && <ArrowUpRight className="size-3.5 text-ink-300 transition-colors group-hover:text-brand-600" aria-hidden />}
               </p>
@@ -105,7 +105,7 @@ export default async function OverviewPage({ searchParams }: PageProps<"/admin">
                 {k.value}
                 {k.alert && <span className="size-2 rounded-full bg-brand-600" aria-label="needs attention" />}
               </p>
-              <p className="mt-1.5 text-xs text-ink-500">{k.note}</p>
+              <p className="mt-1.5 text-xs text-ink-600">{k.note}</p>
             </>
           );
           return allowed ? (
@@ -136,10 +136,10 @@ export default async function OverviewPage({ searchParams }: PageProps<"/admin">
             ).map(([key, label, value, bar, note], i) => (
               <li key={key}>
                 <Link href={`/admin/news?status=${key}`} className="group grid grid-cols-[1.75rem_1fr_auto] items-center gap-3 rounded-xs px-2 py-2.5 hover:bg-pearl/60">
-                  <span className="flex size-7 items-center justify-center rounded-xs bg-ink-950 text-[0.6875rem] font-bold text-white tabular">{i + 1}</span>
+                  <span className="flex size-7 items-center justify-center rounded-xs bg-ink-950 text-xs font-bold text-white tabular">{i + 1}</span>
                   <span className="min-w-0">
                     <span className="block text-sm font-semibold text-ink-950 group-hover:text-brand-600">{label}</span>
-                    <span className="block text-xs text-ink-500">{note}</span>
+                    <span className="block text-xs text-ink-600">{note}</span>
                     <span className="mt-1.5 block h-1 overflow-hidden rounded-full bg-pearl" aria-hidden>
                       <span className={cn("block h-full rounded-full", bar)} style={{ width: `${Math.max(value ? 4 : 0, (value / pipeTotal) * 100)}%` }} />
                     </span>
@@ -149,19 +149,19 @@ export default async function OverviewPage({ searchParams }: PageProps<"/admin">
               </li>
             ))}
           </ol>
-          <p className="mt-4 text-xs leading-relaxed text-ink-500">Editors write drafts and submit them for review. Content managers and administrators publish.</p>
+          <p className="mt-4 text-xs leading-relaxed text-ink-600">Editors write drafts and submit them for review. Content managers and administrators publish.</p>
         </Panel>
       </div>
 
       <div className="grid gap-6 xl:grid-cols-3">
         <Panel title="Recent results" className="xl:col-span-2" action={can(r, "results") ? <PanelLink href="/admin/results">View all</PanelLink> : undefined}>
           {d.recentResults.length === 0 ? (
-            <p className="p-5 text-sm text-ink-500">No results recorded yet.</p>
+            <p className="p-5 text-sm text-ink-600">No results recorded yet.</p>
           ) : (
             <div className="relative overflow-x-auto">
               <table className="w-full min-w-[560px] text-left text-sm">
                 <thead>
-                  <tr className={cn(labelCls, "text-ink-500")}>
+                  <tr className={cn(labelCls, "text-ink-600")}>
                     <th scope="col" className="px-5 py-2.5 font-semibold">Athlete</th>
                     <th scope="col" className="px-3 py-2.5 font-semibold">Event</th>
                     <th scope="col" className="px-3 py-2.5 text-right font-semibold">Mark</th>
@@ -177,7 +177,7 @@ export default async function OverviewPage({ searchParams }: PageProps<"/admin">
                           {x.firstName} {x.lastName}
                         </span>
                         {x.isDemo && <DemoBadge className="ml-2" />}
-                        <span className="block truncate text-xs text-ink-500">{x.competition ?? x.competitionName ?? "—"}</span>
+                        <span className="block truncate text-xs text-ink-600">{x.competition ?? x.competitionName ?? "—"}</span>
                       </td>
                       <td className="px-3 py-3 text-ink-700">{x.discipline}</td>
                       <td className="px-3 py-3 text-right">
@@ -185,7 +185,7 @@ export default async function OverviewPage({ searchParams }: PageProps<"/admin">
                         {x.record && <RecordTag record={x.record} className="ml-1.5" />}
                       </td>
                       <td className="px-3 py-3">{x.medal ? <MedalDot medal={x.medal} /> : <span className="tabular text-ink-600">{ordinal(x.position)}</span>}</td>
-                      <td className="px-5 py-3 text-right text-xs text-ink-500 tabular">{x.date}</td>
+                      <td className="px-5 py-3 text-right text-xs text-ink-600 tabular">{x.date}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -196,7 +196,7 @@ export default async function OverviewPage({ searchParams }: PageProps<"/admin">
 
         <Panel title="Upcoming events" action={can(r, "events") ? <PanelLink href="/admin/events">Calendar</PanelLink> : undefined}>
           {d.upcoming.length === 0 ? (
-            <p className="p-5 text-sm text-ink-500">Nothing scheduled.</p>
+            <p className="p-5 text-sm text-ink-600">Nothing scheduled.</p>
           ) : (
             <ul>
               {d.upcoming.map((e) => {
@@ -206,7 +206,7 @@ export default async function OverviewPage({ searchParams }: PageProps<"/admin">
                   <li key={e.id} className="flex gap-4 border-t border-line px-5 py-3.5 first:border-t-0">
                     <div className="w-11 shrink-0 text-center">
                       <span className="block text-2xl font-extrabold leading-none text-ink-950 tabular [font-variation-settings:'wdth'_70]">{p.day}</span>
-                      <span className={cn(labelCls, "mt-1 block text-[0.5625rem] text-brand-600")}>{p.month}</span>
+                      <span className={cn(labelCls, "mt-1 block text-xs text-brand-600")}>{p.month}</span>
                     </div>
                     <div className="min-w-0 flex-1">
                       <p className="truncate font-semibold leading-snug text-ink-950">
@@ -218,7 +218,7 @@ export default async function OverviewPage({ searchParams }: PageProps<"/admin">
                           e.title
                         )}
                       </p>
-                      <p className="mt-0.5 truncate text-xs text-ink-500">
+                      <p className="mt-0.5 truncate text-xs text-ink-600">
                         {formatDateRange(e.startAt, e.endAt)} · {e.city ?? e.location ?? "TBC"}
                       </p>
                       <div className="mt-1.5 flex gap-1.5">
@@ -236,7 +236,7 @@ export default async function OverviewPage({ searchParams }: PageProps<"/admin">
 
       <Panel title="Recent activity" action={can(r, "activity") ? <PanelLink href="/admin/activity">Full audit log</PanelLink> : undefined}>
         {d.activity.length === 0 ? (
-          <p className="p-5 text-sm text-ink-500">No activity yet.</p>
+          <p className="p-5 text-sm text-ink-600">No activity yet.</p>
         ) : (
           <ol className="grid md:grid-cols-2">
             {d.activity.map(({ a, userName }) => (
@@ -246,7 +246,7 @@ export default async function OverviewPage({ searchParams }: PageProps<"/admin">
                   <span className="font-semibold text-ink-950">{userName ?? "System"}</span> {a.action} {a.entity === "user" && a.action.startsWith("log") ? "" : a.entity}
                   {a.label && a.entity !== "user" && <span className="text-ink-950"> “{a.label}”</span>}
                 </p>
-                <time className="shrink-0 text-xs text-ink-400 tabular" dateTime={a.createdAt.toISOString()}>
+                <time className="shrink-0 text-xs text-ink-600 tabular" dateTime={a.createdAt.toISOString()}>
                   {timeAgo(a.createdAt)}
                 </time>
               </li>

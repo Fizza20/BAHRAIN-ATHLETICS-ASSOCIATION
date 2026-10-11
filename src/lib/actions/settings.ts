@@ -10,6 +10,7 @@ import { errorMessage, parseForm, revalidate, type ActionResult, type FormState 
 const schema = z.object({
   "site.tagline": z.string().trim().min(1, "Tagline is required").max(160, "Keep it under 160 characters"),
   "site.demoBanner": z.preprocess((v) => (v === "on" ? "true" : "false"), z.enum(["true", "false"])),
+  "site.demoBadges": z.preprocess((v) => (v === "on" ? "true" : "false"), z.enum(["true", "false"])),
 });
 
 export async function saveSettings(_: FormState, fd: FormData): Promise<FormState> {
@@ -25,7 +26,8 @@ export async function saveSettings(_: FormState, fd: FormData): Promise<FormStat
     await db.insert(s.settings).values({ key, value }).onConflictDoUpdate({ target: s.settings.key, set: { value } });
   }
   await logActivity(user.id, "updated", "settings", null, "Site settings");
-  revalidate(["/", "/admin/settings"]);
+  revalidatePath("/", "layout");
+  revalidate(["/admin/settings"]);
   return { ok: true, message: "Settings saved." };
 }
 

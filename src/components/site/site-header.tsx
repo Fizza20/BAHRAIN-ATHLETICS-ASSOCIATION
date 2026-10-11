@@ -84,7 +84,7 @@ export function SiteHeader() {
                       href={item.href}
                       aria-current={active ? "page" : undefined}
                       className={cn(
-                        "relative flex h-10 items-center rounded-full px-3 text-[0.9375rem] xl:px-4 font-semibold transition-all duration-300",
+                        "relative flex h-10 items-center rounded-full px-3 text-base xl:px-4 font-semibold transition-all duration-300",
                         active ? "bg-ink-950 text-white" : "text-ink-700 hover:bg-ink-950/[0.06] hover:text-ink-950",
                       )}
                     >
@@ -104,7 +104,7 @@ export function SiteHeader() {
               aria-label={t("header.searchSite")}
             >
               <Search className="size-5" aria-hidden />
-              <span className="hidden text-[0.9375rem] xl:inline">{t("header.search")}</span>
+              <span className="hidden text-base xl:inline">{t("header.search")}</span>
             </button>
             <button
               onClick={() => setMobileOpen((v) => !v)}
@@ -141,7 +141,7 @@ function MobileMenu({ isActive, onNavigate }: { isActive: (h: string) => boolean
                 aria-current={isActive(item.href) ? "page" : undefined}
                 className={cn(
                   "flex min-h-14 items-center justify-between gap-4 text-lg font-semibold",
-                  isActive(item.href) ? "text-brand-700" : "text-ink-900",
+                  isActive(item.href) ? "text-brand-700" : "text-ink-950",
                 )}
               >
                 {t(item.label)}
@@ -150,7 +150,7 @@ function MobileMenu({ isActive, onNavigate }: { isActive: (h: string) => boolean
             </li>
           ))}
         </ul>
-        <p className="text-eyebrow mb-1 mt-8 text-ink-500">{t("nav.more")}</p>
+        <p className="text-eyebrow mb-1 mt-8 text-ink-600">{t("nav.more")}</p>
         <ul className="grid grid-cols-2 gap-x-4">
           {MORE_NAV.map((item) => (
             <li key={item.href}>
@@ -206,21 +206,21 @@ function SearchDialog({ open, onOpenChange }: { open: boolean; onOpenChange: (v:
             className="flex items-center gap-3 border-b border-line px-5"
             role="search"
           >
-            <Search className="size-5 text-ink-500" aria-hidden />
+            <Search className="size-5 text-ink-600" aria-hidden />
             <input
               ref={inputRef}
               name="q"
               type="search"
               placeholder={t("search.placeholder")}
               aria-label={t("header.search")}
-              className="h-16 flex-1 bg-transparent text-lg outline-none placeholder:text-ink-400"
+              className="h-16 flex-1 bg-transparent text-lg outline-none placeholder:text-ink-600"
             />
             <Dialog.Close className="flex size-10 items-center justify-center rounded-xs text-ink-600 hover:bg-pearl" aria-label={t("header.closeSearch")}>
               <X className="size-5" aria-hidden />
             </Dialog.Close>
           </form>
           <div className="p-5">
-            <p className="text-eyebrow mb-3 text-ink-500">{t("search.popular")}</p>
+            <p className="text-eyebrow mb-3 text-ink-600">{t("search.popular")}</p>
             <ul className="flex flex-wrap gap-2">
               {QUICK.map((q) => (
                 <li key={q.href}>

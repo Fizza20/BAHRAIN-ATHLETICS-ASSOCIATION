@@ -53,7 +53,7 @@ export function EventRow({ e }: { e: EventLike }) {
             {e.title}
           </Link>
         </h3>
-        <p className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-[0.9375rem] text-ink-600">
+        <p className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-base text-ink-600">
           <span className="inline-flex items-center gap-1.5">
             <MapPin className="size-4" aria-hidden /> {e.location ?? t("common.venueTbc")}
           </span>
@@ -63,7 +63,7 @@ export function EventRow({ e }: { e: EventLike }) {
           </span>
         </p>
       </div>
-      <ChevronRight className="hidden size-5 shrink-0 text-ink-400 transition-colors group-hover:text-brand-600 sm:block" aria-hidden />
+      <ChevronRight className="hidden size-5 shrink-0 text-ink-600 transition-colors group-hover:text-brand-600 sm:block" aria-hidden />
     </article>
     </RevealCard>
   );

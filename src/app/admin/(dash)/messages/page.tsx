@@ -47,9 +47,9 @@ export default async function MessagesPage({ searchParams }: PageProps<"/admin/m
           { key: "unread", label: "Unread" },
           { key: "read", label: "Read" },
         ].map((t) => (
-          <Link key={t.label} href={hrefWith(BASE, p, { status: t.key ?? null, page: null })} aria-current={p.status === t.key ? "page" : undefined} className={cn("-mb-px flex h-11 items-center border-b-2 px-3 text-sm font-semibold", p.status === t.key ? "border-brand-600 text-ink-950" : "border-transparent text-ink-500 hover:text-ink-950")}>
+          <Link key={t.label} href={hrefWith(BASE, p, { status: t.key ?? null, page: null })} aria-current={p.status === t.key ? "page" : undefined} className={cn("-mb-px flex h-11 items-center border-b-2 px-3 text-sm font-semibold", p.status === t.key ? "border-brand-600 text-ink-950" : "border-transparent text-ink-600 hover:text-ink-950")}>
             {t.label}
-            {t.key === "unread" && unread > 0 && <span className="ml-2 rounded-xs bg-brand-600 px-1.5 text-[0.6875rem] leading-5 text-white tabular">{unread}</span>}
+            {t.key === "unread" && unread > 0 && <span className="ml-2 rounded-xs bg-brand-600 px-1.5 text-xs leading-5 text-white tabular">{unread}</span>}
           </Link>
         ))}
       </nav>
@@ -78,11 +78,11 @@ export default async function MessagesPage({ searchParams }: PageProps<"/admin/m
                       {!m.read && <span className="size-2 shrink-0 rounded-full bg-brand-600" aria-label="Unread" />}
                       <span className={cn("truncate", m.read ? "text-ink-700" : "font-bold text-ink-950")}>{m.firstName} {m.lastName}</span>
                     </Link>
-                    <p className="truncate text-xs text-ink-500">{m.email}</p>
+                    <p className="truncate text-xs text-ink-600">{m.email}</p>
                   </Td>
-                  <Td className="max-w-md"><Link href={`${BASE}/${m.id}`} className={cn("line-clamp-1", m.read ? "text-ink-600" : "text-ink-900")}>{m.body}</Link></Td>
-                  <Td><span className="rounded-xs bg-ink-950/[0.06] px-1.5 py-0.5 text-[0.6875rem] font-semibold capitalize text-ink-700">{m.topic}</span></Td>
-                  <Td className="whitespace-nowrap text-xs text-ink-500">{timeAgo(m.createdAt)}</Td>
+                  <Td className="max-w-md"><Link href={`${BASE}/${m.id}`} className={cn("line-clamp-1", m.read ? "text-ink-600" : "text-ink-950")}>{m.body}</Link></Td>
+                  <Td><span className="rounded-xs bg-ink-950/[0.06] px-1.5 py-0.5 text-xs font-semibold capitalize text-ink-700">{m.topic}</span></Td>
+                  <Td className="whitespace-nowrap text-xs text-ink-600">{timeAgo(m.createdAt)}</Td>
                   <Td><RowActions>{canDelete && <DeleteButton action={deleteMessage} id={m.id} label={`Message from ${m.firstName} ${m.lastName}`} />}</RowActions></Td>
                 </tr>
               ))}

@@ -34,7 +34,7 @@ export default async function EventsPage({ searchParams }: PageProps<"/events">)
             <div className="card p-6">
               <p className="text-eyebrow text-brand-700">{t("events.nextUp")}</p>
               <p className="mt-2 text-h3 text-ink-950">{next.title}</p>
-              <p className="mt-2 text-[0.9375rem] text-ink-600">
+              <p className="mt-2 text-base text-ink-600">
                 {next.location} · {new Intl.DateTimeFormat(INTL_TAG[locale], { day: "numeric", month: "long", timeZone: "Asia/Bahrain" }).format(new Date(next.startAt!))}
               </p>
               <ButtonLink href={`/events/${next.slug}`} variant="secondary" size="sm" className="mt-4">

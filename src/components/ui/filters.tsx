@@ -67,7 +67,7 @@ export function FilterBar({
 
   const active = filters.filter((f) => params.get(f.key));
   const field = cn(
-    "h-12 w-full appearance-none rounded-xs border bg-white ps-4 pe-10 text-[0.9375rem] font-medium text-ink-900 transition-colors focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/20",
+    "h-12 w-full appearance-none rounded-xs border bg-white ps-4 pe-10 text-base font-medium text-ink-950 transition-colors focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/20",
     "border-ink-200 hover:border-ink-400",
   );
 
@@ -77,19 +77,19 @@ export function FilterBar({
         <div className="flex gap-3">
           <label className="relative flex-1">
             <span className="sr-only">{searchPlaceholder}</span>
-            <Search className="pointer-events-none absolute start-4 top-1/2 size-4 -translate-y-1/2 text-ink-500" aria-hidden />
+            <Search className="pointer-events-none absolute start-4 top-1/2 size-4 -translate-y-1/2 text-ink-600" aria-hidden />
             <input
               type="search"
               value={q}
               onChange={(e) => setQ(e.target.value)}
               placeholder={searchPlaceholder}
-              className="h-12 w-full rounded-xs border border-ink-200 bg-white ps-11 pe-4 text-base text-ink-900 placeholder:text-ink-500 hover:border-ink-400 focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/20"
+              className="h-12 w-full rounded-xs border border-ink-200 bg-white ps-11 pe-4 text-base text-ink-950 placeholder:text-ink-600 hover:border-ink-400 focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/20"
             />
           </label>
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
-            className="flex h-12 items-center gap-2 rounded-xs border border-ink-300 bg-white px-4 text-[0.9375rem] font-semibold text-ink-900 hover:border-ink-900 lg:hidden"
+            className="flex h-12 items-center gap-2 rounded-xs border border-ink-300 bg-white px-4 text-base font-semibold text-ink-950 hover:border-ink-900 lg:hidden"
             aria-expanded={open}
             aria-controls="filter-panel"
           >
@@ -111,7 +111,7 @@ export function FilterBar({
                   </option>
                 ))}
               </select>
-              <ChevronDown className="pointer-events-none absolute end-3.5 top-1/2 size-4 -translate-y-1/2 text-ink-500" aria-hidden />
+              <ChevronDown className="pointer-events-none absolute end-3.5 top-1/2 size-4 -translate-y-1/2 text-ink-600" aria-hidden />
             </label>
           ))}
           {sorts && (
@@ -124,7 +124,7 @@ export function FilterBar({
                   </option>
                 ))}
               </select>
-              <ChevronDown className="pointer-events-none absolute end-3.5 top-1/2 size-4 -translate-y-1/2 text-ink-500" aria-hidden />
+              <ChevronDown className="pointer-events-none absolute end-3.5 top-1/2 size-4 -translate-y-1/2 text-ink-600" aria-hidden />
             </label>
           )}
         </div>
@@ -141,7 +141,7 @@ export function FilterBar({
                 setQ("");
                 set(Object.fromEntries([["q", null], ...filters.map((f) => [f.key, null])]));
               }}
-              className="inline-flex h-10 items-center px-2 text-sm font-semibold text-brand-700 underline underline-offset-4 hover:text-brand-800"
+              className="inline-flex h-10 items-center px-2 text-sm font-semibold text-brand-700 underline underline-offset-4 hover:text-brand-700"
             >
               {t("filter.clearAll")}
             </button>
@@ -150,7 +150,7 @@ export function FilterBar({
       </div>
 
       {count !== undefined && (
-        <p className="mt-6 text-[0.9375rem] text-ink-600" aria-live="polite">
+        <p className="mt-6 text-base text-ink-600" aria-live="polite">
           <strong className="text-ink-950">{count}</strong> {noun}
           {pending && ` · ${t("filter.updating")}`}
         </p>
@@ -168,7 +168,7 @@ export function usePending() {
 
 function Chip({ label, remove, onClear }: { label: string; remove: string; onClear: () => void }) {
   return (
-    <span className="inline-flex h-9 items-center gap-1 rounded-full bg-brand-50 ps-3.5 pe-1 text-sm font-medium text-brand-800 ring-1 ring-inset ring-brand-200">
+    <span className="inline-flex h-9 items-center gap-1 rounded-full bg-brand-50 ps-3.5 pe-1 text-sm font-medium text-brand-700 ring-1 ring-inset ring-brand-200">
       {label}
       <button type="button" onClick={onClear} className="flex size-7 items-center justify-center rounded-full hover:bg-brand-100" aria-label={remove}>
         <X className="size-4" aria-hidden />
@@ -190,7 +190,7 @@ export function Pagination({ page, pages }: { page: number; pages: number }) {
         type="button"
         disabled={page <= 1}
         onClick={() => set({ page: String(page - 1) })}
-        className="inline-flex h-11 items-center rounded-xs border border-ink-300 bg-white px-4 text-[0.9375rem] font-semibold text-ink-900 hover:border-ink-900 disabled:pointer-events-none disabled:opacity-40"
+        className="inline-flex h-11 items-center rounded-xs border border-ink-300 bg-white px-4 text-base font-semibold text-ink-950 hover:border-ink-900 disabled:pointer-events-none disabled:opacity-40"
       >
         {t("filter.prev")}
       </button>
@@ -213,7 +213,7 @@ export function Pagination({ page, pages }: { page: number; pages: number }) {
         type="button"
         disabled={page >= pages}
         onClick={() => set({ page: String(page + 1) })}
-        className="inline-flex h-11 items-center rounded-xs border border-ink-300 bg-white px-4 text-[0.9375rem] font-semibold text-ink-900 hover:border-ink-900 disabled:pointer-events-none disabled:opacity-40"
+        className="inline-flex h-11 items-center rounded-xs border border-ink-300 bg-white px-4 text-base font-semibold text-ink-950 hover:border-ink-900 disabled:pointer-events-none disabled:opacity-40"
       >
         {t("filter.next")}
       </button>

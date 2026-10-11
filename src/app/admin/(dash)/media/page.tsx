@@ -59,7 +59,7 @@ export default async function MediaPage({ searchParams }: PageProps<"/admin/medi
                       <RowCheck id={m.id} label={m.title} />
                     </span>
                   )}
-                  <span className="absolute right-2 top-2 rounded-xs bg-ink-950/80 px-1.5 py-0.5 text-[0.5625rem] font-bold uppercase tracking-[0.14em] text-white">{m.kind}</span>
+                  <span className="absolute right-2 top-2 rounded-xs bg-ink-950/80 px-1.5 py-0.5 text-xs font-bold uppercase tracking-[0.14em] text-white">{m.kind}</span>
                 </div>
                 <div className="flex items-start gap-2 p-3">
                   <div className="min-w-0 flex-1">
@@ -67,8 +67,8 @@ export default async function MediaPage({ searchParams }: PageProps<"/admin/medi
                       <span className="truncate">{m.title}</span>
                       {m.isDemo && <DemoBadge />}
                     </p>
-                    <p className="mt-0.5 line-clamp-2 text-xs text-ink-500" title={m.alt}>{m.alt || <em>No alt text</em>}</p>
-                    {m.credit && <p className="mt-1 truncate text-[0.6875rem] text-ink-400">© {m.credit}</p>}
+                    <p className="mt-0.5 line-clamp-2 text-xs text-ink-600" title={m.alt}>{m.alt || <em>No alt text</em>}</p>
+                    {m.credit && <p className="mt-1 truncate text-xs text-ink-600">© {m.credit}</p>}
                   </div>
                   {canDelete && <DeleteButton action={deleteMedia} id={m.id} label={m.title} />}
                 </div>

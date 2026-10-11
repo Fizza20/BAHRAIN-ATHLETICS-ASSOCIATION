@@ -19,17 +19,17 @@ const base =
 
 const variants: Record<Variant, string> = {
   primary: "bg-brand-600 text-white hover:bg-brand-700 active:bg-brand-800",
-  secondary: "border border-ink-300 bg-white text-ink-900 hover:border-ink-900 hover:bg-ink-50",
-  ghost: "text-ink-900 hover:bg-pearl",
+  secondary: "border border-ink-300 bg-white text-ink-950 hover:border-ink-900 hover:bg-ink-50",
+  ghost: "text-ink-950 hover:bg-pearl",
   inverse: "bg-white text-ink-950 hover:bg-pearl",
   "outline-inverse": "border border-white/60 text-white hover:border-white hover:bg-white/10",
   danger: "bg-brand-700 text-white hover:bg-brand-800",
-  link: "px-0! py-0! h-auto! min-h-0! text-brand-700 underline underline-offset-4 hover:text-brand-800",
+  link: "px-0! py-0! h-auto! min-h-0! text-brand-700 underline underline-offset-4 hover:text-brand-700",
 };
 
 const sizes: Record<Size, string> = {
   sm: "h-10 px-4 text-sm rounded-xs",
-  md: "h-11 px-5 text-[0.9375rem] rounded-xs",
+  md: "h-11 px-5 text-base rounded-xs",
   lg: "h-12 px-6 text-base rounded-xs",
 };
 

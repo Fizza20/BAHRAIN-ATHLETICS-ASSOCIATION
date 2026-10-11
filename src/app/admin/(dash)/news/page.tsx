@@ -75,10 +75,10 @@ export default async function NewsPage({ searchParams }: PageProps<"/admin/news"
               key={t.label}
               href={hrefWith(BASE, p, { status: t.key ?? null, page: null })}
               aria-current={active ? "page" : undefined}
-              className={cn("relative -mb-px flex h-11 shrink-0 items-center gap-2 border-b-2 px-3 text-sm font-semibold", active ? "border-brand-600 text-ink-950" : "border-transparent text-ink-500 hover:text-ink-950")}
+              className={cn("relative -mb-px flex h-11 shrink-0 items-center gap-2 border-b-2 px-3 text-sm font-semibold", active ? "border-brand-600 text-ink-950" : "border-transparent text-ink-600 hover:text-ink-950")}
             >
               {t.label}
-              <span className={cn("rounded-xs px-1.5 text-[0.6875rem] leading-5 tabular", active ? "bg-ink-950 text-white" : "bg-ink-950/[0.06] text-ink-600", t.key === "review" && t.n > 0 && !active && "bg-warning/15 text-warning")}>{t.n}</span>
+              <span className={cn("rounded-xs px-1.5 text-xs leading-5 tabular", active ? "bg-ink-950 text-white" : "bg-ink-950/[0.06] text-ink-600", t.key === "review" && t.n > 0 && !active && "bg-warning/15 text-warning")}>{t.n}</span>
             </Link>
           );
         })}
@@ -127,14 +127,14 @@ export default async function NewsPage({ searchParams }: PageProps<"/admin/news"
                             {n.isDemo && <DemoBadge />}
                             <SourceLink href={n.sourceUrl} />
                           </div>
-                          <p className="truncate text-xs text-ink-500">{n.author ?? "—"}{n.excerpt ? ` · ${n.excerpt}` : ""}</p>
+                          <p className="truncate text-xs text-ink-600">{n.author ?? "—"}{n.excerpt ? ` · ${n.excerpt}` : ""}</p>
                         </div>
                       </div>
                     </Td>
                     <Td className="text-ink-700">{NEWS_CATEGORY_LABEL[n.category]}</Td>
                     <Td><ContentStatus status={n.status} /></Td>
                     <Td className="whitespace-nowrap tabular text-ink-700">{n.publishedAt ? formatDate(n.publishedAt) : "—"}</Td>
-                    <Td className="whitespace-nowrap text-xs text-ink-500">{timeAgo(n.updatedAt)}</Td>
+                    <Td className="whitespace-nowrap text-xs text-ink-600">{timeAgo(n.updatedAt)}</Td>
                     <Td>
                       <RowActions>
                         {n.status === "published" && <ViewOnSite href={`/news/${n.slug}`} />}

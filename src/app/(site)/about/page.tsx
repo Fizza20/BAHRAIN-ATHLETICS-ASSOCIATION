@@ -47,9 +47,9 @@ export default async function AboutPage() {
             <h2 className="text-h2 text-ink-950">{t("about.missionHeading")}</h2>
           </div>
           <div className="space-y-5 text-lg text-ink-600 lg:col-span-7">
-            <p className="text-xl font-semibold leading-snug text-ink-900">{mission}</p>
+            <p className="text-xl font-semibold leading-snug text-ink-950">{mission}</p>
             <p>{standards}</p>
-            <p className="text-sm text-ink-500">
+            <p className="text-sm text-ink-600">
               {t("about.source")}{" "}
               <a href={organisation.source} className="underline underline-offset-2 hover:text-brand-700" target="_blank" rel="noopener noreferrer">
                 baa.bh/about
@@ -74,7 +74,7 @@ export default async function AboutPage() {
               </li>
             ))}
           </ol>
-          <p className="mt-6 text-sm text-ink-500">{t("about.roleNote")}</p>
+          <p className="mt-6 text-sm text-ink-600">{t("about.roleNote")}</p>
         </div>
       </section>
 
@@ -108,9 +108,9 @@ export default async function AboutPage() {
                   <Link href={h} className="after:absolute after:inset-0 after:content-['']">
                     {t}
                   </Link>
-                  <ArrowUpRight className="size-5 text-ink-500" aria-hidden />
+                  <ArrowUpRight className="size-5 text-ink-600" aria-hidden />
                 </span>
-                <span className="mt-2 text-[0.9375rem] text-ink-600">{d}</span>
+                <span className="mt-2 text-base text-ink-600">{d}</span>
               </li>
             ))}
           </ul>

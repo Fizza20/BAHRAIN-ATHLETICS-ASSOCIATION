@@ -14,9 +14,9 @@ const TOPICS = ["general", "athletes", "events", "media", "integrity"] as const;
 
 /** Floating-label field shell: the label sits inside the input and lifts when focused or filled. */
 const control =
-  "peer w-full rounded-sm border bg-white px-4 pb-2 pt-6 text-base text-ink-900 shadow-[0_1px_0_rgb(16_18_27/0.02)] transition-[border-color,box-shadow] duration-200 placeholder:text-transparent hover:border-ink-300 focus:border-brand-600 focus:outline-none focus:ring-4 focus:ring-brand-600/10";
+  "peer w-full rounded-sm border bg-white px-4 pb-2 pt-6 text-base text-ink-950 shadow-[0_1px_0_rgb(16_18_27/0.02)] transition-[border-color,box-shadow] duration-200 placeholder:text-transparent hover:border-ink-300 focus:border-brand-600 focus:outline-none focus:ring-4 focus:ring-brand-600/10";
 const floatLabel =
-  "pointer-events-none absolute start-4 top-4 origin-left text-base text-ink-500 transition-all duration-200 rtl:origin-right peer-focus:top-2 peer-focus:text-xs peer-focus:font-semibold peer-focus:text-brand-700 peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:font-semibold";
+  "pointer-events-none absolute start-4 top-4 origin-left text-base text-ink-600 transition-all duration-200 rtl:origin-right peer-focus:top-2 peer-focus:text-xs peer-focus:font-semibold peer-focus:text-brand-700 peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:font-semibold";
 
 export function ContactForm() {
   const { t } = useI18n();
@@ -61,7 +61,7 @@ export function ContactForm() {
   return (
     <form action={action} noValidate>
       {state.message && (
-        <p role="alert" className="mb-6 flex items-center gap-2 rounded-sm bg-brand-50 p-4 text-sm font-medium text-brand-800">
+        <p role="alert" className="mb-6 flex items-center gap-2 rounded-sm bg-brand-50 p-4 text-sm font-medium text-brand-700">
           <AlertCircle className="size-4 shrink-0" aria-hidden /> {state.message}
         </p>
       )}
@@ -92,12 +92,12 @@ export function ContactForm() {
 
         <StaggerItem>
           <fieldset>
-            <legend className="mb-3 text-sm font-semibold text-ink-800">{t("contactForm.topic")}</legend>
+            <legend className="mb-3 text-sm font-semibold text-ink-950">{t("contactForm.topic")}</legend>
             <div className="flex flex-wrap gap-2">
               {TOPICS.map((k) => (
                 <label key={k} className="cursor-pointer">
                   <input type="radio" name="topic" value={k} defaultChecked={(v.topic ?? "general") === k} className="peer sr-only" />
-                  <span className="inline-flex min-h-11 items-center rounded-full border border-ink-200 bg-white px-4 text-[0.9375rem] font-medium text-ink-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-ink-400 peer-checked:border-brand-600 peer-checked:bg-brand-600 peer-checked:text-white peer-checked:shadow-[0_8px_20px_-8px_rgb(206_17_38/0.6)] peer-focus-visible:ring-4 peer-focus-visible:ring-brand-600/25">
+                  <span className="inline-flex min-h-11 items-center rounded-full border border-ink-200 bg-white px-4 text-base font-medium text-ink-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-ink-400 peer-checked:border-brand-600 peer-checked:bg-brand-600 peer-checked:text-white peer-checked:shadow-[0_8px_20px_-8px_rgb(206_17_38/0.6)] peer-focus-visible:ring-4 peer-focus-visible:ring-brand-600/25">
                     {t(`contactForm.topic.${k}`)}
                   </span>
                 </label>
@@ -125,7 +125,7 @@ export function ContactForm() {
             <label htmlFor="body" className={floatLabel}>
               {t("contactForm.message")}
             </label>
-            <span className="pointer-events-none absolute bottom-2.5 end-3 text-xs tabular text-ink-500" aria-hidden dir="ltr">
+            <span className="pointer-events-none absolute bottom-2.5 end-3 text-xs tabular text-ink-600" aria-hidden dir="ltr">
               {len || (v.body?.length ?? 0)} / {MAX}
             </span>
           </Field>

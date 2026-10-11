@@ -39,10 +39,10 @@ export function SeasonNumbers({ figures }: { figures: SeasonFigure[] }) {
                     t(f.label)
                   )}
                 </dt>
-                <dd className="order-1 text-[clamp(2.5rem,4.4vw,4rem)] leading-none text-mark" dir="ltr">
+                <dd className="order-1 text-stat text-mark" dir="ltr">
                   {f.kind === "mark" ? <MarkCounter mark={String(f.value)} /> : <Counter value={Number(f.value)} />}
                 </dd>
-                <dd className="order-3 mt-1 text-[0.9375rem] text-white/85">{t(f.detail)}</dd>
+                <dd className="order-3 mt-1 text-base text-white/85">{t(f.detail)}</dd>
                 {f.href && <ArrowUpRight className="absolute end-5 top-5 size-5 text-white/70 transition-transform group-hover:-translate-y-0.5" aria-hidden />}
               </div>
               </TiltCard>

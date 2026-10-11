@@ -65,7 +65,7 @@ export default async function HomePage() {
     };
   });
 
-  const upcoming = events.filter((e) => e.live === "upcoming" || e.live === "ongoing").slice(0, 4);
+  const upcoming = events.filter((e) => e.live === "upcoming" || e.live === "ongoing").slice(0, 3);
   const recent = events
     .filter((e) => e.live === "completed" && !e.isDemo && e.type !== "training-camp")
     .sort((a, b) => (b.startAt ?? "").localeCompare(a.startAt ?? ""))
@@ -142,7 +142,7 @@ export default async function HomePage() {
                 ))}
               </div>
               {postponed && (
-                <p className="mt-6 flex items-start gap-3 rounded-md border border-warning/30 bg-warning/10 p-4 text-[0.9375rem] text-ink-800">
+                <p className="mt-6 flex items-start gap-3 rounded-md border border-warning/30 bg-warning/10 p-4 text-base text-ink-950">
                   <span className="mt-2 size-2 shrink-0 rounded-full bg-warning" aria-hidden />
                   <span>
                     <strong>{postponed.title}</strong> ({postponed.location}): {postponed.description}
@@ -150,25 +150,32 @@ export default async function HomePage() {
                 </p>
               )}
             </div>
-            <aside className="lg:col-span-4" aria-labelledby="recent-title">
+            <aside className="flex flex-col lg:col-span-4" aria-labelledby="recent-title">
               <h3 id="recent-title" className="text-h3 mb-4">
                 {t("home.events.recent")}
               </h3>
-              <ul className="space-y-3">
+              <ul className="mb-3 space-y-3">
                 {recent.map((e) => (
                   <li key={e.slug} className="card card-interactive group relative p-4">
                     <Link href={`/competitions/${e.competition?.slug ?? ""}`} className="flex items-center justify-between gap-4 after:absolute after:inset-0 after:content-['']">
                       <span>
                         <span className="block font-semibold leading-snug text-ink-950 group-hover:text-brand-700">{e.title}</span>
-                        <span className="mt-1 block text-[0.9375rem] text-ink-600">
+                        <span className="mt-1 block text-base text-ink-600">
                           {e.location} · {formatDate(e.startAt, { month: "short", year: "numeric" }, locale)}
                         </span>
                       </span>
-                      <ArrowRight className="size-5 shrink-0 text-ink-400 group-hover:text-brand-600" aria-hidden />
+                      <ArrowRight className="size-5 shrink-0 text-ink-600 group-hover:text-brand-600" aria-hidden />
                     </Link>
                   </li>
                 ))}
               </ul>
+              <Link
+                href="/competitions"
+                className="group mt-3 flex items-center justify-between gap-4 rounded-md bg-ink-950 p-4 font-semibold text-white transition-colors hover:bg-brand-700 lg:mt-auto"
+              >
+                {t("home.events.allCompetitions")}
+                <ArrowRight className="size-5 shrink-0 transition-transform group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1" aria-hidden />
+              </Link>
             </aside>
           </div>
         </div>
@@ -218,7 +225,7 @@ export default async function HomePage() {
                   )}
                 </h3>
                 <p className="mt-2 text-ink-600">{a.description}</p>
-                <div className="mt-auto flex flex-wrap gap-x-4 gap-y-1 pt-4 text-[0.9375rem] font-semibold">
+                <div className="mt-auto flex flex-wrap gap-x-4 gap-y-1 pt-4 text-base font-semibold">
                   {a.athlete && <span className="text-brand-700">{fullName(a.athlete)}</span>}
                   {a.competition && (
                     <Link href={`/competitions/${a.competition.slug}`} className="relative z-10 font-medium text-ink-600 underline-offset-4 hover:text-brand-700 hover:underline">
@@ -267,7 +274,7 @@ export default async function HomePage() {
             <p className="mt-3 text-ink-600">{locale === "ar" ? t("home.about.mission") : organisation.mission}</p>
             <figure className="mt-6 border-s-4 border-brand-600 ps-5">
               <blockquote className="text-lg font-semibold leading-snug text-ink-950">“{locale === "ar" ? t("home.about.vision") : organisation.vision}”</blockquote>
-              <figcaption className="mt-2 text-[0.9375rem] text-ink-600">{locale === "ar" ? t("home.about.visionBy") : organisation.visionBy}</figcaption>
+              <figcaption className="mt-2 text-base text-ink-600">{locale === "ar" ? t("home.about.visionBy") : organisation.visionBy}</figcaption>
             </figure>
             <div className="mt-8 flex flex-wrap gap-3">
               <ButtonLink href="/about">{t("home.about.about")}</ButtonLink>
@@ -290,7 +297,7 @@ export default async function HomePage() {
             <p className="mt-4 text-lg text-ink-600">{t("home.clean.text")}</p>
             <div className="card mt-6 flex items-start gap-4 p-5">
               <ShieldCheck className="size-7 shrink-0 text-success" aria-hidden />
-              <p className="text-[0.9375rem] text-ink-700">
+              <p className="text-base text-ink-700">
                 {t("home.clean.report")}{" "}
                 <a href={cleanAthleticsLinks.bnado} className="font-semibold text-brand-700 underline underline-offset-2" target="_blank" rel="noopener noreferrer">
                   B-NADO
@@ -321,9 +328,9 @@ export default async function HomePage() {
                 <Link href={href} className="flex items-start gap-3 after:absolute after:inset-0 after:content-['']">
                   <span className="flex-1">
                     <span className="block font-bold leading-tight text-ink-950 group-hover:text-brand-700">{label}</span>
-                    <span className="mt-1 block text-[0.9375rem] text-ink-600">{desc}</span>
+                    <span className="mt-1 block text-base text-ink-600">{desc}</span>
                   </span>
-                  <ArrowUpRight className="size-5 shrink-0 text-ink-400 group-hover:text-brand-600" aria-hidden />
+                  <ArrowUpRight className="size-5 shrink-0 text-ink-600 group-hover:text-brand-600" aria-hidden />
                 </Link>
               </li>
             ))}
@@ -338,7 +345,7 @@ export default async function HomePage() {
           <h2 id="cta-title" className="text-h1 mx-auto mt-3 max-w-3xl">
             {t("home.cta.title")}
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-lg text-white/90">{t("home.cta.text")}</p>
+          <p className="mx-auto mt-4 max-w-xl text-lg text-white/85">{t("home.cta.text")}</p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <ButtonLink href="/events" variant="inverse" size="lg">
               {t("home.cta.calendar")}

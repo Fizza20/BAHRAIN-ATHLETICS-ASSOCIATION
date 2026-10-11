@@ -89,7 +89,7 @@ export function ConfirmDialog({
               </button>
             </div>
           </div>
-          <Dialog.Close className="absolute right-3 top-4 flex size-8 items-center justify-center rounded-xs text-ink-400 hover:bg-ink-950/5 hover:text-ink-950">
+          <Dialog.Close className="absolute right-3 top-4 flex size-8 items-center justify-center rounded-xs text-ink-600 hover:bg-ink-950/5 hover:text-ink-950">
             <X className="size-4" aria-hidden />
             <span className="sr-only">Close</span>
           </Dialog.Close>
@@ -120,12 +120,12 @@ export function DeleteButton({
       title="Delete permanently?"
       description={
         <>
-          <span className="font-semibold text-ink-900">{label}</span> will be removed from the database and the public site. This can’t be undone.
+          <span className="font-semibold text-ink-950">{label}</span> will be removed from the database and the public site. This can’t be undone.
         </>
       }
       trigger={
         variant === "icon" ? (
-          <button type="button" className="inline-flex size-8 items-center justify-center rounded-xs text-ink-400 hover:bg-brand-50 hover:text-brand-600" title={`Delete ${label}`}>
+          <button type="button" className="inline-flex size-8 items-center justify-center rounded-xs text-ink-600 hover:bg-brand-50 hover:text-brand-600" title={`Delete ${label}`}>
             <Trash2 className="size-4" aria-hidden />
             <span className="sr-only">Delete {label}</span>
           </button>
@@ -182,7 +182,7 @@ export function ActionButton({
         })
       }
       className={cn(
-        "inline-flex h-9 items-center gap-2 rounded-xs border border-line bg-white px-3.5 text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-ink-800 hover:border-ink-950 disabled:opacity-50",
+        "inline-flex h-9 items-center gap-2 rounded-xs border border-line bg-white px-3.5 text-xs font-semibold uppercase tracking-[0.08em] text-ink-950 hover:border-ink-950 disabled:opacity-50",
         className,
       )}
     >
@@ -232,7 +232,7 @@ export function BulkScope({ actions, children }: { actions: BulkAction[]; childr
         aria-live="polite"
       >
         <span className="px-1 font-semibold tabular">{selected.size} selected</span>
-        <button type="button" onClick={() => setSelected(new Set())} className="rounded-xs px-2 py-1 text-xs text-white/60 hover:text-white">
+        <button type="button" onClick={() => setSelected(new Set())} className="rounded-xs px-2 py-1 text-xs text-white/70 hover:text-white">
           Clear
         </button>
         <span className="mx-1 h-4 w-px bg-white/15" aria-hidden />
@@ -246,13 +246,13 @@ export function BulkScope({ actions, children }: { actions: BulkAction[]; childr
               tone={a.tone ?? "danger"}
               onConfirm={async () => run(a)}
               trigger={
-                <button type="button" disabled={pending} className={cn("h-8 rounded-xs px-3 text-[0.6875rem] font-semibold uppercase tracking-[0.08em]", a.tone === "default" ? "bg-white/10 hover:bg-white/20" : "bg-brand-600 hover:bg-brand-700")}>
+                <button type="button" disabled={pending} className={cn("h-8 rounded-xs px-3 text-xs font-semibold uppercase tracking-[0.08em]", a.tone === "default" ? "bg-white/10 hover:bg-white/20" : "bg-brand-600 hover:bg-brand-700")}>
                   {a.label}
                 </button>
               }
             />
           ) : (
-            <button key={a.label} type="button" disabled={pending} onClick={() => run(a)} className="h-8 rounded-xs bg-white/10 px-3 text-[0.6875rem] font-semibold uppercase tracking-[0.08em] hover:bg-white/20">
+            <button key={a.label} type="button" disabled={pending} onClick={() => run(a)} className="h-8 rounded-xs bg-white/10 px-3 text-xs font-semibold uppercase tracking-[0.08em] hover:bg-white/20">
               {a.label}
             </button>
           ),

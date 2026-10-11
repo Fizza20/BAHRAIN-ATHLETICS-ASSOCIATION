@@ -9,7 +9,7 @@ import { ConfirmDialog } from "./actions";
 import { inputCls } from "./styles";
 import { toast } from "./toast";
 
-export function SettingsForm({ tagline, demoBanner }: { tagline: string; demoBanner: boolean }) {
+export function SettingsForm({ tagline, demoBanner, demoBadges }: { tagline: string; demoBanner: boolean; demoBadges: boolean }) {
   const [state, action, pending] = useActionState(saveSettings, {} as FormState);
   useEffect(() => {
     if (state.message) toast(state.message, state.ok ? "success" : "error");
@@ -26,21 +26,30 @@ export function SettingsForm({ tagline, demoBanner }: { tagline: string; demoBan
       className="space-y-5"
     >
       <div>
-        <label htmlFor="s-tagline" className="mb-1.5 block text-[0.8125rem] font-semibold text-ink-900">
-          Site tagline <span className="font-mono text-[0.6875rem] font-normal text-ink-400">site.tagline</span>
+        <label htmlFor="s-tagline" className="mb-1.5 block text-sm font-semibold text-ink-950">
+          Site tagline <span className="font-mono text-xs font-normal text-ink-600">site.tagline</span>
         </label>
         <input id="s-tagline" name="site.tagline" defaultValue={tagline} aria-invalid={err ? true : undefined} aria-describedby={err ? "s-tagline-err" : "s-tagline-hint"} className={inputCls} />
         {err ? (
           <p id="s-tagline-err" className="mt-1.5 flex items-center gap-1.5 text-xs font-medium text-brand-700"><CircleAlert className="size-3.5" aria-hidden /> {err}</p>
         ) : (
-          <p id="s-tagline-hint" className="mt-1.5 text-xs text-ink-500">Used in the homepage hero and metadata.</p>
+          <p id="s-tagline-hint" className="mt-1.5 text-xs text-ink-600">Used in the homepage hero and metadata.</p>
         )}
       </div>
       <label htmlFor="s-demo" className="flex cursor-pointer items-start gap-3 rounded-xs border border-line px-3 py-2.5 hover:border-ink-300">
         <input id="s-demo" type="checkbox" name="site.demoBanner" defaultChecked={demoBanner} className="mt-0.5 size-4 accent-brand-600" />
         <span>
-          <span className="text-[0.8125rem] font-semibold text-ink-900">Show the prototype banner</span> <span className="font-mono text-[0.6875rem] text-ink-400">site.demoBanner</span>
-          <span className="mt-0.5 block text-xs text-ink-500">Tells visitors this is a pitch prototype with demo content.</span>
+          <span className="text-sm font-semibold text-ink-950">Show the prototype banner</span> <span className="font-mono text-xs text-ink-600">site.demoBanner</span>
+          <span className="mt-0.5 block text-xs text-ink-600">Tells visitors this is a pitch prototype with demo content.</span>
+        </span>
+      </label>
+      <label htmlFor="s-badges" className="flex cursor-pointer items-start gap-3 rounded-xs border border-line px-3 py-2.5 hover:border-ink-300">
+        <input id="s-badges" type="checkbox" name="site.demoBadges" defaultChecked={demoBadges} className="mt-0.5 size-4 accent-brand-600" />
+        <span>
+          <span className="text-sm font-semibold text-ink-950">Show Demo badges on sample content</span> <span className="font-mono text-xs text-ink-600">site.demoBadges</span>
+          <span className="mt-0.5 block text-xs text-ink-600">
+            When off, the badges are hidden and the footer says the site includes sample content. To show only verified data, use “Purge all demo data” below.
+          </span>
         </span>
       </label>
       <div className="flex justify-end">

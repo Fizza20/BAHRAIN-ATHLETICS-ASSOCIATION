@@ -59,9 +59,8 @@ export function AthleteSpotlight({ athletes }: { athletes: SpotlightAthlete[] })
                 {a.discipline?.name} · {t(keyOf("category", a.category))}
               </p>
               <h3 className="mt-3 text-display text-white">
-                {a.firstName}
-                <br />
-                {a.lastName}
+                <span className="block">{a.firstName}</span>{" "}
+                <span className="block">{a.lastName}</span>
               </h3>
               {a.headline && <p className="mt-4 max-w-lg text-lg text-white/85">{a.headline}</p>}
 
@@ -74,7 +73,7 @@ export function AthleteSpotlight({ athletes }: { athletes: SpotlightAthlete[] })
                     <span dir="ltr">{a.latest.mark ?? ordinal(a.latest.position, locale)}</span>
                     {a.latest.record && <RecordTag record={a.latest.record} />}
                   </p>
-                  <p className="mt-1 text-[0.9375rem] text-white/80">
+                  <p className="mt-1 text-base text-white/85">
                     {a.latest.mark && a.latest.position ? `${ordinal(a.latest.position, locale)} · ` : ""}
                     {a.latest.competition} · {formatDate(a.latest.date, { month: "short", year: "numeric" }, locale)}
                   </p>
@@ -86,7 +85,7 @@ export function AthleteSpotlight({ athletes }: { athletes: SpotlightAthlete[] })
                   {t("common.fullProfile")}
                 </ButtonLink>
               </div>
-              {!a.imageUrl && <p className="mt-4 text-sm text-white/75">{t("home.athletes.placeholder")}</p>}
+              {!a.imageUrl && <p className="mt-4 text-sm text-white/70">{t("home.athletes.placeholder")}</p>}
             </motion.div>
           </AnimatePresence>
         </div>
@@ -124,7 +123,7 @@ export function AthleteSpotlight({ athletes }: { athletes: SpotlightAthlete[] })
               onClick={() => setActive(i)}
               className={cn(
                 "relative min-w-[8.5rem] overflow-hidden rounded-sm border px-4 pb-3 pt-4 text-start transition-colors",
-                i === active ? "border-white/40 bg-white/10 text-white" : "border-white/15 text-white/75 hover:border-white/40 hover:text-white",
+                i === active ? "border-white/40 bg-white/10 text-white" : "border-white/15 text-white/70 hover:border-white/40 hover:text-white",
               )}
             >
               <span className="block text-xs font-bold tabular opacity-70">{String(i + 1).padStart(2, "0")}</span>

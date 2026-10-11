@@ -71,7 +71,7 @@ export default async function AchievementsPage({ searchParams }: PageProps<"/adm
                       {a.isDemo && <DemoBadge />}
                       <SourceLink href={a.sourceUrl} />
                     </div>
-                    {a.description && <p className="truncate text-xs text-ink-500">{a.description}</p>}
+                    {a.description && <p className="truncate text-xs text-ink-600">{a.description}</p>}
                   </Td>
                   <Td className="whitespace-nowrap">{a.medal ? <MedalDot medal={a.medal} /> : <span className="text-ink-700">{TYPES[a.type]}</span>}</Td>
                   <Td className="text-ink-700">{firstName ? `${firstName} ${lastName}` : "—"}</Td>

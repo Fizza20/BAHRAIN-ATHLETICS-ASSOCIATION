@@ -31,7 +31,7 @@ const ACTION_TONE: Record<string, string> = {
 
 export function ActionPill({ action }: { action: string }) {
   return (
-    <span className="inline-flex items-center gap-1.5 text-xs font-semibold capitalize text-ink-800">
+    <span className="inline-flex items-center gap-1.5 text-xs font-semibold capitalize text-ink-950">
       <span className={cn("size-1.5 rounded-full", ACTION_TONE[action] ?? "bg-ink-400")} aria-hidden />
       {action}
     </span>

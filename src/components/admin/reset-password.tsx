@@ -30,7 +30,7 @@ export function ResetPasswordForm({ userId }: { userId: number }) {
       <input type="hidden" name="id" value={userId} />
       {(["password", "confirm"] as const).map((name) => (
         <div key={name}>
-          <label htmlFor={`rp-${name}`} className="mb-1.5 block text-[0.8125rem] font-semibold text-ink-900">
+          <label htmlFor={`rp-${name}`} className="mb-1.5 block text-sm font-semibold text-ink-950">
             {name === "password" ? "New password" : "Confirm password"}
           </label>
           <input id={`rp-${name}`} name={name} type="password" autoComplete="new-password" aria-invalid={errors[name] ? true : undefined} aria-describedby={errors[name] ? `rp-${name}-err` : undefined} className={inputCls} />
@@ -41,7 +41,7 @@ export function ResetPasswordForm({ userId }: { userId: number }) {
           )}
         </div>
       ))}
-      <button type="submit" disabled={pending} className="inline-flex h-10 items-center gap-2 rounded-xs bg-ink-950 px-4 text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-white hover:bg-ink-800 disabled:opacity-60 sm:mt-[1.6rem]">
+      <button type="submit" disabled={pending} className="inline-flex h-10 items-center gap-2 rounded-xs bg-ink-950 px-4 text-xs font-semibold uppercase tracking-[0.08em] text-white hover:bg-ink-800 disabled:opacity-60 sm:mt-[1.6rem]">
         <KeyRound className="size-4" aria-hidden /> {pending ? "Resetting…" : "Reset password"}
       </button>
     </form>

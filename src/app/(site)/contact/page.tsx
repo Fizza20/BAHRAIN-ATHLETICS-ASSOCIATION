@@ -45,9 +45,9 @@ export default async function ContactPage() {
               <LaneArcs className="absolute inset-0 -z-10 size-full text-white/[0.09]" lanes={8} />
               <div className="absolute -bottom-24 -start-24 -z-10 size-72 rounded-full bg-brand-500/30 blur-3xl" aria-hidden />
 
-              <p className="text-eyebrow text-white/80">{t("contact.eyebrow")}</p>
+              <p className="text-eyebrow text-white/85">{t("contact.eyebrow")}</p>
               <h2 className="mt-3 text-h2">{t("contact.title")}</h2>
-              <p className="mt-3 max-w-sm text-white/80">{t("contact.intro")}</p>
+              <p className="mt-3 max-w-sm text-white/85">{t("contact.intro")}</p>
 
               <ul className="mt-10 space-y-7">
                 <li>

@@ -122,7 +122,7 @@ function MonthGrid({ events }: { events: EventLike[] }) {
                       href={`/events/${e.slug}`}
                       className={cn(
                         "block truncate rounded-xs px-1.5 py-1 text-xs font-semibold leading-tight",
-                        e.live === "ongoing" ? "bg-brand-600 text-white" : e.live === "upcoming" ? "bg-brand-50 text-brand-800 hover:bg-brand-100" : "bg-ink-100 text-ink-700 hover:bg-ink-200",
+                        e.live === "ongoing" ? "bg-brand-600 text-white" : e.live === "upcoming" ? "bg-brand-50 text-brand-700 hover:bg-brand-100" : "bg-ink-100 text-ink-700 hover:bg-ink-200",
                       )}
                       title={e.title}
                     >

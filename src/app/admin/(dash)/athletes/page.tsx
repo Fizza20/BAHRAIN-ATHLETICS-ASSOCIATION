@@ -150,7 +150,7 @@ export default async function AthletesPage({ searchParams }: PageProps<"/admin/a
                             {a.isDemo && <DemoBadge />}
                             <SourceLink href={a.sourceUrl} />
                           </div>
-                          <p className="truncate text-xs text-ink-500">
+                          <p className="truncate text-xs text-ink-600">
                             {a.nameAr && (
                               <span lang="ar" dir="rtl" className="font-arabic">
                                 {a.nameAr}
@@ -173,7 +173,7 @@ export default async function AthletesPage({ searchParams }: PageProps<"/admin/a
                         {a.status === "active" ? "Active" : "Retired"}
                       </span>
                     </Td>
-                    <Td className="whitespace-nowrap text-xs text-ink-500">{timeAgo(a.updatedAt)}</Td>
+                    <Td className="whitespace-nowrap text-xs text-ink-600">{timeAgo(a.updatedAt)}</Td>
                     <Td>
                       <RowActions>
                         <ViewOnSite href={`/athletes/${a.slug}`} />

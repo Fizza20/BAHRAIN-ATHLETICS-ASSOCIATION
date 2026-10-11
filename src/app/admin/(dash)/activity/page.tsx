@@ -65,15 +65,15 @@ export default async function ActivityPage({ searchParams }: PageProps<"/admin/a
               <tr key={a.id} className={trCls}>
                 <Td className="whitespace-nowrap">
                   <time dateTime={a.createdAt.toISOString()} title={dateTime(a.createdAt)} className="text-xs tabular text-ink-700">{dateTime(a.createdAt)}</time>
-                  <span className="block text-[0.6875rem] text-ink-400">{timeAgo(a.createdAt)}</span>
+                  <span className="block text-xs text-ink-600">{timeAgo(a.createdAt)}</span>
                 </Td>
                 <Td>
                   <span className="font-semibold text-ink-950">{userName ?? "Deleted user"}</span>
-                  {role && <span className="block text-xs text-ink-500">{ROLE_LABEL[role]}</span>}
+                  {role && <span className="block text-xs text-ink-600">{ROLE_LABEL[role]}</span>}
                 </Td>
                 <Td><ActionPill action={a.action} /></Td>
-                <Td className="capitalize text-ink-700">{a.entity}{a.entityId ? <span className="ml-1 font-mono text-[0.6875rem] text-ink-400">#{a.entityId}</span> : null}</Td>
-                <Td className="text-ink-800">{a.label ?? "—"}</Td>
+                <Td className="capitalize text-ink-700">{a.entity}{a.entityId ? <span className="ml-1 font-mono text-xs text-ink-600">#{a.entityId}</span> : null}</Td>
+                <Td className="text-ink-950">{a.label ?? "—"}</Td>
               </tr>
             ))}
           </tbody>

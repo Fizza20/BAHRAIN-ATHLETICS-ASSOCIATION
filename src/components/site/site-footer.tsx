@@ -2,6 +2,7 @@ import Link from "next/link";
 import { MapPin, Phone, Mail } from "lucide-react";
 import { organisation } from "@/db/seed-data/real";
 import { getT } from "@/lib/i18n/server";
+import { getDemoDisplay } from "@/lib/queries";
 import type { DictKey } from "@/lib/i18n/dict";
 import { BrandLockup } from "./brand";
 import { SocialLinks } from "./social";
@@ -41,15 +42,15 @@ const COLS: { title: DictKey; links: { label: DictKey; href: string }[] }[] = [
 ];
 
 export async function SiteFooter() {
-  const { t } = await getT();
+  const [{ t }, demo] = await Promise.all([getT(), getDemoDisplay()]);
   return (
     <footer className="border-t-4 border-brand-600 bg-ink-950 text-white">
       <div className="container-x">
         <div className="grid gap-12 py-16 lg:grid-cols-12 lg:py-20">
           <div className="lg:col-span-4">
             <BrandLockup inverse />
-            <p className="mt-5 max-w-sm text-white/80">{t("footer.tagline")}</p>
-            <ul className="mt-6 space-y-3 text-[0.9375rem] text-white/85">
+            <p className="mt-5 max-w-sm text-white/85">{t("footer.tagline")}</p>
+            <ul className="mt-6 space-y-3 text-base text-white/85">
               <li className="flex gap-3">
                 <MapPin className="mt-1 size-4 shrink-0 text-white/70" aria-hidden />
                 <address className="not-italic" dir="ltr">{organisation.address}</address>
@@ -75,7 +76,7 @@ export async function SiteFooter() {
                 <ul>
                   {col.links.map((l) => (
                     <li key={l.href}>
-                      <Link href={l.href} className="flex min-h-10 items-center text-[0.9375rem] text-white/90 underline-offset-4 hover:text-white hover:underline">
+                      <Link href={l.href} className="flex min-h-10 items-center text-base text-white/85 underline-offset-4 hover:text-white hover:underline">
                         {t(l.label)}
                       </Link>
                     </li>
@@ -88,8 +89,10 @@ export async function SiteFooter() {
 
         <div className="flex flex-col gap-5 border-t border-white/15 py-8 md:flex-row md:items-start md:justify-between md:gap-10">
           <SocialLinks tone="inverse" className="-ms-3 shrink-0" />
-          <p className="max-w-xl text-[0.8125rem] leading-relaxed text-white/65 md:text-end">
+          <p className="max-w-xl text-sm leading-relaxed text-white/70 md:text-end">
             © {new Date().getFullYear()} {t("footer.rights")}{" "}
+            {demo.hasDemo && <>{t(demo.badges ? "footer.demoMarked" : "footer.demoSample")} </>}
+            {t("footer.photos")}{" "}
             <Link href="/admin" className="underline underline-offset-4 hover:text-white" lang="en" dir="ltr">
               {t("footer.admin")}
             </Link>

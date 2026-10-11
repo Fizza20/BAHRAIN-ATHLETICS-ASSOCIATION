@@ -51,10 +51,10 @@ export default async function GovernancePage({ searchParams }: PageProps<"/admin
             key={t.key}
             href={hrefWith(BASE, {}, { tab: t.key === "board" ? null : t.key })}
             aria-current={tab === t.key ? "page" : undefined}
-            className={cn("relative -mb-px flex h-11 items-center gap-2 border-b-2 px-3 text-sm font-semibold", tab === t.key ? "border-brand-600 text-ink-950" : "border-transparent text-ink-500 hover:text-ink-950")}
+            className={cn("relative -mb-px flex h-11 items-center gap-2 border-b-2 px-3 text-sm font-semibold", tab === t.key ? "border-brand-600 text-ink-950" : "border-transparent text-ink-600 hover:text-ink-950")}
           >
             {t.label}
-            <span className={cn("rounded-xs px-1.5 text-[0.6875rem] leading-5 tabular", tab === t.key ? "bg-ink-950 text-white" : "bg-ink-950/[0.06] text-ink-600")}>{t.n}</span>
+            <span className={cn("rounded-xs px-1.5 text-xs leading-5 tabular", tab === t.key ? "bg-ink-950 text-white" : "bg-ink-950/[0.06] text-ink-600")}>{t.n}</span>
           </Link>
         ))}
       </nav>
@@ -80,7 +80,7 @@ export default async function GovernancePage({ searchParams }: PageProps<"/admin
                 {board.map((b) => (
                   <tr key={b.id} className={trCls}>
                     {canDelete && <Td><RowCheck id={b.id} label={b.name} /></Td>}
-                    <Td className="tabular text-ink-500">{String(b.sortOrder).padStart(2, "0")}</Td>
+                    <Td className="tabular text-ink-600">{String(b.sortOrder).padStart(2, "0")}</Td>
                     <Td>
                       <div className="flex items-center gap-2">
                         {canWrite ? <Link href={`${BASE}/board/${b.id}`} className="font-semibold text-ink-950 hover:text-brand-600">{b.name}</Link> : <span className="font-semibold">{b.name}</span>}
@@ -121,14 +121,14 @@ export default async function GovernancePage({ searchParams }: PageProps<"/admin
               {committees.map((c) => (
                 <tr key={c.id} className={trCls}>
                   {canDelete && <Td><RowCheck id={c.id} label={c.name} /></Td>}
-                  <Td className="tabular text-ink-500">{String(c.sortOrder).padStart(2, "0")}</Td>
+                  <Td className="tabular text-ink-600">{String(c.sortOrder).padStart(2, "0")}</Td>
                   <Td className="max-w-lg">
                     <div className="flex items-center gap-2">
                       {canWrite ? <Link href={`${BASE}/committees/${c.id}`} className="font-semibold text-ink-950 hover:text-brand-600">{c.name}</Link> : <span className="font-semibold">{c.name}</span>}
                       {c.isDemo && <DemoBadge />}
                       <SourceLink href={c.sourceUrl} />
                     </div>
-                    {c.remit && <p className="truncate text-xs text-ink-500">{c.remit}</p>}
+                    {c.remit && <p className="truncate text-xs text-ink-600">{c.remit}</p>}
                   </Td>
                   <Td className="text-ink-700">{c.chair ?? "—"}</Td>
                   <Td>

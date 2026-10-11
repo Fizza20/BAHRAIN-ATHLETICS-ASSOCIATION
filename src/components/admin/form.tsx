@@ -54,7 +54,7 @@ export type MediaItem = { url: string; alt: string; title: string };
 export type FormValue = string | number | boolean | null | undefined | string[];
 type Intent = { value: string; label: string; variant?: "primary" | "secondary" };
 
-const labelText = "text-[0.8125rem] font-semibold text-ink-900";
+const labelText = "text-sm font-semibold text-ink-950";
 
 const spanCls = { full: "sm:col-span-6", half: "sm:col-span-3", third: "sm:col-span-2", "two-thirds": "sm:col-span-4" };
 
@@ -131,7 +131,7 @@ export function EntityForm({
       {Object.entries(hidden ?? {}).map(([k, v]) => (v === null || v === undefined ? null : <input key={k} type="hidden" name={k} value={String(v)} />))}
 
       {state.message && !state.ok && (
-        <div role="alert" className="mb-6 flex items-start gap-3 rounded-sm border border-brand-200 bg-brand-50 px-4 py-3 text-sm text-brand-800">
+        <div role="alert" className="mb-6 flex items-start gap-3 rounded-sm border border-brand-200 bg-brand-50 px-4 py-3 text-sm text-brand-700">
           <CircleAlert className="mt-0.5 size-4 shrink-0" aria-hidden />
           <div>
             <p className="font-semibold">{state.message}</p>
@@ -145,10 +145,10 @@ export function EntityForm({
           <fieldset key={section.title} className="grid gap-4 lg:grid-cols-[minmax(0,15rem)_minmax(0,1fr)] lg:gap-10">
             <legend className="sr-only">{section.title}</legend>
             <div className="pt-1">
-              <p className="text-[0.8125rem] font-bold uppercase tracking-[0.08em] text-ink-950 [font-variation-settings:'wdth'_85]" aria-hidden>
+              <p className="text-sm font-bold uppercase tracking-[0.08em] text-ink-950 [font-variation-settings:'wdth'_85]" aria-hidden>
                 {section.title}
               </p>
-              {section.description && <p className="mt-1.5 text-[0.8125rem] leading-relaxed text-ink-500">{section.description}</p>}
+              {section.description && <p className="mt-1.5 text-sm leading-relaxed text-ink-600">{section.description}</p>}
             </div>
             <div className="grid grid-cols-1 gap-x-4 gap-y-5 rounded-sm border border-line bg-white p-5 sm:grid-cols-6 md:p-6">
               {section.fields.map((f) => (
@@ -170,7 +170,7 @@ export function EntityForm({
 
       <div className="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-white/95 backdrop-blur lg:left-64">
         <div className="flex items-center justify-between gap-3 px-4 py-3 lg:px-8">
-          <div className="hidden min-w-0 text-xs text-ink-500 sm:block">{footerExtra ?? "All changes are validated on the server and logged."}</div>
+          <div className="hidden min-w-0 text-xs text-ink-600 sm:block">{footerExtra ?? "All changes are validated on the server and logged."}</div>
           <div className="flex flex-1 items-center justify-end gap-2 sm:flex-none">
             <Link href={cancelHref} className="inline-flex h-11 items-center rounded-xs px-4 text-xs font-semibold uppercase tracking-[0.08em] text-ink-700 hover:bg-ink-950/5">
               Cancel
@@ -226,7 +226,7 @@ function Field({
           <span>
             <span className={labelText}>{f.label}</span>
             {f.hint && (
-              <span id={hintId} className="mt-0.5 block text-xs text-ink-500">
+              <span id={hintId} className="mt-0.5 block text-xs text-ink-600">
                 {f.hint}
               </span>
             )}
@@ -240,7 +240,7 @@ function Field({
   let control: React.ReactNode;
   switch (f.type) {
     case "textarea":
-      control = <textarea {...common} defaultValue={(defaultValue as string) ?? ""} rows={f.rows ?? 4} placeholder={f.placeholder} className={cn(inputCls, "h-auto py-2.5 leading-relaxed", f.mono && "font-mono text-[0.8125rem]")} />;
+      control = <textarea {...common} defaultValue={(defaultValue as string) ?? ""} rows={f.rows ?? 4} placeholder={f.placeholder} className={cn(inputCls, "h-auto py-2.5 leading-relaxed", f.mono && "font-mono text-sm")} />;
       break;
     case "select":
       control = (
@@ -253,7 +253,7 @@ function Field({
               </option>
             ))}
           </select>
-          <svg className="pointer-events-none absolute right-3 top-1/2 size-3 -translate-y-1/2 text-ink-500" viewBox="0 0 12 12" aria-hidden>
+          <svg className="pointer-events-none absolute right-3 top-1/2 size-3 -translate-y-1/2 text-ink-600" viewBox="0 0 12 12" aria-hidden>
             <path d="M3 4.5 6 7.5 9 4.5" fill="none" stroke="currentColor" strokeWidth="1.5" />
           </svg>
         </div>
@@ -262,14 +262,14 @@ function Field({
     case "slug":
       control = (
         <div className="flex">
-          {f.prefix && <span className="inline-flex h-10 items-center rounded-l-xs border border-r-0 border-line bg-pearl px-3 font-mono text-xs text-ink-500">{f.prefix}</span>}
+          {f.prefix && <span className="inline-flex h-10 items-center rounded-l-xs border border-r-0 border-line bg-pearl px-3 font-mono text-xs text-ink-600">{f.prefix}</span>}
           <input
             {...common}
             value={slug?.value ?? ""}
             onChange={(e) => onSlug(e.target.value)}
             spellCheck={false}
             autoComplete="off"
-            className={cn(inputCls, "font-mono text-[0.8125rem]", f.prefix && "rounded-l-none")}
+            className={cn(inputCls, "font-mono text-sm", f.prefix && "rounded-l-none")}
           />
         </div>
       );
@@ -279,7 +279,7 @@ function Field({
         <div>
           <ImageField common={common} label={f.label} required={f.required} defaultValue={(defaultValue as string) ?? ""} media={media} placeholder={f.placeholder} />
           {f.hint && (
-            <p id={hintId} className="mt-1.5 text-xs text-ink-500">
+            <p id={hintId} className="mt-1.5 text-xs text-ink-600">
               {f.hint}
             </p>
           )}
@@ -291,7 +291,7 @@ function Field({
         <div>
           <MultiField id={id} name={f.name} label={f.label} options={f.options ?? []} defaultValue={(defaultValue as string[]) ?? []} />
           {f.hint && (
-            <p id={hintId} className="mt-1.5 text-xs text-ink-500">
+            <p id={hintId} className="mt-1.5 text-xs text-ink-600">
               {f.hint}
             </p>
           )}
@@ -309,7 +309,7 @@ function Field({
           max={f.max}
           step={f.step}
           autoComplete={f.autoComplete}
-          className={cn(inputCls, f.mono && "font-mono text-[0.8125rem]", (f.type === "number" || f.type === "date") && "tabular")}
+          className={cn(inputCls, f.mono && "font-mono text-sm", (f.type === "number" || f.type === "date") && "tabular")}
         />
       );
   }
@@ -326,7 +326,7 @@ function Field({
       </label>
       {control}
       {f.hint && (
-        <p id={hintId} className="mt-1.5 text-xs text-ink-500">
+        <p id={hintId} className="mt-1.5 text-xs text-ink-600">
           {f.hint}
         </p>
       )}
@@ -386,11 +386,11 @@ function ImageField({
               setUrl(e.target.value);
               setBroken(false);
             }}
-            className={cn(inputCls, "font-mono text-[0.8125rem]")}
+            className={cn(inputCls, "font-mono text-sm")}
           />
           {media.length > 0 && (
             <Dialog.Root open={open} onOpenChange={setOpen}>
-              <Dialog.Trigger className="inline-flex h-10 shrink-0 items-center gap-2 rounded-xs border border-ink-950 px-3 text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-ink-950 hover:bg-ink-950 hover:text-white">
+              <Dialog.Trigger className="inline-flex h-10 shrink-0 items-center gap-2 rounded-xs border border-ink-950 px-3 text-xs font-semibold uppercase tracking-[0.08em] text-ink-950 hover:bg-ink-950 hover:text-white">
                 <Images className="size-4" aria-hidden /> Library
               </Dialog.Trigger>
               <Dialog.Portal>
@@ -407,7 +407,7 @@ function ImageField({
                   <div className="border-b border-line px-5 py-3">
                     <label className="relative block">
                       <span className="sr-only">Filter media</span>
-                      <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-ink-400" aria-hidden />
+                      <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-ink-600" aria-hidden />
                       <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Filter by title or alt text" className={cn(inputCls, "pl-9")} />
                     </label>
                   </div>
@@ -429,7 +429,7 @@ function ImageField({
                         </button>
                       </li>
                     ))}
-                    {shown.length === 0 && <li className="col-span-full py-10 text-center text-sm text-ink-500">No media matches.</li>}
+                    {shown.length === 0 && <li className="col-span-full py-10 text-center text-sm text-ink-600">No media matches.</li>}
                   </ul>
                 </Dialog.Content>
               </Dialog.Portal>
@@ -442,7 +442,7 @@ function ImageField({
           // eslint-disable-next-line @next/next/no-img-element
           <img src={thumb(url)} alt="Preview" className="size-full object-cover" onError={() => setBroken(true)} />
         ) : (
-          <span className="absolute inset-0 flex items-center justify-center px-2 text-center text-[0.625rem] font-semibold uppercase tracking-[0.14em] text-ink-400">
+          <span className="absolute inset-0 flex items-center justify-center px-2 text-center text-xs font-semibold uppercase tracking-[0.14em] text-ink-600">
             {broken ? "Can’t load image" : "No image"}
           </span>
         )}
@@ -462,12 +462,12 @@ function MultiField({ id, name, label, options, defaultValue }: { id: string; na
         <span id={`${id}-label`} className={labelText}>
           {label}
         </span>
-        <span className="text-xs text-ink-500 tabular">{selected.size} selected</span>
+        <span className="text-xs text-ink-600 tabular">{selected.size} selected</span>
       </div>
       <div className="rounded-xs border border-line">
         <label className="relative block border-b border-line">
           <span className="sr-only">Filter {label}</span>
-          <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-ink-400" aria-hidden />
+          <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-ink-600" aria-hidden />
           <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Filter…" className="h-9 w-full bg-transparent pl-9 pr-3 text-sm focus:outline-none" />
         </label>
         <ul className="grid max-h-56 grid-cols-1 overflow-y-auto p-1 sm:grid-cols-2">
@@ -490,7 +490,7 @@ function MultiField({ id, name, label, options, defaultValue }: { id: string; na
                   className="size-4 accent-brand-600"
                 />
                 <span className="truncate">{o.label}</span>
-                {o.hint && <span className="ml-auto shrink-0 text-xs text-ink-400">{o.hint}</span>}
+                {o.hint && <span className="ml-auto shrink-0 text-xs text-ink-600">{o.hint}</span>}
               </label>
             </li>
           ))}

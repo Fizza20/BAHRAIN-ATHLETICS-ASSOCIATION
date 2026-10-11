@@ -32,7 +32,7 @@ export function MediaAddDialog() {
 
   const field = (name: string, label: string, props: React.InputHTMLAttributes<HTMLInputElement> = {}, required = false) => (
     <div>
-      <label htmlFor={`m-${name}`} className="mb-1.5 flex gap-1 text-[0.8125rem] font-semibold text-ink-900">
+      <label htmlFor={`m-${name}`} className="mb-1.5 flex gap-1 text-sm font-semibold text-ink-950">
         {label}
         {required && <span className="text-brand-600" aria-hidden>*</span>}
       </label>
@@ -57,7 +57,7 @@ export function MediaAddDialog() {
           <div className="flex items-start justify-between gap-4 px-6 pt-5">
             <div>
               <Dialog.Title className="text-xl font-extrabold uppercase [font-variation-settings:'wdth'_78]">Add to media library</Dialog.Title>
-              <Dialog.Description className="mt-1 text-sm text-ink-500">Paste a hosted image URL. Alt text is required for accessibility.</Dialog.Description>
+              <Dialog.Description className="mt-1 text-sm text-ink-600">Paste a hosted image URL. Alt text is required for accessibility.</Dialog.Description>
             </div>
             <Dialog.Close className="flex size-8 items-center justify-center rounded-xs hover:bg-ink-950/5">
               <X className="size-4" aria-hidden />
@@ -75,13 +75,13 @@ export function MediaAddDialog() {
             className="grid gap-5 p-6 sm:grid-cols-[1fr_11rem]"
           >
             <div className="space-y-4">
-              {field("url", "Image URL", { type: "url", placeholder: "https://…", value: url, onChange: (e) => setUrl(e.target.value), className: cn(inputCls, "font-mono text-[0.8125rem]") }, true)}
+              {field("url", "Image URL", { type: "url", placeholder: "https://…", value: url, onChange: (e) => setUrl(e.target.value), className: cn(inputCls, "font-mono text-sm") }, true)}
               {field("title", "Title", { placeholder: "National championships, 100m final" }, true)}
               {field("alt", "Alt text", { placeholder: "Describe what the image shows" }, true)}
               <div className="grid gap-4 sm:grid-cols-2">
                 {field("credit", "Credit", { placeholder: "Photographer / agency" })}
                 <div>
-                  <label htmlFor="m-kind" className="mb-1.5 block text-[0.8125rem] font-semibold text-ink-900">Kind</label>
+                  <label htmlFor="m-kind" className="mb-1.5 block text-sm font-semibold text-ink-950">Kind</label>
                   <select id="m-kind" name="kind" defaultValue="image" className={cn(inputCls, "appearance-none")}>
                     <option value="image">Image</option>
                     <option value="video">Video</option>
@@ -92,10 +92,10 @@ export function MediaAddDialog() {
               {field("tags", "Tags", { placeholder: "sprints, national-team" })}
             </div>
             <div>
-              <p className="mb-1.5 text-[0.8125rem] font-semibold text-ink-900">Preview</p>
+              <p className="mb-1.5 text-sm font-semibold text-ink-950">Preview</p>
               <div className="aspect-[3/4] overflow-hidden rounded-xs border border-line bg-pearl">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                {url.startsWith("https://") ? <img src={thumb(url)} alt="" className="size-full object-cover" /> : <span className="flex size-full items-center justify-center text-[0.625rem] font-semibold uppercase tracking-[0.14em] text-ink-400">No image</span>}
+                {url.startsWith("https://") ? <img src={thumb(url)} alt="" className="size-full object-cover" /> : <span className="flex size-full items-center justify-center text-xs font-semibold uppercase tracking-[0.14em] text-ink-600">No image</span>}
               </div>
             </div>
             {state.message && !state.ok && (

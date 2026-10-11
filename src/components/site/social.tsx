@@ -25,7 +25,7 @@ export function SocialLinks({ className, tone = "default" }: { className?: strin
             aria-label={`BAA on ${labels[k]}`}
             className={cn(
               "flex size-11 items-center justify-center rounded-xs transition-colors",
-              tone === "inverse" ? "text-white/80 hover:bg-white/10 hover:text-white" : "text-ink-600 hover:bg-pearl hover:text-brand-600",
+              tone === "inverse" ? "text-white/85 hover:bg-white/10 hover:text-white" : "text-ink-600 hover:bg-pearl hover:text-brand-600",
             )}
           >
             <svg viewBox="0 0 24 24" className="size-5" fill="currentColor" aria-hidden>

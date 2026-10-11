@@ -53,7 +53,7 @@ export default async function UserEditPage({ params }: PageProps<"/admin/users/[
       {u && (
         <Panel title="Reset password" className="mb-6" bodyClassName="p-5">
           <ResetPasswordForm userId={u.id} />
-          <p className="mt-3 text-xs text-ink-500">{self ? "This changes your own password." : "The user is signed out of all sessions after a reset."}</p>
+          <p className="mt-3 text-xs text-ink-600">{self ? "This changes your own password." : "The user is signed out of all sessions after a reset."}</p>
         </Panel>
       )}
       <EntityForm action={saveUser} sections={sections} hidden={{ id: u?.id }} cancelHref="/admin/users" submitLabel={u ? "Save user" : "Create user"} defaults={u ?? { role: "editor" }} />

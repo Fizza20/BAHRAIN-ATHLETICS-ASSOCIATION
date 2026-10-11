@@ -16,13 +16,13 @@ export function LoginForm({ next }: { next?: string }) {
       <form action={action} className="space-y-5" noValidate>
         {next && <input type="hidden" name="next" value={next} />}
         {state.message && (
-          <div role="alert" className="flex items-center gap-2.5 rounded-xs border border-brand-200 bg-brand-50 px-3.5 py-3 text-sm font-medium text-brand-800">
+          <div role="alert" className="flex items-center gap-2.5 rounded-xs border border-brand-200 bg-brand-50 px-3.5 py-3 text-sm font-medium text-brand-700">
             <CircleAlert className="size-4 shrink-0" aria-hidden />
             {state.message}
           </div>
         )}
         <div>
-          <label htmlFor="email" className="mb-1.5 block text-[0.8125rem] font-semibold text-ink-900">
+          <label htmlFor="email" className="mb-1.5 block text-sm font-semibold text-ink-950">
             Email
           </label>
           <input
@@ -43,7 +43,7 @@ export function LoginForm({ next }: { next?: string }) {
           )}
         </div>
         <div>
-          <label htmlFor="password" className="mb-1.5 block text-[0.8125rem] font-semibold text-ink-900">
+          <label htmlFor="password" className="mb-1.5 block text-sm font-semibold text-ink-950">
             Password
           </label>
           <input

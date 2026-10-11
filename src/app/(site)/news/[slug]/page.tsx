@@ -56,7 +56,7 @@ export default async function NewsArticlePage({ params }: PageProps<"/news/[slug
           <Breadcrumbs items={[{ label: t("nav.news"), href: "/news" }, { label: catLabel, href: `/news?category=${n.category}` }, { label: t("news.crumbStory") }]} />
           <div className="mt-6 grid gap-8 md:mt-8 lg:grid-cols-12 lg:items-center">
             <div className="lg:col-span-7">
-              <p className="text-eyebrow flex flex-wrap items-center gap-x-3 gap-y-2 text-ink-500">
+              <p className="text-eyebrow flex flex-wrap items-center gap-x-3 gap-y-2 text-ink-600">
                 <span className="text-brand-700">{catLabel}</span>
                 <span aria-hidden>·</span>
                 <time dateTime={n.publishedAt ?? undefined}>{formatDate(n.publishedAt, { day: "numeric", month: "long", year: "numeric" }, locale)}</time>
@@ -72,7 +72,7 @@ export default async function NewsArticlePage({ params }: PageProps<"/news/[slug
                 <div className="relative aspect-[16/10] overflow-hidden rounded-md bg-ink-100">
                   <Photo src={n.imageUrl} alt="" priority sizes="(min-width:1024px) 40vw, 100vw" />
                 </div>
-                <figcaption className="mt-2 text-sm text-ink-500">{t("news.imageCaption")}</figcaption>
+                <figcaption className="mt-2 text-sm text-ink-600">{t("news.imageCaption")}</figcaption>
               </figure>
             </div>
           </div>
@@ -82,13 +82,13 @@ export default async function NewsArticlePage({ params }: PageProps<"/news/[slug
       <div className="container-x section-y">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-8">
-            <div className="max-w-3xl space-y-6 text-lg leading-[1.8] text-ink-800">
+            <div className="max-w-3xl space-y-6 text-lg leading-[1.8] text-ink-950">
               {paragraphs.map((p, i) => (
                 <p key={i}>{p}</p>
               ))}
             </div>
             {n.sourceUrl && (
-              <p className="mt-10 border-s-2 border-line ps-4 text-[0.9375rem] text-ink-600">
+              <p className="mt-10 border-s-2 border-line ps-4 text-base text-ink-600">
                 {t("news.basedOn")}{" "}
                 <a href={n.sourceUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-1 font-semibold text-brand-700 hover:underline">
                   {t("news.readOnBaa")} <ExternalLink className="size-3.5" aria-hidden />
@@ -103,16 +103,16 @@ export default async function NewsArticlePage({ params }: PageProps<"/news/[slug
           <aside className="space-y-6 lg:col-span-4">
             {athletes.length > 0 && (
               <div className="card p-6">
-                <h2 className="text-eyebrow text-ink-500">{t("news.athletes")}</h2>
+                <h2 className="text-eyebrow text-ink-600">{t("news.athletes")}</h2>
                 <ul className="mt-2 divide-y divide-line">
                   {athletes.map((a) => (
                     <li key={a.id}>
                       <Link href={`/athletes/${a.slug}`} className="group flex min-h-11 items-center justify-between py-3">
                         <span>
-                          <span className="block font-semibold text-ink-900 group-hover:text-brand-700">{fullName(a)}</span>
-                          <span className="text-[0.9375rem] text-ink-600">{a.primaryDiscipline?.name}</span>
+                          <span className="block font-semibold text-ink-950 group-hover:text-brand-700">{fullName(a)}</span>
+                          <span className="text-base text-ink-600">{a.primaryDiscipline?.name}</span>
                         </span>
-                        <ArrowUpRight className="size-5 text-ink-500 group-hover:text-brand-600" aria-hidden />
+                        <ArrowUpRight className="size-5 text-ink-600 group-hover:text-brand-600" aria-hidden />
                       </Link>
                     </li>
                   ))}
@@ -121,11 +121,11 @@ export default async function NewsArticlePage({ params }: PageProps<"/news/[slug
             )}
             {n.competition && (
               <div className="card card-interactive relative p-6">
-                <p className="text-eyebrow text-ink-500">{t("news.competition")}</p>
-                <Link href={`/competitions/${n.competition.slug}`} className="text-h3 mt-3 block text-ink-900 after:absolute after:inset-0 after:content-[''] hover:text-brand-700">
+                <p className="text-eyebrow text-ink-600">{t("news.competition")}</p>
+                <Link href={`/competitions/${n.competition.slug}`} className="text-h3 mt-3 block text-ink-950 after:absolute after:inset-0 after:content-[''] hover:text-brand-700">
                   {n.competition.name}
                 </Link>
-                <p className="mt-1 text-[0.9375rem] text-ink-600">
+                <p className="mt-1 text-base text-ink-600">
                   {n.competition.city}, {n.competition.country}
                 </p>
                 <p className="mt-4 inline-flex items-center gap-2 font-semibold text-brand-700">

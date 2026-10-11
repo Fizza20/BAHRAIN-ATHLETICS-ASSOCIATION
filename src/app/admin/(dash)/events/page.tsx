@@ -94,7 +94,7 @@ export default async function EventsPage({ searchParams }: PageProps<"/admin/eve
                       {e.isDemo && <DemoBadge />}
                       <SourceLink href={e.sourceUrl} />
                     </div>
-                    {competition && <p className="text-xs text-ink-500">Linked: {competition}</p>}
+                    {competition && <p className="text-xs text-ink-600">Linked: {competition}</p>}
                   </Td>
                   <Td className="text-ink-700">{TYPE_LABEL[e.type]}</Td>
                   <Td className="whitespace-nowrap tabular text-ink-700">{formatDateRange(e.startAt, e.endAt)}</Td>

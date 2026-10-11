@@ -111,19 +111,19 @@ export default async function ResultsPage({ searchParams }: PageProps<"/admin/re
                     </Td>
                     <Td className="text-ink-700">
                       {discipline}
-                      {r.round !== "final" && r.round !== "single" && <span className="block text-xs text-ink-500">{ROUND_LABEL[r.round]}</span>}
+                      {r.round !== "final" && r.round !== "single" && <span className="block text-xs text-ink-600">{ROUND_LABEL[r.round]}</span>}
                     </Td>
                     <Td className="max-w-56 truncate text-ink-700" title={competitionName ?? undefined}>{competition ?? competitionName ?? "—"}</Td>
                     <Td className="whitespace-nowrap text-right">
                       <span className="inline-flex items-center gap-1.5">
-                        {r.isSB && <abbr title="Season best" className="text-[0.625rem] font-bold text-ink-500 no-underline">SB</abbr>}
+                        {r.isSB && <abbr title="Season best" className="text-xs font-bold text-ink-600 no-underline">SB</abbr>}
                         {r.record && <RecordTag record={r.record} />}
                         <span className="text-mark text-base text-ink-950">{r.mark ?? "—"}</span>
                       </span>
-                      {r.wind && <span className="block text-[0.6875rem] text-ink-400 tabular">wind {r.wind}</span>}
+                      {r.wind && <span className="block text-xs text-ink-600 tabular">wind {r.wind}</span>}
                     </Td>
                     <Td className="whitespace-nowrap">{r.medal ? <MedalDot medal={r.medal} /> : <span className="tabular text-ink-700">{ordinal(r.position)}</span>}</Td>
-                    <Td className="whitespace-nowrap text-xs tabular text-ink-500">{r.date}</Td>
+                    <Td className="whitespace-nowrap text-xs tabular text-ink-600">{r.date}</Td>
                     <Td>
                       <RowActions>
                         <ViewOnSite href={`/athletes/${slug}`} label="View athlete on site" />
@@ -139,7 +139,7 @@ export default async function ResultsPage({ searchParams }: PageProps<"/admin/re
         </BulkScope>
       )}
       <Pagination base={BASE} p={p} page={page} pageSize={pageSize} total={total} />
-      {!canWrite && <p className="mt-4 text-xs text-ink-500">Your role can view results. Results managers record and edit them.</p>}
+      {!canWrite && <p className="mt-4 text-xs text-ink-600">Your role can view results. Results managers record and edit them.</p>}
     </div>
   );
 }

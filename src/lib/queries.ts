@@ -1,4 +1,5 @@
 import "server-only";
+import { cache } from "react";
 import { and, asc, count, desc, eq, inArray, isNotNull, like, or, sql, type SQL } from "drizzle-orm";
 import { db, schema as s } from "@/db";
 import { effectiveStatus } from "./status";
@@ -394,3 +395,15 @@ export async function getAthletesByIds(ids: number[]) {
   if (!ids.length) return [];
   return db.select().from(s.athletes).where(inArray(s.athletes.id, ids));
 }
+
+/**
+ * How demo rows are labelled on the public site. Admins can switch the per-item
+ * Demo badges off (Settings → site.demoBadges); while any demo rows remain, the
+ * footer still says so, so placeholder content is never passed off as verified.
+ */
+export const getDemoDisplay = cache(async () => {
+  const [setting] = await db.select().from(s.settings).where(eq(s.settings.key, "site.demoBadges"));
+  const tables = [s.athletes, s.events, s.news, s.competitions, s.results] as const;
+  const counts = await Promise.all(tables.map(async (t) => (await db.select({ n: count() }).from(t).where(eq(t.isDemo, true)))[0].n));
+  return { badges: setting?.value !== "false", hasDemo: counts.some((n) => n > 0) };
+});

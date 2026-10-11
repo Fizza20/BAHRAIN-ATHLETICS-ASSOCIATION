@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 /* ---------- typography ---------- */
 
 export const headingCls = "font-extrabold uppercase leading-[0.95] tracking-[-0.01em] [font-variation-settings:'wdth'_72]";
-export const labelCls = "text-[0.6875rem] font-semibold uppercase tracking-[0.14em] [font-variation-settings:'wdth'_110]";
+export const labelCls = "text-xs font-semibold uppercase tracking-[0.14em] [font-variation-settings:'wdth'_110]";
 
 export function PageHeader({
   eyebrow,
@@ -24,7 +24,7 @@ export function PageHeader({
     <header className={cn("mb-6 flex flex-col gap-4 border-b border-line pb-6 md:flex-row md:items-end md:justify-between", className)}>
       <div className="min-w-0">
         {eyebrow && (
-          <p className={cn(labelCls, "mb-2.5 flex items-center gap-2 text-ink-500")}>
+          <p className={cn(labelCls, "mb-2.5 flex items-center gap-2 text-ink-600")}>
             <span className="h-3 w-0.5 bg-brand-600" aria-hidden />
             {eyebrow}
           </p>
@@ -58,7 +58,7 @@ export function Panel({
     <section id={id} className={cn("min-w-0 rounded-sm border border-line bg-white", className)} aria-labelledby={id && title ? `${id}-title` : undefined}>
       {title && (
         <div className="flex items-center justify-between gap-3 border-b border-line px-5 py-3.5">
-          <h2 id={id ? `${id}-title` : undefined} className="text-[0.8125rem] font-bold uppercase tracking-[0.08em] text-ink-950 [font-variation-settings:'wdth'_85]">
+          <h2 id={id ? `${id}-title` : undefined} className="text-sm font-bold uppercase tracking-[0.08em] text-ink-950 [font-variation-settings:'wdth'_85]">
             {title}
           </h2>
           {action}
@@ -71,7 +71,7 @@ export function Panel({
 
 export function PanelLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
-    <Link href={href} className="text-xs font-semibold text-ink-500 underline-offset-4 hover:text-brand-600 hover:underline">
+    <Link href={href} className="text-xs font-semibold text-ink-600 underline-offset-4 hover:text-brand-600 hover:underline">
       {children}
     </Link>
   );
@@ -87,7 +87,7 @@ export function TableWrap({ children, className }: { children: React.ReactNode; 
   );
 }
 
-export const thCls = cn(labelCls, "h-10 whitespace-nowrap bg-pearl/70 px-4 text-ink-500 font-semibold border-b border-line");
+export const thCls = cn(labelCls, "h-10 whitespace-nowrap bg-pearl/70 px-4 text-ink-600 font-semibold border-b border-line");
 export const tdCls = "px-4 py-3 align-middle";
 export const trCls = "border-b border-line last:border-b-0 transition-colors hover:bg-pearl/40";
 
@@ -130,7 +130,7 @@ export function EmptyState({
       <div className="relative">
         {icon && <div className="mx-auto mb-4 flex size-11 items-center justify-center rounded-sm bg-ink-950 text-white">{icon}</div>}
         <p className={cn(headingCls, "text-xl text-ink-950")}>{title}</p>
-        {description && <p className="mx-auto mt-2 max-w-md text-sm text-ink-500">{description}</p>}
+        {description && <p className="mx-auto mt-2 max-w-md text-sm text-ink-600">{description}</p>}
         {action && <div className="mt-5 flex justify-center">{action}</div>}
       </div>
     </div>
@@ -145,7 +145,7 @@ export function SourceLink({ href, className }: { href?: string | null; classNam
       target="_blank"
       rel="noopener noreferrer"
       title={`Source: ${href}`}
-      className={cn("inline-flex size-6 items-center justify-center rounded-xs text-ink-400 hover:bg-ink-950/5 hover:text-info", className)}
+      className={cn("inline-flex size-6 items-center justify-center rounded-xs text-ink-600 hover:bg-ink-950/5 hover:text-info", className)}
     >
       <Link2 className="size-3.5" aria-hidden />
       <span className="sr-only">Source (opens in a new tab)</span>
@@ -159,7 +159,7 @@ export function ViewOnSite({ href, label = "View on site" }: { href: string; lab
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex size-8 items-center justify-center rounded-xs text-ink-500 hover:bg-ink-950/5 hover:text-ink-950"
+      className="inline-flex size-8 items-center justify-center rounded-xs text-ink-600 hover:bg-ink-950/5 hover:text-ink-950"
       title={label}
     >
       <ExternalLink className="size-4" aria-hidden />
@@ -188,7 +188,7 @@ export function ContentStatus({ status }: { status: "draft" | "review" | "publis
     published: { tone: "success" as const, label: "Published", cls: "text-success bg-success/10" },
   }[status];
   return (
-    <span className={cn("inline-flex h-6 items-center gap-1.5 rounded-xs px-2 text-[0.625rem] font-semibold uppercase tracking-[0.12em]", map.cls)}>
+    <span className={cn("inline-flex h-6 items-center gap-1.5 rounded-xs px-2 text-xs font-semibold uppercase tracking-[0.12em]", map.cls)}>
       <Dot tone={map.tone} />
       {map.label}
     </span>
@@ -200,5 +200,5 @@ export function RowActions({ children }: { children: React.ReactNode }) {
 }
 
 export function Kbd({ children }: { children: React.ReactNode }) {
-  return <kbd className="rounded-xs border border-white/15 px-1.5 py-0.5 font-sans text-[0.625rem] text-white/50">{children}</kbd>;
+  return <kbd className="rounded-xs border border-white/15 px-1.5 py-0.5 font-sans text-xs text-white/70">{children}</kbd>;
 }

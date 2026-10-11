@@ -62,7 +62,7 @@ export function PhotoFallback({ label, tone = "light", className }: { label?: st
         <span
           className={cn(
             "absolute bottom-4 start-4 text-3xl font-extrabold leading-none",
-            tone === "light" ? "text-ink-950/15" : "text-white/15",
+            tone === "light" ? "text-ink-950/15" : "text-white/70",
           )}
         >
           {label}

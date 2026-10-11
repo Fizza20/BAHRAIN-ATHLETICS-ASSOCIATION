@@ -91,7 +91,7 @@ export default async function NewsPage({ searchParams }: PageProps<"/news">) {
                 ) : (
                   <span />
                 )}
-                <span className="text-[0.9375rem] tabular text-ink-600">{t("news.pageOf", { page, pages })}</span>
+                <span className="text-base tabular text-ink-600">{t("news.pageOf", { page, pages })}</span>
                 {page < pages ? (
                   <ButtonLink href={qs(page + 1)} variant="secondary" arrow={false}>
                     {t("news.olderPage")} <ArrowRight className="size-4" aria-hidden />

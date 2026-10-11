@@ -25,8 +25,8 @@ export default async function SearchPage({ searchParams }: PageProps<"/search">)
         <form action="/search" role="search" className="mt-8 flex max-w-2xl gap-2">
           <label className="relative flex-1">
             <span className="sr-only">{t("searchpage.label")}</span>
-            <Search className="pointer-events-none absolute start-4 top-1/2 size-5 -translate-y-1/2 text-ink-500" aria-hidden />
-            <input name="q" defaultValue={q} type="search" placeholder={t("searchpage.placeholder")} className="h-12 w-full rounded-xs border border-ink-200 bg-white ps-12 pe-4 text-base text-ink-900 placeholder:text-ink-500 focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/30" />
+            <Search className="pointer-events-none absolute start-4 top-1/2 size-5 -translate-y-1/2 text-ink-600" aria-hidden />
+            <input name="q" defaultValue={q} type="search" placeholder={t("searchpage.placeholder")} className="h-12 w-full rounded-xs border border-ink-200 bg-white ps-12 pe-4 text-base text-ink-950 placeholder:text-ink-600 focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/30" />
           </label>
           <button className="h-12 rounded-xs bg-brand-600 px-6 text-base font-semibold text-white transition-colors hover:bg-brand-700">{t("searchpage.button")}</button>
         </form>
@@ -77,7 +77,7 @@ function Group({ title, count, children }: { title: string; count: number; child
   return (
     <section>
       <h2 className="text-h3 mb-4 text-ink-950">
-        {title} <span className="text-ink-500">({count})</span>
+        {title} <span className="text-ink-600">({count})</span>
       </h2>
       <ul className="space-y-3">{children}</ul>
     </section>
@@ -91,7 +91,7 @@ function Row({ href, title, meta, demo }: { href: string; title: string; meta: s
         <span className="flex items-center gap-2 font-semibold text-ink-950">
           {title} {demo && <DemoBadge />}
         </span>
-        <span className="text-[0.9375rem] text-ink-600">{meta}</span>
+        <span className="text-base text-ink-600">{meta}</span>
       </Link>
     </li>
   );

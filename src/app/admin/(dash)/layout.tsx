@@ -22,7 +22,7 @@ export default async function DashLayout({ children }: LayoutProps<"/admin">) {
   const shellUser = { name: user.name, email: user.email, roleLabel: ROLE_LABEL[user.role], initials };
 
   return (
-    <div className="min-h-dvh bg-bone text-[0.9375rem] lg:pl-64">
+    <div className="min-h-dvh bg-bone text-base lg:pl-64">
       <a href="#admin-main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[70] focus:rounded-xs focus:bg-ink-950 focus:px-4 focus:py-2 focus:text-sm focus:text-white">
         Skip to content
       </a>

@@ -7,7 +7,7 @@ import { INTL_TAG, type Locale } from "@/lib/i18n/config";
 const twMerge = extendTailwindMerge<"baa-mark">({
   extend: {
     classGroups: {
-      "font-size": [{ text: ["display", "h1", "h2", "h3", "eyebrow"] }],
+      "font-size": [{ text: ["display", "h1", "h2", "h3", "eyebrow", "kicker", "stat", "mark-lg", "marquee", "hero"] }],
       "baa-mark": ["text-mark"],
     },
   },
