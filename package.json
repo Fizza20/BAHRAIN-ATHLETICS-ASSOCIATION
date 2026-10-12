@@ -10,6 +10,8 @@
     "db:generate": "drizzle-kit generate",
     "db:seed": "tsx src/db/seed.ts",
     "db:reset": "rm -f data/baa.db && tsx src/db/seed.ts",
+    "admin:check": "tsx scripts/admin-check.ts",
+    "admin:reset-password": "tsx scripts/reset-admin-password.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
